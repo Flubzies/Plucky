@@ -9,7 +9,6 @@ public class BotMovement : MonoBehaviour
 	[SerializeField] List<Transform> _colliders;
 	[SerializeField] LayerMask _cubeLM;
 	bool _moving;
-	float _damping = 50.0f;
 
 	private void Start ()
 	{
@@ -21,43 +20,41 @@ public class BotMovement : MonoBehaviour
 		while (!_moving)
 		{
 			CheckColliders ();
-			yield return new WaitForSeconds (1.0f);
+			yield return new WaitForSeconds (2.0f);
 		}
 	}
 
 	private void CheckColliders ()
 	{
 		_moving = true;
-		Collider[] cols = Physics.OverlapSphere (_colliders[0].position, 0.2f, _cubeLM);
-		if (cols.Length == 0)
+		int config = 0;
+
+		for (int i = 0; i < _colliders.Count; i++)
 		{
-			Turn ();
-			return;
+			Collider[] cols = Physics.OverlapSphere (_colliders[i].position, 0.2f, _cubeLM);
+			if (cols.Length != 0) config += (int) Math.Pow (2, i);
 		}
-		else
-		{
-			int[] configuration = new int[4];
-			for (int i = 1; i < _colliders.Count; i++)
-			{
-				cols = Physics.OverlapSphere (_colliders[i].position, 0.2f, _cubeLM);
-				if (cols.Length == 0) configuration[i - 1] = (i + 4);
-				else configuration[i - 1] = i;
-			}
-			ActOnColliders (String.Join ("", configuration.Select (p => p.ToString ()).ToArray ()));
-		}
+
+		ActOnColliders (config);
 	}
 
-	void ActOnColliders (string configuration_)
+	void ActOnColliders (int configuration_)
 	{
+		Debug.Log (configuration_);
 		switch (configuration_)
 		{
-			case "5678":
-			case "5674":
-			case "5638":
-			case "5634":
+			case 1:
+			case 2:
+			case 3:
+			case 18:
+			case 19:
+			case 34:
+			case 50:
+			case 51:
 				Move ();
 				break;
-			case "1678":
+			case 6:
+			case 7:
 				Climb ();
 				break;
 			default:
