@@ -7,7 +7,9 @@ using UnityEngine;
 public class BotMovement : MonoBehaviour
 {
 	[SerializeField] List<Transform> _colliders;
-	[SerializeField] LayerMask _cubeLM;
+	[SerializeField] Transform _currentGround;
+	[SerializeField] LayerMask _blocksLM;
+	[SerializeField] float _moveTimer = 2.0f;
 	bool _moving;
 
 	private void Start ()
@@ -17,11 +19,23 @@ public class BotMovement : MonoBehaviour
 
 	IEnumerator MoveTo ()
 	{
+		if (CheckForBlockEffects ()) yield return new WaitForSeconds (_moveTimer);
 		while (!_moving)
 		{
 			CheckColliders ();
-			yield return new WaitForSeconds (2.0f);
+			yield return new WaitForSeconds (_moveTimer);
 		}
+	}
+
+	private bool CheckForBlockEffects ()
+	{
+		Collider[] cols = Physics.OverlapSphere (_currentGround.position, 0.2f, _blocksLM);
+		if (cols.Length != 0)
+		{
+			if (cols[0].GetComponent<Block> ().BlockEffect (transform)) return true;
+			else return false;
+		}
+		return false;
 	}
 
 	private void CheckColliders ()
@@ -31,7 +45,7 @@ public class BotMovement : MonoBehaviour
 
 		for (int i = 0; i < _colliders.Count; i++)
 		{
-			Collider[] cols = Physics.OverlapSphere (_colliders[i].position, 0.2f, _cubeLM);
+			Collider[] cols = Physics.OverlapSphere (_colliders[i].position, 0.2f, _blocksLM);
 			if (cols.Length != 0) config += (int) Math.Pow (2, i);
 		}
 
@@ -46,13 +60,17 @@ public class BotMovement : MonoBehaviour
 			case 1:
 			case 2:
 			case 3:
+			case 17:
 			case 18:
 			case 19:
+			case 33:
 			case 34:
 			case 50:
 			case 51:
 				Move ();
 				break;
+			case 4:
+			case 5:
 			case 6:
 			case 7:
 				Climb ();
@@ -65,23 +83,19 @@ public class BotMovement : MonoBehaviour
 
 	void Turn ()
 	{
-		Debug.Log ("Turning.");
-
-		Quaternion newRot = transform.rotation * Quaternion.Euler (0.0f, 90.0f, 0.0f);
+		Quaternion newRot = transform.rotation * Quaternion.Euler (0.0f, 180.0f, 0.0f);
 		transform.rotation = newRot;
 		_moving = false;
 	}
 
 	void Climb ()
 	{
-		Debug.Log ("Climbing.");
 		transform.Translate (Vector3.forward + Vector3.up);
 		_moving = false;
 	}
 
 	void Move ()
 	{
-		Debug.Log ("Moving.");
 		transform.Translate (Vector3.forward);
 		_moving = false;
 	}
