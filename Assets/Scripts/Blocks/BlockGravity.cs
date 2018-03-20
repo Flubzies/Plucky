@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockGravity : Block, IPlaceable
+public class BlockGravity : Block
 {
     // [SerializeField] string _defaultParentTag = "BlockBuildsHolder";
 
@@ -10,42 +10,45 @@ public class BlockGravity : Block, IPlaceable
     [SerializeField] Transform _blockGhost;
     [SerializeField] LayerMask _blocksLM;
 
-    // List<IPlaceable> pList = new List<IPlaceable> ();
+    [SerializeField] int _maxHeight = 3;
+    [SerializeField] int _currHeightPos = 0;
+    Vector3 _currMoveDir = Vector3.up;
+    
 
-    // public List<IPlaceable> GetConnectedBlocks ()
-    // {
-    // 	_colliders = GetAdjacentSpaces (transform);
-    // 	pList.Clear ();
-
-    // 	for (int i = 0; i < _colliders.Count; i++)
-    // 	{
-    // 		Collider[] cols = Physics.OverlapSphere (_colliders[i], 0.2f, _blocksLM);
-    // 		if (cols.Length != 0)
-    // 		{
-    // 			IPlaceable temp = cols[0].transform.GetComponent<IPlaceable> ();
-    // 			if (temp != null) pList.Add (temp);
-    // 		}
-    // 	}
-
-    // 	return pList;
-    // }
-
-    public override bool BlockEffect(Transform bot_)
+    public override bool BlockEffect (Transform bot_)
     {
-        Debug.Log("Gravity Effect.");
+        // Debug.Log ("Gravity Effect.");
+
+        if (_currHeightPos == _maxHeight) _currMoveDir = Vector3.down;
+        else
+        if (_currHeightPos == 0) _currMoveDir = Vector3.up;
+
+        MoveDirection (bot_, _currMoveDir);
         return true;
     }
 
-    public Transform GetGhostBlock()
+    void MoveDirection (Transform bot_, Vector3 vec_)
+    {
+        if (vec_ == Vector3.up) _currHeightPos++;
+        else _currHeightPos--;
+
+        transform.Translate (vec_);
+        bot_.Translate (vec_);
+    }
+
+    public Transform GetGhostBlock ()
     {
         return _blockGhost;
     }
 
-    public void PlaceBlock(Vector3 pos_)
+    public void PlaceBlock (Vector3 pos_)
     {
         transform.position = pos_;
     }
 
-
+    private void OnValidate ()
+    {
+        if (_currHeightPos > _maxHeight) _currHeightPos = _maxHeight;
+    }
 
 }

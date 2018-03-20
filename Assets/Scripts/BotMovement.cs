@@ -2,59 +2,67 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ManagerClasses;
 using UnityEngine;
 
 public class BotMovement : MonoBehaviour
 {
     [SerializeField] List<Transform> _colliders;
+    [Space (10.0f)]
+
     [SerializeField] Transform _currentGround;
     [SerializeField] LayerMask _blocksLM;
     [SerializeField] float _moveTimer = 2.0f;
     bool _moving;
 
-    private void Start()
+    [Space (10.0f)]
+    [SerializeField] bool _debug;
+
+    private void Start ()
     {
-        StartCoroutine(MoveTo());
+        StartCoroutine (MoveTo ());
+        GetComponent<Health> ().DeathEvent += OnDeath;
     }
 
-    IEnumerator MoveTo()
+    IEnumerator MoveTo ()
     {
         while (!_moving)
         {
-            if (CheckForBlockEffects()) yield return new WaitForSeconds(_moveTimer);
+            if (CheckForBlockEffects ()) yield return new WaitForSeconds (_moveTimer);
 
-            CheckColliders(); yield return new WaitForSeconds(_moveTimer);
+            CheckColliders ();
+            yield return new WaitForSeconds (_moveTimer);
         }
     }
 
-    private bool CheckForBlockEffects()
+    private bool CheckForBlockEffects ()
     {
-        Collider[] cols = Physics.OverlapSphere(_currentGround.position, 0.2f, _blocksLM);
+        Collider[] cols = Physics.OverlapSphere (_currentGround.position, 0.2f, _blocksLM);
         if (cols.Length != 0)
         {
-            if (cols[0].GetComponent<Block>().BlockEffect(transform)) return true;
+            if (cols[0].GetComponent<Block> ().BlockEffect (transform)) return true;
             else return false;
         }
         return false;
     }
 
-    private void CheckColliders()
+    private void CheckColliders ()
     {
         _moving = true;
         int config = 0;
 
         for (int i = 0; i < _colliders.Count; i++)
         {
-            Collider[] cols = Physics.OverlapSphere(_colliders[i].position, 0.2f, _blocksLM);
-            if (cols.Length != 0) config += (int)Math.Pow(2, i);
+            Collider[] cols = Physics.OverlapSphere (_colliders[i].position, 0.2f, _blocksLM);
+            if (cols.Length != 0) config += (int) Math.Pow (2, i);
         }
 
-        ActOnColliders(config);
+        ActOnColliders (config);
     }
 
-    void ActOnColliders(int configuration_)
+    void ActOnColliders (int configuration_)
     {
-        Debug.Log(configuration_);
+        if (_debug) Debug.Log (configuration_);
         switch (configuration_)
         {
             case 1:
@@ -67,37 +75,42 @@ public class BotMovement : MonoBehaviour
             case 34:
             case 50:
             case 51:
-                Move();
+                Move ();
                 break;
             case 4:
             case 5:
             case 6:
             case 7:
-                Climb();
+                Climb ();
                 break;
             default:
-                Turn();
+                Turn ();
                 break;
         }
     }
 
-    void Turn()
+    void Turn ()
     {
-        Quaternion newRot = transform.rotation * Quaternion.Euler(0.0f, 180.0f, 0.0f);
+        Quaternion newRot = transform.rotation * Quaternion.Euler (0.0f, 180.0f, 0.0f);
         transform.rotation = newRot;
         _moving = false;
     }
 
-    void Climb()
+    void Climb ()
     {
-        transform.Translate(Vector3.forward + Vector3.up);
+        transform.Translate (Vector3.forward + Vector3.up);
         _moving = false;
     }
 
-    void Move()
+    void Move ()
     {
-        transform.Translate(Vector3.forward);
+        transform.Translate (Vector3.forward);
         _moving = false;
+    }
+
+    void OnDeath ()
+    {
+        gameObject.SetActive (false);
     }
 
 }

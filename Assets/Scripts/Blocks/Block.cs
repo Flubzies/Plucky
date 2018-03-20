@@ -16,7 +16,6 @@ public abstract class Block : MonoBehaviour
 
 	public virtual bool BlockEffect (Transform bot_)
 	{
-		Debug.Log ("No Effect");
 		return false;
 	}
 }

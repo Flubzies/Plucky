@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 23580044976683990}
   - component: {fileID: 114225872331662116}
   - component: {fileID: 54853260928788738}
+  - component: {fileID: 114890756676997664}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -226,15 +227,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1242548740868810}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 1.5, z: -2}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -5, y: 1.5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4909164793084952}
   - {fileID: 4139563032282748}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4549071243987198
 Transform:
   m_ObjectHideFlags: 1
@@ -422,7 +423,23 @@ MonoBehaviour:
   _blocksLM:
     serializedVersion: 2
     m_Bits: 256
-  _moveTimer: 2
+  _moveTimer: 1
+  _debug: 0
+--- !u!114 &114890756676997664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1242548740868810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6bdff8720a8cf74d8a5a52a100bb17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialHealth: 100
+  _maxHealth: 100
+  _debug: 0
+  _invincible: 0
 --- !u!136 &136608457073498722
 CapsuleCollider:
   m_ObjectHideFlags: 1
