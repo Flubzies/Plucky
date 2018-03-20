@@ -108,7 +108,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4506814358254892}
   - component: {fileID: 114408992854994424}
-  - component: {fileID: 114510663472080936}
   m_Layer: 0
   m_Name: _ApplicationManager
   m_TagString: Untagged
@@ -953,7 +952,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.06384085, g: 0.056444652, b: 0.08823532, a: 1}
+  m_BackGroundColor: {r: 0.528, g: 0.5328179, b: 0.99264705, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1100,7 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 0}
+  sharedProfile: {fileID: 11400000, guid: 013f97fd784272141bf01ea07d53fbc2, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -1843,18 +1842,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114510663472080936
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1166947636083488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfff9927a1a47624d893b68880aab2dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotSpeed: 1.5
 --- !u!114 &114562583213342434
 MonoBehaviour:
   m_ObjectHideFlags: 1

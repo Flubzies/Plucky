@@ -15,6 +15,7 @@ MonoBehaviour:
   - {fileID: 114955037033464336}
   - {fileID: 114080474111668190}
   - {fileID: 114418095080642676}
+  - {fileID: 114260279679867592}
 --- !u!114 &114080474111668190
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -32,7 +33,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.37
+    value: 1
   threshold:
     overrideState: 1
     value: 0.2
@@ -52,11 +53,59 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   dirtTexture:
-    overrideState: 0
+    overrideState: 1
     value: {fileID: 2800000, guid: 7a051dbda2d7bc447bee412427cd311e, type: 3}
   dirtIntensity:
+    overrideState: 1
+    value: 0.3
+--- !u!114 &114260279679867592
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
+  m_Name: AmbientOcclusion
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  mode:
+    overrideState: 1
+    value: 0
+  intensity:
+    overrideState: 1
+    value: 2.4
+  color:
     overrideState: 0
-    value: 17.68
+    value: {r: 0, g: 0, b: 0, a: 1}
+  ambientOnly:
+    overrideState: 0
+    value: 1
+  noiseFilterTolerance:
+    overrideState: 0
+    value: 0
+  blurTolerance:
+    overrideState: 0
+    value: -4.6
+  upsampleTolerance:
+    overrideState: 0
+    value: -12
+  thicknessModifier:
+    overrideState: 1
+    value: 6.37
+  directLightingStrength:
+    overrideState: 0
+    value: 0
+  radius:
+    overrideState: 1
+    value: 0.19
+  quality:
+    overrideState: 1
+    value: 4
 --- !u!114 &114418095080642676
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -125,7 +174,7 @@ MonoBehaviour:
     value: 0
   postExposure:
     overrideState: 1
-    value: 1.66
+    value: 0.35
   contrast:
     overrideState: 1
     value: 50
@@ -335,7 +384,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.129
+    value: 0.167
   smoothness:
     overrideState: 1
     value: 1
