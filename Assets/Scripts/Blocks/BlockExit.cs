@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BlockExit : Block
 {
-    [SerializeField] Transform _blockGhost;
     [SerializeField] LayerMask _blocksLM;
 
     public override bool BlockEffect (Transform bot_)

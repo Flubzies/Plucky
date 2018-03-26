@@ -6,10 +6,30 @@ ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
+    100002: BlockBuildable
+    100004: BlockEmpty
+    100006: Camera
+    100008: Grass
+    100010: Lamp
     400000: //RootNode
+    400002: BlockBuildable
+    400004: BlockEmpty
+    400006: Camera
+    400008: Grass
+    400010: Lamp
+    2000000: Camera
     2300000: //RootNode
+    2300002: BlockBuildable
+    2300004: BlockEmpty
+    2300006: Grass
     3300000: //RootNode
+    3300002: BlockBuildable
+    3300004: BlockEmpty
+    3300006: Grass
     4300000: Grass
+    4300002: BlockEmpty
+    4300004: BlockBuildable
+    10800000: Lamp
   materials:
     importMaterials: 0
     materialName: 0
@@ -34,7 +54,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -42,8 +62,8 @@ ModelImporter:
     addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -54,13 +74,13 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

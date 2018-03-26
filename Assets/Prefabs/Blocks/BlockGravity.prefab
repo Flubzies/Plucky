@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0956f1fe2dd71d844bd16121189906fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blockGhost: {fileID: 4938038224082564}
   _colliders: []
   _blockGhost: {fileID: 4938038224082564}
   _blocksLM:

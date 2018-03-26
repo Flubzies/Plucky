@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _blockGhost: {fileID: 4540576703116206}
+  _blockGhost: {fileID: 4540576703116206}
   _blocksLM:
     serializedVersion: 2
     m_Bits: 256

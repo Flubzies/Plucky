@@ -1,32 +1,17 @@
 fileFormatVersion: 2
 guid: 73837ca84b253694a8618007431df5bf
-timeCreated: 1521542221
+timeCreated: 1521712520
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: BlockBuildable
-    100002: //RootNode
-    100004: BlockEmpty
-    100006: Camera
-    100008: Lamp
-    400000: BlockBuildable
-    400002: //RootNode
-    400004: BlockEmpty
-    400006: Camera
-    400008: Lamp
-    2000000: Camera
-    2300000: BlockBuildable
-    2300002: BlockEmpty
-    2300004: //RootNode
-    3300000: BlockBuildable
-    3300002: BlockEmpty
-    3300004: //RootNode
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: BlockEmpty
-    4300002: BlockBuildable
-    10800000: Lamp
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -52,30 +37,30 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.5
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
+    optimizeMeshForGPU: 0
     keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

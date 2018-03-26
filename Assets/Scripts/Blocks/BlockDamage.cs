@@ -7,7 +7,6 @@ public class BlockDamage : Block
     // [SerializeField] string _defaultParentTag = "BlockBuildsHolder";
 
     [SerializeField] List<Vector3> _colliders;
-    [SerializeField] Transform _blockGhost;
     [SerializeField] LayerMask _blocksLM;
 
     public override bool BlockEffect (Transform bot_)

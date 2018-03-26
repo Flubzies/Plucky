@@ -9,7 +9,6 @@ public class BlockBuild : Block, IPlaceable
 	[Space (1.0f)]
 
 	[SerializeField] List<Vector3> _colliders;
-	[SerializeField] Transform _blockGhost;
 	[SerializeField] LayerMask _blocksLM;
 
 	// List<IPlaceable> pList = new List<IPlaceable> ();

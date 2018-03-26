@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using ManagerClasses;
 using UnityEngine;
 
@@ -104,8 +105,10 @@ public class BotMovement : MonoBehaviour
 
     void Move ()
     {
-        transform.Translate (Vector3.forward);
-        _moving = false;
+        Debug.Log ("Moving");
+        Tweener t = transform.DOMove (transform.position + Vector3.forward, 0.1f, true);
+        t.OnComplete (_moving = false);
+        // _moving = false;
     }
 
     void OnDeath ()
