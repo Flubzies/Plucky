@@ -6,7 +6,9 @@ public class BlockExit : Block
 {
     [SerializeField] LayerMask _blocksLM;
 
-    public override bool BlockEffect (Transform bot_)
+    new void Start () { }
+
+    public override bool BlockEffect (IBotMovement bot_)
     {
         Debug.Log ("Level Complete!");
         return true;

@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof (MeshFilter))]
 public abstract class Block : MonoBehaviour
 {
 	[SerializeField] protected Transform _blockGhost;
 
-	private void Start ()
+	protected void Start ()
 	{
 		SetupGhostMesh ();
 	}
@@ -27,10 +26,17 @@ public abstract class Block : MonoBehaviour
 		return VecList;
 	}
 
-	public virtual bool BlockEffect (Transform bot_)
+	public virtual bool BlockEffect (IBotMovement bot_)
 	{
 		return false;
 	}
+
+	protected void RandomXRotation ()
+	{
+		int x = Random.Range (0, 3);
+		transform.rotation = Quaternion.AngleAxis (x * 90, Vector3.up);
+	}
+
 }
 
 public interface IPlaceable

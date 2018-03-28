@@ -11,6 +11,12 @@ public class BlockBuild : Block, IPlaceable
 	[SerializeField] List<Vector3> _colliders;
 	[SerializeField] LayerMask _blocksLM;
 
+	new void Start ()
+	{
+		base.Start ();
+		RandomXRotation ();
+	}
+
 	// List<IPlaceable> pList = new List<IPlaceable> ();
 
 	// public List<IPlaceable> GetConnectedBlocks ()
@@ -42,3 +48,4 @@ public class BlockBuild : Block, IPlaceable
 	}
 
 }
+

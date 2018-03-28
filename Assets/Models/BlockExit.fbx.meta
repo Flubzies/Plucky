@@ -1,37 +1,41 @@
 fileFormatVersion: 2
-guid: d58418e27affc0042abfd227860d3594
-timeCreated: 1521608041
+guid: 7e271fa9650b4f842b9081fcca61863a
+timeCreated: 1521712520
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: BlockBuildable
-    100002: //RootNode
-    100004: BlockEmpty
-    100006: Grass
-    100008: BlockBuild
-    400000: BlockBuildable
-    400002: //RootNode
-    400004: BlockEmpty
-    400006: Grass
-    400008: BlockBuild
-    2300000: BlockBuildable
-    2300002: BlockEmpty
-    2300004: Grass
-    2300006: BlockBuild
-    3300000: BlockBuildable
-    3300002: BlockEmpty
-    3300004: Grass
-    3300006: BlockBuild
-    4300000: Grass
-    4300002: BlockEmpty
-    4300004: BlockBuildable
-    4300006: BlockBuild
-    7400000: Default Take
-    9500000: //RootNode
-    13700000: Grass
+    100000: //RootNode
+    100002: BlockExit
+    100004: BlockExit1
+    100006: BlockExitRing
+    100008: BlockExitSphere
+    400000: //RootNode
+    400002: BlockExit
+    400004: BlockExit1
+    400006: BlockExitRing
+    400008: BlockExitSphere
+    2300000: //RootNode
+    2300002: BlockExit
+    2300004: BlockExit1
+    2300006: BlockExitRing
+    2300008: BlockExitSphere
+    3300000: //RootNode
+    3300002: BlockExit
+    3300004: BlockExit1
+    3300006: BlockExitRing
+    3300008: BlockExitSphere
+    4300000: BlockEmpty
+    4300002: BlockBuildable
+    4300004: BlockBuild
+    4300006: Cube
+    4300008: BlockBuildLP
+    4300010: BlockExit
+    4300012: BlockExit1
+    4300014: BlockExitSphere
+    4300016: BlockExitRing
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -54,16 +58,16 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -80,7 +84,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -99,7 +103,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

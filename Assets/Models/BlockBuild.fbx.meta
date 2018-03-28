@@ -12,6 +12,8 @@ ModelImporter:
     4300000: BlockEmpty
     4300002: BlockBuildable
     4300004: BlockBuild
+    4300006: Cube
+    4300008: BlockBuildLP
   materials:
     importMaterials: 0
     materialName: 0
@@ -36,11 +38,11 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     importVisibility: 1
     importBlendShapes: 0
@@ -49,7 +51,7 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 0
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8

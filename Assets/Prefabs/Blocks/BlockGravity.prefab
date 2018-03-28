@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855889127976970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 1, z: 5}
+  m_LocalPosition: {x: -2, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4938038224082564}
@@ -88,6 +88,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 7cf84127ec1b9844eb151b671f7011b0, type: 2}
+  - {fileID: 2100000, guid: b995bd59f4441c244a5cfc8693fa67ae, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,7 +145,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855889127976970}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300006, guid: 2d878e2e9e445ca42902ab91f5c51bc0, type: 3}
 --- !u!33 &33305108153783064
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -177,9 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _blockGhost: {fileID: 4938038224082564}
   _colliders: []
-  _blockGhost: {fileID: 4938038224082564}
   _blocksLM:
     serializedVersion: 2
     m_Bits: 256
   _maxHeight: 3
-  _currHeightPos: 0

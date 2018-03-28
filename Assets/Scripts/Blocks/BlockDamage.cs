@@ -9,10 +9,10 @@ public class BlockDamage : Block
     [SerializeField] List<Vector3> _colliders;
     [SerializeField] LayerMask _blocksLM;
 
-    public override bool BlockEffect (Transform bot_)
+    public override bool BlockEffect (IBotMovement bot_)
     {
         Debug.Log ("Damage Effect.");
-        bot_.GetComponent<Health> ().Damage (int.MaxValue);
+        bot_.GetHealth.Damage (int.MaxValue);
         return true;
     }
 

@@ -2,14 +2,9 @@
 
 public class BlockEmpty : Block
 {
-    void Start ()
+    new void Start ()
     {
-        RotateRandomly ();
+        RandomXRotation ();
     }
 
-    void RotateRandomly ()
-    {
-        int x = Random.Range (0, 3);
-        transform.rotation = Quaternion.AngleAxis (x * 90, Vector3.up);
-    }
 }

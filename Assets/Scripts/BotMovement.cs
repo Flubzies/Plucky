@@ -6,34 +6,47 @@ using DG.Tweening;
 using ManagerClasses;
 using UnityEngine;
 
-public class BotMovement : MonoBehaviour
+public class BotMovement : MonoBehaviour, IBotMovement
 {
     [SerializeField] List<Transform> _colliders;
+
     [Space (10.0f)]
 
     [SerializeField] Transform _currentGround;
     [SerializeField] LayerMask _blocksLM;
-    [SerializeField] float _moveTimer = 2.0f;
-    bool _moving;
+    [SerializeField] float _moveSpeed = 2.0f;
 
     [Space (10.0f)]
     [SerializeField] bool _debug;
 
-    private void Start ()
+    // Rigidbody _rb;
+    Health _health;
+
+    private void Awake ()
     {
-        StartCoroutine (MoveTo ());
-        GetComponent<Health> ().DeathEvent += OnDeath;
+        _health = GetComponent<Health> ();
+        // _rb = GetComponent<Rigidbody> ();
     }
 
-    IEnumerator MoveTo ()
+    private void Start ()
     {
-        while (!_moving)
-        {
-            if (CheckForBlockEffects ()) yield return new WaitForSeconds (_moveTimer);
+        _health.DeathEvent += OnDeath;
+        StartMoving ();
+    }
 
+    void StartMoving ()
+    {
+        StartCoroutine (Checks ());
+    }
+
+    IEnumerator Checks ()
+    {
+        if (CheckForBlockEffects ())
+        {
+            yield return new WaitForSeconds (_moveSpeed);
             CheckColliders ();
-            yield return new WaitForSeconds (_moveTimer);
         }
+        else CheckColliders ();
     }
 
     private bool CheckForBlockEffects ()
@@ -41,7 +54,7 @@ public class BotMovement : MonoBehaviour
         Collider[] cols = Physics.OverlapSphere (_currentGround.position, 0.2f, _blocksLM);
         if (cols.Length != 0)
         {
-            if (cols[0].GetComponent<Block> ().BlockEffect (transform)) return true;
+            if (cols[0].GetComponent<Block> ().BlockEffect (GetComponent<IBotMovement> ())) return true;
             else return false;
         }
         return false;
@@ -49,7 +62,6 @@ public class BotMovement : MonoBehaviour
 
     private void CheckColliders ()
     {
-        _moving = true;
         int config = 0;
 
         for (int i = 0; i < _colliders.Count; i++)
@@ -67,15 +79,19 @@ public class BotMovement : MonoBehaviour
         switch (configuration_)
         {
             case 1:
+            case 9:
+            case 17:
+            case 25:
+                Drop ();
+                break;
             case 2:
             case 3:
-            case 17:
+            case 10:
+            case 11:
             case 18:
             case 19:
-            case 33:
-            case 34:
-            case 50:
-            case 51:
+            case 26:
+            case 28:
                 Move ();
                 break;
             case 4:
@@ -92,23 +108,34 @@ public class BotMovement : MonoBehaviour
 
     void Turn ()
     {
-        Quaternion newRot = transform.rotation * Quaternion.Euler (0.0f, 180.0f, 0.0f);
-        transform.rotation = newRot;
-        _moving = false;
+        Tweener t = transform.DORotateQuaternion (transform.rotation * Quaternion.Euler (0, 180, 0), _moveSpeed);
+        t.OnComplete (StartMoving);
     }
 
     void Climb ()
     {
-        transform.Translate (Vector3.forward + Vector3.up);
-        _moving = false;
+        Vector3[] vecPath = new Vector3[2];
+        vecPath[0] = transform.up + transform.position;
+        vecPath[1] = transform.forward + vecPath[0];
+
+        Tweener t = transform.DOPath (vecPath, _moveSpeed);
+        t.OnComplete (StartMoving);
     }
 
     void Move ()
     {
-        Debug.Log ("Moving");
-        Tweener t = transform.DOMove (transform.position + Vector3.forward, 0.1f, true);
-        t.OnComplete (_moving = false);
-        // _moving = false;
+        Tweener t = transform.DOMove (transform.position + transform.forward, _moveSpeed);
+        t.OnComplete (StartMoving);
+    }
+
+    void Drop ()
+    {
+        Vector3[] vecPath = new Vector3[2];
+        vecPath[0] = transform.forward + transform.position;
+        vecPath[1] = transform.up * -1 + vecPath[0];
+
+        Tweener t = transform.DOPath (vecPath, _moveSpeed);
+        t.OnComplete (StartMoving);
     }
 
     void OnDeath ()
@@ -116,4 +143,57 @@ public class BotMovement : MonoBehaviour
         gameObject.SetActive (false);
     }
 
+    public void BotRotation (Quaternion rot_)
+    {
+        transform.DORotateQuaternion (rot_, _moveSpeed);
+    }
+
+    public void BotDestination (Vector3 dest_)
+    {
+        transform.DOMove (dest_, _moveSpeed);
+    }
+
+    public float GetMoveSpeed { get { return _moveSpeed; } }
+    public Transform GetTransform { get { return transform; } }
+    public Health GetHealth { get { return _health; } }
+
 }
+
+public interface IBotMovement
+{
+    Transform GetTransform { get; }
+    Health GetHealth { get; }
+    float GetMoveSpeed { get; }
+    void BotRotation (Quaternion rot_);
+    void BotDestination (Vector3 dest_);
+}
+
+// Use this if we want to revert to the original 2 unit Bot.
+// void ActOnColliders (int configuration_)
+// {
+//     if (_debug) Debug.Log (configuration_);
+//     switch (configuration_)
+//     {
+//         case 1:
+//         case 2:
+//         case 3:
+//         case 17:
+//         case 18:
+//         case 19:
+//         case 33:
+//         case 34:
+//         case 50:
+//         case 51:
+//             Move ();
+//             break;
+//         case 4:
+//         case 5:
+//         case 6:
+//         case 7:
+//             Climb ();
+//             break;
+//         default:
+//             Turn ();
+//             break;
+//     }
+// }

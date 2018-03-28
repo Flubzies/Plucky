@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof (SkinnedMeshRenderer))]
+// [RequireComponent (typeof (SkinnedMeshRenderer))]
 public class SMRAnimation : MonoBehaviour
 {
 

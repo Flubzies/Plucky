@@ -1,0 +1,145 @@
+fileFormatVersion: 2
+guid: d8647681e82364e4d8c0019f143a9113
+timeCreated: 1522236108
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: BlockBuild
+    100002: BlockEmpty
+    100004: //RootNode
+    100006: Grass
+    100008: Cube
+    100010: BlockGravity
+    100012: BlockBuildLP
+    100014: Sphere
+    100016: Torus_001
+    100018: BlockExit
+    100020: BlockExit1
+    100022: BlockExitRing
+    100024: BlockExitSphere
+    400000: BlockBuild
+    400002: BlockEmpty
+    400004: //RootNode
+    400006: Grass
+    400008: Cube
+    400010: BlockGravity
+    400012: BlockBuildLP
+    400014: Sphere
+    400016: Torus_001
+    400018: BlockExit
+    400020: BlockExit1
+    400022: BlockExitRing
+    400024: BlockExitSphere
+    2300000: BlockBuild
+    2300002: BlockEmpty
+    2300004: Cube
+    2300006: BlockGravity
+    2300008: BlockBuildLP
+    2300010: Sphere
+    2300012: Torus_001
+    2300014: BlockExit
+    2300016: BlockExit1
+    2300018: BlockExitRing
+    2300020: BlockExitSphere
+    3300000: BlockBuild
+    3300002: BlockEmpty
+    3300004: Cube
+    3300006: BlockGravity
+    3300008: BlockBuildLP
+    3300010: Sphere
+    3300012: Torus_001
+    3300014: BlockExit
+    3300016: BlockExit1
+    3300018: BlockExitRing
+    3300020: BlockExitSphere
+    4300000: Grass
+    4300002: BlockEmpty
+    4300004: BlockBuild
+    4300006: Cube
+    4300008: BlockGravity
+    4300010: BlockBuildLP
+    4300012: Torus_001
+    4300014: Sphere
+    4300016: BlockExit
+    4300018: BlockExit1
+    4300020: BlockExitSphere
+    4300022: BlockExitRing
+    7400000: Default Take
+    9500000: //RootNode
+    13700000: Grass
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
