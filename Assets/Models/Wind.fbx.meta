@@ -1,0 +1,180 @@
+fileFormatVersion: 2
+guid: e34629328559bd24eba91781f0b79ddd
+timeCreated: 1521712520
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Bone
+    100004: Bone_end
+    100006: WindBone
+    100008: WindBone_end
+    100010: Armature
+    100012: Wind
+    100014: BlockBuild
+    100016: BlockEmpty
+    100018: BlockExitRing
+    100020: BlockExitSphere
+    100022: BlockGravity
+    100024: BlockTurn
+    100026: Camera
+    100028: Grass
+    100030: Lamp
+    100032: NurbsPath
+    400000: //RootNode
+    400002: Bone
+    400004: Bone_end
+    400006: WindBone
+    400008: WindBone_end
+    400010: Armature
+    400012: Wind
+    400014: BlockBuild
+    400016: BlockEmpty
+    400018: BlockExitRing
+    400020: BlockExitSphere
+    400022: BlockGravity
+    400024: BlockTurn
+    400026: Camera
+    400028: Grass
+    400030: Lamp
+    400032: NurbsPath
+    2300000: //RootNode
+    2300002: BlockBuild
+    2300004: BlockEmpty
+    2300006: BlockExitRing
+    2300008: BlockExitSphere
+    2300010: BlockGravity
+    2300012: BlockTurn
+    2300014: Grass
+    2300016: NurbsPath
+    2300018: Wind
+    3300000: //RootNode
+    3300002: BlockBuild
+    3300004: BlockEmpty
+    3300006: BlockExitRing
+    3300008: BlockExitSphere
+    3300010: BlockGravity
+    3300012: BlockTurn
+    3300014: Grass
+    3300016: NurbsPath
+    3300018: Wind
+    4300000: BlockEmpty
+    4300002: BlockBuildable
+    4300004: BlockBuild
+    4300006: BlockGravity
+    4300008: Wind
+    4300010: NurbsPath
+    4300012: BlockTurn
+    4300014: BlockExitSphere
+    4300016: BlockExitRing
+    4300018: Grass
+    7400000: Armature|WindAnim
+    7400002: Armature|WindAnimation1
+    7400004: WindAnim
+    7400006: Wind|WalkAnim
+    9500000: //RootNode
+    13700000: Wind
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: WindAnim
+      takeName: Wind|WindAnim
+      firstFrame: 0
+      lastFrame: 99
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 3
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

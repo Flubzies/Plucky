@@ -18,6 +18,16 @@ ModelImporter:
     100020: BlockExit1
     100022: BlockExitRing
     100024: BlockExitSphere
+    100026: Mball
+    100028: Cloud
+    100030: BlockTurn
+    100032: NurbsPath
+    100034: Wind
+    100036: Armature
+    100038: Bone
+    100040: WindBone
+    100042: Grass_001
+    100044: Plane
     400000: BlockBuild
     400002: BlockEmpty
     400004: //RootNode
@@ -31,6 +41,16 @@ ModelImporter:
     400020: BlockExit1
     400022: BlockExitRing
     400024: BlockExitSphere
+    400026: Mball
+    400028: Cloud
+    400030: BlockTurn
+    400032: NurbsPath
+    400034: Wind
+    400036: Armature
+    400038: Bone
+    400040: WindBone
+    400042: Grass_001
+    400044: Plane
     2300000: BlockBuild
     2300002: BlockEmpty
     2300004: Cube
@@ -42,6 +62,14 @@ ModelImporter:
     2300016: BlockExit1
     2300018: BlockExitRing
     2300020: BlockExitSphere
+    2300022: Mball
+    2300024: Cloud
+    2300026: BlockTurn
+    2300028: NurbsPath
+    2300030: Wind
+    2300032: Grass
+    2300034: Grass_001
+    2300036: Plane
     3300000: BlockBuild
     3300002: BlockEmpty
     3300004: Cube
@@ -53,6 +81,14 @@ ModelImporter:
     3300016: BlockExit1
     3300018: BlockExitRing
     3300020: BlockExitSphere
+    3300022: Mball
+    3300024: Cloud
+    3300026: BlockTurn
+    3300028: NurbsPath
+    3300030: Wind
+    3300032: Grass
+    3300034: Grass_001
+    3300036: Plane
     4300000: Grass
     4300002: BlockEmpty
     4300004: BlockBuild
@@ -65,9 +101,17 @@ ModelImporter:
     4300018: BlockExit1
     4300020: BlockExitSphere
     4300022: BlockExitRing
+    4300024: Mball
+    4300026: Cloud
+    4300028: BlockTurn
+    4300030: NurbsPath
+    4300032: Wind
+    4300034: Grass_001
+    4300036: Plane
     7400000: Default Take
     9500000: //RootNode
     13700000: Grass
+    13700002: Wind
   materials:
     importMaterials: 1
     materialName: 0

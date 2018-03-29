@@ -30,8 +30,8 @@ namespace ManagerClasses
 
 		private void Update ()
 		{
-			if (Input.GetKeyDown (KeyCode.Escape))
-				SettingsMenu.instance.ToggleSettings (true);
+			// if (Input.GetKeyDown (KeyCode.Escape))
+			// 	SettingsMenu.instance.ToggleSettings (true);
 		}
 
 		void OnSceneLoaded (Scene scene_, LoadSceneMode mode_)

@@ -5,6 +5,12 @@ using UnityEngine;
 public class BlockTurn : Block, IPlaceable
 {
     [SerializeField] LayerMask _blocksLM;
+    TrailRenderer[] _tr;
+
+    void Awake ()
+    {
+        _tr = GetComponentsInChildren<TrailRenderer> ();
+    }
 
     public override bool BlockEffect (IBotMovement bot_)
     {
@@ -19,6 +25,7 @@ public class BlockTurn : Block, IPlaceable
 
     public void PlaceBlock (Vector3 pos_)
     {
+        foreach (TrailRenderer tr in _tr) tr.Clear ();
         transform.position = pos_;
     }
 

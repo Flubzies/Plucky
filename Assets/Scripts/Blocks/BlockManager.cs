@@ -11,7 +11,7 @@ public class BlockManager : MonoBehaviour
 
 	[Header ("VR Mode")]
 	[SerializeField] Transform _playerHead;
-	[SerializeField] bool _vrMode;
+	[SerializeField] bool _VRMode;
 
 	Ray ray = new Ray ();
 
@@ -40,7 +40,7 @@ public class BlockManager : MonoBehaviour
 	{
 		Debug.Log ("Attempting to Grab");
 
-		if (_vrMode)
+		if (_VRMode)
 		{
 			ray.origin = _playerHead.position;
 			ray.direction = _playerHead.forward;
@@ -69,7 +69,7 @@ public class BlockManager : MonoBehaviour
 	{
 		while (_isHolding)
 		{
-			if (_vrMode)
+			if (_VRMode)
 			{
 				ray.origin = _playerHead.position;
 				ray.direction = _playerHead.forward;
