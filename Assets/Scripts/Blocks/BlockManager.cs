@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using VRTK;
 
 namespace BlockClasses
 {
@@ -10,8 +11,9 @@ namespace BlockClasses
 		IPlaceable _currentBlock;
 
 		[Header ("VR Mode")]
-		[SerializeField] Transform _playerHead;
+		[SerializeField] Transform _raycaster;
 		[SerializeField] bool _VRMode;
+		VRTK_ControllerEvents _controllerEvents;
 
 		Ray ray = new Ray ();
 
@@ -26,6 +28,18 @@ namespace BlockClasses
 			}
 		}
 
+		private void Awake ()
+		{
+			_controllerEvents = _raycaster.GetComponent<VRTK_ControllerEvents> ();
+		}
+
+		private void Start ()
+		{
+			_controllerEvents.TriggerPressed += new ControllerInteractionEventHandler (ControllerGrab);
+			_controllerEvents.TriggerReleased += new ControllerInteractionEventHandler (ControllerPlace);
+			_controllerEvents.GripPressed += new ControllerInteractionEventHandler (ControllerCancel);
+		}
+
 		private void Update ()
 		{
 			if (Input.GetButtonDown ("Fire1") || Input.GetKeyDown (KeyCode.E))
@@ -36,14 +50,29 @@ namespace BlockClasses
 			}
 		}
 
-		public void Grab ()
+		void ControllerGrab (object sender, ControllerInteractionEventArgs e)
+		{
+			if (!_IsHolding) Grab ();
+		}
+
+		void ControllerPlace (object sender, ControllerInteractionEventArgs e)
+		{
+			if (_IsHolding) Place ();
+		}
+
+		void ControllerCancel (object sender, ControllerInteractionEventArgs e)
+		{
+			if (_IsHolding) Cancel ();
+		}
+
+		void Grab ()
 		{
 			Debug.Log ("Attempting to Grab");
 
 			if (_VRMode)
 			{
-				ray.origin = _playerHead.position;
-				ray.direction = _playerHead.forward;
+				ray.origin = _raycaster.position;
+				ray.direction = _raycaster.forward;
 			}
 			else ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
@@ -71,8 +100,8 @@ namespace BlockClasses
 			{
 				if (_VRMode)
 				{
-					ray.origin = _playerHead.position;
-					ray.direction = _playerHead.forward;
+					ray.origin = _raycaster.position;
+					ray.direction = _raycaster.forward;
 				}
 				else ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
@@ -94,6 +123,15 @@ namespace BlockClasses
 			_IsHolding = false;
 			StopCoroutine (UpdateGhostBlock ());
 			_currentBlock.PlaceBlock (_currentBlock.GetGhostBlock.position);
+			_currentBlock.GetGhostBlock.gameObject.SetActive (false);
+		}
+
+		void Cancel ()
+		{
+			Debug.Log ("Cancelling");
+			_IsHolding = false;
+			StopCoroutine (UpdateGhostBlock ());
+			_currentBlock.GetGhostBlock.position = transform.position;
 			_currentBlock.GetGhostBlock.gameObject.SetActive (false);
 		}
 

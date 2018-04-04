@@ -6,8 +6,7 @@ namespace BlockClasses
 {
 	public abstract class Block : MonoBehaviour
 	{
-		[Space (10.0f)]
-		[Header ("Block: ")]
+		[Header ("Block ")]
 		[SerializeField] bool _randomizeXRotation;
 		protected Transform _blockGhost;
 
