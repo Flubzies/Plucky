@@ -24,8 +24,9 @@ namespace ManagerClasses
 		private void Start ()
 		{
 			_sceneFader = GetComponentInChildren<SceneFader> ();
+			// Debug.Log (Camera.main.name);
 			SceneManager.sceneLoaded += OnSceneLoaded;
-			AudioManager.instance.Play ("MainTheme");
+			// AudioManager.instance.Play ("MainTheme");
 		}
 
 		private void Update ()

@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// [RequireComponent (typeof (SkinnedMeshRenderer))]
 public class SMRAnimation : MonoBehaviour
 {
 
-	[SerializeField] float _startTime;
-	[SerializeField] float _endTime;
+	[SerializeField] float _startTime = 0.0f;
+	[SerializeField] float _endTime = 1.0f;
 	[SerializeField] float _animSpeed = 5.0f;
 	[SerializeField] AnimationCurve _animCurve;
 	SkinnedMeshRenderer _smr;
@@ -24,8 +23,8 @@ public class SMRAnimation : MonoBehaviour
 
 	IEnumerator AnimStart ()
 	{
-		float t = 1f;
-		while (t > 0f)
+		float t = _endTime;
+		while (t > _startTime)
 		{
 			t -= Time.deltaTime * _animSpeed;
 			float a = _animCurve.Evaluate (t);
@@ -37,8 +36,8 @@ public class SMRAnimation : MonoBehaviour
 
 	IEnumerator AnimStop ()
 	{
-		float t = 0.0f;
-		while (t < 1f)
+		float t = _startTime;
+		while (t < _endTime)
 		{
 			t += Time.deltaTime * _animSpeed;
 			float a = _animCurve.Evaluate (t);
@@ -46,6 +45,11 @@ public class SMRAnimation : MonoBehaviour
 			yield return 0;
 		}
 		StartCoroutine (AnimStart ());
+	}
+
+	private void OnValidate ()
+	{
+		if (_startTime > _endTime) _startTime = _endTime;
 	}
 
 }

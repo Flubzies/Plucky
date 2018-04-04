@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using BlockClasses;
 using DG.Tweening;
 using ManagerClasses;
 using UnityEngine;

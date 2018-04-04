@@ -28,6 +28,19 @@ ModelImporter:
     100040: WindBone
     100042: Grass_001
     100044: Plane
+    100046: Cube_001
+    100048: PlayArea
+    100050: BlockEmptyHP
+    100052: Test
+    100054: BlockDamage
+    100056: BlockDamageFire
+    100058: BlockEmptyHP_MeshPart0
+    100060: BlockEmptyHP_MeshPart1
+    100062: BlockEmptyHP_MeshPart2
+    100064: BlockEmptyHP_MeshPart3
+    100066: BlockEmptyHP_MeshPart4
+    100068: BlockEmptyHP_MeshPart5
+    100070: BlockEmptyHP_MeshPart6
     400000: BlockBuild
     400002: BlockEmpty
     400004: //RootNode
@@ -51,6 +64,19 @@ ModelImporter:
     400040: WindBone
     400042: Grass_001
     400044: Plane
+    400046: Cube_001
+    400048: PlayArea
+    400050: BlockEmptyHP
+    400052: Test
+    400054: BlockDamage
+    400056: BlockDamageFire
+    400058: BlockEmptyHP_MeshPart0
+    400060: BlockEmptyHP_MeshPart1
+    400062: BlockEmptyHP_MeshPart2
+    400064: BlockEmptyHP_MeshPart3
+    400066: BlockEmptyHP_MeshPart4
+    400068: BlockEmptyHP_MeshPart5
+    400070: BlockEmptyHP_MeshPart6
     2300000: BlockBuild
     2300002: BlockEmpty
     2300004: Cube
@@ -70,6 +96,18 @@ ModelImporter:
     2300032: Grass
     2300034: Grass_001
     2300036: Plane
+    2300038: Cube_001
+    2300040: PlayArea
+    2300042: BlockEmptyHP
+    2300044: Test
+    2300046: BlockDamage
+    2300048: BlockEmptyHP_MeshPart0
+    2300050: BlockEmptyHP_MeshPart1
+    2300052: BlockEmptyHP_MeshPart2
+    2300054: BlockEmptyHP_MeshPart3
+    2300056: BlockEmptyHP_MeshPart4
+    2300058: BlockEmptyHP_MeshPart5
+    2300060: BlockEmptyHP_MeshPart6
     3300000: BlockBuild
     3300002: BlockEmpty
     3300004: Cube
@@ -89,6 +127,18 @@ ModelImporter:
     3300032: Grass
     3300034: Grass_001
     3300036: Plane
+    3300038: Cube_001
+    3300040: PlayArea
+    3300042: BlockEmptyHP
+    3300044: Test
+    3300046: BlockDamage
+    3300048: BlockEmptyHP_MeshPart0
+    3300050: BlockEmptyHP_MeshPart1
+    3300052: BlockEmptyHP_MeshPart2
+    3300054: BlockEmptyHP_MeshPart3
+    3300056: BlockEmptyHP_MeshPart4
+    3300058: BlockEmptyHP_MeshPart5
+    3300060: BlockEmptyHP_MeshPart6
     4300000: Grass
     4300002: BlockEmpty
     4300004: BlockBuild
@@ -108,10 +158,26 @@ ModelImporter:
     4300032: Wind
     4300034: Grass_001
     4300036: Plane
+    4300038: Cube_001
+    4300040: PlayArea
+    4300042: BlockEmptyHP
+    4300044: Test
+    4300046: BlockDamage
+    4300048: BlockDamageFire
+    4300050: BlockEmptyHP_MeshPart0
+    4300052: BlockEmptyHP_MeshPart1
+    4300054: BlockEmptyHP_MeshPart2
+    4300056: BlockEmptyHP_MeshPart3
+    4300058: BlockEmptyHP_MeshPart4
+    4300060: BlockEmptyHP_MeshPart5
+    4300062: BlockEmptyHP_MeshPart6
     7400000: Default Take
     9500000: //RootNode
     13700000: Grass
     13700002: Wind
+    13700004: Plane
+    13700006: BlockDamage
+    13700008: BlockDamageFire
   materials:
     importMaterials: 1
     materialName: 0

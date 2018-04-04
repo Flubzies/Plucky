@@ -2,29 +2,75 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockGravity : Block
+namespace BlockClasses
 {
-    // [SerializeField] string _defaultParentTag = "BlockBuildsHolder";
-
-    [SerializeField] List<Vector3> _colliders;
-    [SerializeField] LayerMask _blocksLM;
-
-    [SerializeField] int _maxHeight = 3;
-
-    public override bool BlockEffect (IBotMovement bot_)
+    public class BlockGravity : Block
     {
-        bot_.BotDestination (transform.position + transform.up * _maxHeight);
-        return true;
-    }
+        [SerializeField] LayerMask _blocksLM;
+        [SerializeField] List<Transform> _gravityEffects;
 
-    public Transform GetGhostBlock ()
-    {
-        return _blockGhost;
-    }
+        [SerializeField] int _maxHeight = 3;
+        [SerializeField] float _checkTimer = 1.0f;
+        float _heightReachable;
 
-    public void PlaceBlock (Vector3 pos_)
-    {
-        transform.position = pos_;
-    }
+        protected override void Start ()
+        {
+            base.Start ();
+            StartCoroutine (CalculateDistanceEnumerator ());
+        }
 
+        public override bool BlockEffect (IBotMovement bot_)
+        {
+            CalculateDistance ();
+            bot_.BotDestination (transform.position + transform.up * _heightReachable);
+            return true;
+        }
+
+        private void CalculateDistance ()
+        {
+            _heightReachable = _maxHeight;
+
+            for (int i = 0; i < _maxHeight; i++)
+            {
+                Collider[] cols = Physics.OverlapSphere (transform.position + transform.up * (i + 1), 0.2f, _blocksLM);
+                if (cols.Length != 0)
+                {
+                    _heightReachable = i;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < _maxHeight; i++)
+            {
+                if (i < _heightReachable)
+                {
+                    _gravityEffects[i].gameObject.SetActive (true);
+                    _gravityEffects[i].transform.position = transform.position + transform.up * (i + 1);
+                }
+                else
+                    _gravityEffects[i].gameObject.SetActive (false);
+            }
+        }
+
+        IEnumerator CalculateDistanceEnumerator ()
+        {
+            while (true)
+            {
+                CalculateDistance ();
+                yield return new WaitForSeconds (_checkTimer);
+            }
+        }
+
+        public Transform GetGhostBlock ()
+        {
+            return _blockGhost;
+        }
+
+        public void PlaceBlock (Vector3 pos_)
+        {
+            CalculateDistance ();
+            transform.position = pos_;
+        }
+
+    }
 }

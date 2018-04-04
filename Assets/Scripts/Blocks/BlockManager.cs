@@ -1,74 +1,45 @@
 ﻿using System.Collections;
-using ManagerClasses;
-using UnityEditor;
 using UnityEngine;
 
-public class BlockManager : MonoBehaviour
+namespace BlockClasses
 {
-	[SerializeField] LayerMask _blocksLM;
-	bool _isHolding;
-	IPlaceable _currentBlock;
-
-	[Header ("VR Mode")]
-	[SerializeField] Transform _playerHead;
-	[SerializeField] bool _VRMode;
-
-	Ray ray = new Ray ();
-
-	static BlockManager _instance;
-	public static BlockManager instance
+	public class BlockManager : MonoBehaviour
 	{
-		get
+		[SerializeField] LayerMask _blocksLM;
+		public bool _IsHolding { get; private set; }
+		IPlaceable _currentBlock;
+
+		[Header ("VR Mode")]
+		[SerializeField] Transform _playerHead;
+		[SerializeField] bool _VRMode;
+
+		Ray ray = new Ray ();
+
+		static BlockManager _instance;
+		public static BlockManager instance
 		{
-			if (!_instance)
-				_instance = FindObjectOfType<BlockManager> ();
-			return _instance;
-		}
-	}
-
-	private void Update ()
-	{
-		if (Input.GetButtonDown ("Fire1") || Input.GetKeyDown (KeyCode.E))
-		{
-			if (!_isHolding) Grab ();
-			else
-			if (_isHolding) Place ();
-		}
-	}
-
-	void Grab ()
-	{
-		Debug.Log ("Attempting to Grab");
-
-		if (_VRMode)
-		{
-			ray.origin = _playerHead.position;
-			ray.direction = _playerHead.forward;
-		}
-		else ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-
-		RaycastHit hit;
-
-		if (Physics.Raycast (ray, out hit, 100f, _blocksLM))
-		{
-			IPlaceable temp = hit.transform.GetComponent<IPlaceable> ();
-			if (temp != null)
+			get
 			{
-				Debug.Log ("Grabbing.");
-				_isHolding = true;
-				_currentBlock = temp;
-				_currentBlock.GetGhostBlock ().gameObject.SetActive (true);
-				StartCoroutine (UpdateGhostBlock ());
+				if (!_instance)
+					_instance = FindObjectOfType<BlockManager> ();
+				return _instance;
 			}
-			else
-				Debug.Log ("You cannot grab this!");
 		}
-	}
 
-	IEnumerator UpdateGhostBlock ()
-	{
-		while (_isHolding)
+		private void Update ()
 		{
+			if (Input.GetButtonDown ("Fire1") || Input.GetKeyDown (KeyCode.E))
+			{
+				if (!_IsHolding) Grab ();
+				else
+				if (_IsHolding) Place ();
+			}
+		}
+
+		public void Grab ()
+		{
+			Debug.Log ("Attempting to Grab");
+
 			if (_VRMode)
 			{
 				ray.origin = _playerHead.position;
@@ -80,21 +51,51 @@ public class BlockManager : MonoBehaviour
 
 			if (Physics.Raycast (ray, out hit, 100f, _blocksLM))
 			{
-				Vector3 newPos = hit.transform.position + hit.normal;
-				_currentBlock.GetGhostBlock ().position = newPos;
+				IPlaceable temp = hit.transform.GetComponent<IPlaceable> ();
+				if (temp != null)
+				{
+					Debug.Log ("Grabbing.");
+					_IsHolding = true;
+					_currentBlock = temp;
+					_currentBlock.GetGhostBlock.gameObject.SetActive (true);
+					StartCoroutine (UpdateGhostBlock ());
+				}
+				else
+					Debug.Log ("You cannot grab this!");
 			}
-
-			yield return new WaitForSeconds (0.1f);
 		}
-	}
 
-	void Place ()
-	{
-		Debug.Log ("Placing.");
-		_isHolding = false;
-		StopCoroutine (UpdateGhostBlock ());
-		_currentBlock.PlaceBlock (_currentBlock.GetGhostBlock ().position);
-		_currentBlock.GetGhostBlock ().gameObject.SetActive (false);
-	}
+		IEnumerator UpdateGhostBlock ()
+		{
+			while (_IsHolding)
+			{
+				if (_VRMode)
+				{
+					ray.origin = _playerHead.position;
+					ray.direction = _playerHead.forward;
+				}
+				else ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
+				RaycastHit hit;
+
+				if (Physics.Raycast (ray, out hit, 100f, _blocksLM))
+				{
+					Vector3 newPos = hit.transform.position + hit.normal;
+					_currentBlock.GetGhostBlock.position = newPos;
+				}
+
+				yield return new WaitForSeconds (0.1f);
+			}
+		}
+
+		void Place ()
+		{
+			Debug.Log ("Placing.");
+			_IsHolding = false;
+			StopCoroutine (UpdateGhostBlock ());
+			_currentBlock.PlaceBlock (_currentBlock.GetGhostBlock.position);
+			_currentBlock.GetGhostBlock.gameObject.SetActive (false);
+		}
+
+	}
 }

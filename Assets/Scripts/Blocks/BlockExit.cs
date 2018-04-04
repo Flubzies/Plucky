@@ -1,27 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BlockExit : Block
+namespace BlockClasses
 {
-    [SerializeField] LayerMask _blocksLM;
-
-    new void Start () { }
-
-    public override bool BlockEffect (IBotMovement bot_)
+    public class BlockExit : Block
     {
-        // Debug.Log ("Level Complete!");
-        return true;
+        public override bool BlockEffect (IBotMovement bot_)
+        {
+            // Debug.Log ("Level Complete!");
+            return true;
+        }
     }
-
-    public Transform GetGhostBlock ()
-    {
-        return _blockGhost;
-    }
-
-    public void PlaceBlock (Vector3 pos_)
-    {
-        transform.position = pos_;
-    }
-
 }

@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 65450799745312530}
   - component: {fileID: 23297271166543844}
   - component: {fileID: 114757057506643754}
+  - component: {fileID: 114681224992485200}
+  - component: {fileID: 114467237669416654}
   m_Layer: 8
   m_Name: BlockBuild
   m_TagString: Untagged
@@ -67,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1262579888042368}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -4}
+  m_LocalPosition: {x: -5, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4773264470285142}
@@ -114,8 +116,8 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1392974191527170}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -165,6 +167,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114467237669416654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262579888042368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b0c1f776fcf2642890d681e503f654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  touchHighlightColor: {r: 0.99721456, g: 1, b: 0, a: 1}
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 1
+  validDrop: 0
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 0}
+  secondaryGrabActionScript: {fileID: 0}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  usingState: 0
+--- !u!114 &114681224992485200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262579888042368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b284cf1a584ffe46b90c37f716f5b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minColor: {r: 0.53676474, g: 0.4157085, b: 0.32363757, a: 1}
+  _maxColor: {r: 0.35294116, g: 0.25123182, b: 0.17387542, a: 1}
+  _skinnedMesh: 0
 --- !u!114 &114757057506643754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,8 +222,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0f3b789fd4e7740b7297bd0b87aa25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blockGhost: {fileID: 4773264470285142}
-  _colliders: []
-  _blocksLM:
-    serializedVersion: 2
-    m_Bits: 256
+  _randomizeXRotation: 1

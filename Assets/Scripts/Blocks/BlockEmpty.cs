@@ -1,10 +1,6 @@
 ﻿using UnityEngine;
 
-public class BlockEmpty : Block
+namespace BlockClasses
 {
-    new void Start ()
-    {
-        RandomXRotation ();
-    }
-
+    public class BlockEmpty : Block { }
 }

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class RandomizedRotation : MonoBehaviour
 {
-
 	[SerializeField] float _rotChangeTimer = 2.0f;
 	[SerializeField] Ease _ease;
 
@@ -18,5 +17,4 @@ public class RandomizedRotation : MonoBehaviour
 		t.SetEase (_ease);
 		t.OnComplete (RandomRotation);
 	}
-
 }

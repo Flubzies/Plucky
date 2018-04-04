@@ -6,10 +6,24 @@ ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
+    100002: BlockEmpty
+    100004: Grass
+    100006: BlockEmptyHP
     400000: //RootNode
+    400002: BlockEmpty
+    400004: Grass
+    400006: BlockEmptyHP
     2300000: //RootNode
+    2300002: BlockEmpty
+    2300004: Grass
+    2300006: BlockEmptyHP
     3300000: //RootNode
+    3300002: BlockEmpty
+    3300004: Grass
+    3300006: BlockEmptyHP
     4300000: BlockEmpty
+    4300002: Grass
+    4300004: BlockEmptyHP
   materials:
     importMaterials: 0
     materialName: 0
@@ -41,7 +55,7 @@ ModelImporter:
     meshCompression: 3
     addColliders: 0
     importVisibility: 1
-    importBlendShapes: 0
+    importBlendShapes: 1
     importCameras: 0
     importLights: 0
     swapUVChannels: 0
