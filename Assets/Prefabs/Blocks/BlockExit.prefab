@@ -387,10 +387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fc9bed467f70a4eb762f2b9f837e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blockGhost: {fileID: 4540576703116206}
-  _blocksLM:
-    serializedVersion: 2
-    m_Bits: 256
+  _randomizeXRotation: 0
+  _blockProperties: {fileID: 11400000, guid: a693d8f8531ae6f498fb35e390900169, type: 2}
 --- !u!114 &114389453896639516
 MonoBehaviour:
   m_ObjectHideFlags: 1

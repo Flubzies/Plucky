@@ -6,7 +6,7 @@ namespace BlockClasses
 {
     public class BlockDamage : Block
     {
-        public override bool BlockEffect (IBotMovement bot_)
+        public override bool BlockEffect (IBot bot_)
         {
             Debug.Log ("Damage Effect.");
             bot_.GetHealth.Damage (int.MaxValue);

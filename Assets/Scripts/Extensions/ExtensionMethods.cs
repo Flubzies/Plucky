@@ -28,7 +28,7 @@ public static class ExtensionMethods
 			yield return 0;
 		}
 	}
-
+	
 	public static IEnumerator FadeOutCG (this CanvasGroup cg_, float fadeDuration_ = 0.2f, bool unscaled_ = false)
 	{
 		while (fadeDuration_ > 0f)
@@ -48,5 +48,4 @@ public static class ExtensionMethods
 	{
 		return list_[UnityEngine.Random.Range (0, list_.Count)];
 	}
-
 }

@@ -6,13 +6,22 @@ ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
+    100002: BlockGravity
+    100004: BlockGravityFan
     400000: //RootNode
+    400002: BlockGravity
+    400004: BlockGravityFan
     2300000: //RootNode
+    2300002: BlockGravity
+    2300004: BlockGravityFan
     3300000: //RootNode
+    3300002: BlockGravity
+    3300004: BlockGravityFan
     4300000: BlockEmpty
     4300002: BlockBuildable
     4300004: BlockBuild
     4300006: BlockGravity
+    4300008: BlockGravityFan
   materials:
     importMaterials: 0
     materialName: 0

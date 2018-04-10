@@ -8,10 +8,12 @@ namespace BlockClasses
 	{
 		[Header ("Block ")]
 		[SerializeField] bool _randomizeXRotation;
+		[SerializeField] BlockProperties _blockProperties;
 		protected Transform _blockGhost;
 
 		protected virtual void Awake ()
 		{
+			transform.parent = GameObject.FindGameObjectWithTag ("BlockManager").transform;
 			if (GetComponent<IPlaceable> () != null) SetupGhostMesh ();
 		}
 
@@ -25,9 +27,16 @@ namespace BlockClasses
 			_blockGhost = transform.Find ("GhostMesh");
 			if (_blockGhost == null) Debug.LogError ("No Ghost Block on a IPlaceable GameObject!");
 			_blockGhost.GetComponent<MeshFilter> ().mesh = GetComponent<MeshFilter> ().mesh;
+			MeshRenderer mr = _blockGhost.GetComponent<MeshRenderer> ();
+
+			List<Material> temp = new List<Material> ();
+			for (int i = 0; i < GetComponent<MeshRenderer> ().materials.Length; i++)
+				temp.Add (_blockGhost.GetComponent<MeshRenderer> ().material);
+
+			mr.materials = temp.ToArray ();
 		}
 
-		public virtual bool BlockEffect (IBotMovement bot_)
+		public virtual bool BlockEffect (IBot bot_)
 		{
 			// Default no effect takes place.
 			return false;
@@ -55,7 +64,6 @@ namespace BlockClasses
 	public interface IPlaceable
 	{
 		Transform GetGhostBlock { get; }
-		// Transform GetGhostBlock ();
 		void PlaceBlock (Vector3 pos_);
 	}
 }

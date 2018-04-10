@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _randomizeXRotation: 0
+  _blockProperties: {fileID: 11400000, guid: c91460828d68ef04e941a0a20c38d04d, type: 2}
 --- !u!137 &137692951355797518
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

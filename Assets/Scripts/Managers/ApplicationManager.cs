@@ -8,31 +8,26 @@ namespace ManagerClasses
 {
 	public class ApplicationManager : MonoBehaviour
 	{
+		[SerializeField] 
 		static SceneFader _sceneFader;
-
 		public static ApplicationManager instance = null;
+
 		void Awake ()
 		{
-			if (instance == null)
-				instance = this;
-			else if (instance != this)
-				Destroy (gameObject);
-
+			if (instance == null) instance = this;
+			else if (instance != this) Destroy (gameObject);
 			DontDestroyOnLoad (gameObject);
 		}
 
 		private void Start ()
 		{
 			_sceneFader = GetComponentInChildren<SceneFader> ();
-			// Debug.Log (Camera.main.name);
 			SceneManager.sceneLoaded += OnSceneLoaded;
-			// AudioManager.instance.Play ("MainTheme");
 		}
 
 		private void Update ()
 		{
-			// if (Input.GetKeyDown (KeyCode.Escape))
-			// 	SettingsMenu.instance.ToggleSettings (true);
+			
 		}
 
 		void OnSceneLoaded (Scene scene_, LoadSceneMode mode_)

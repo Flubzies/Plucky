@@ -19,7 +19,7 @@ namespace BlockClasses
             StartCoroutine (CalculateDistanceEnumerator ());
         }
 
-        public override bool BlockEffect (IBotMovement bot_)
+        public override bool BlockEffect (IBot bot_)
         {
             CalculateDistance ();
             bot_.BotDestination (transform.position + transform.up * _heightReachable);

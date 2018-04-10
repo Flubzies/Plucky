@@ -11,9 +11,11 @@ namespace BlockClasses
 		IPlaceable _currentBlock;
 
 		[Header ("VR Mode")]
-		[SerializeField] Transform _raycaster;
+		[SerializeField] Transform _rightController;
+		[SerializeField] Transform _leftController;
 		[SerializeField] bool _VRMode;
-		VRTK_ControllerEvents _controllerEvents;
+
+		VRTK_ControllerEvents _controllerEventsR;
 
 		Ray ray = new Ray ();
 
@@ -30,14 +32,14 @@ namespace BlockClasses
 
 		private void Awake ()
 		{
-			_controllerEvents = _raycaster.GetComponent<VRTK_ControllerEvents> ();
+			_controllerEventsR = _rightController.GetComponent<VRTK_ControllerEvents> ();
 		}
 
 		private void Start ()
 		{
-			_controllerEvents.TriggerPressed += new ControllerInteractionEventHandler (ControllerGrab);
-			_controllerEvents.TriggerReleased += new ControllerInteractionEventHandler (ControllerPlace);
-			_controllerEvents.GripPressed += new ControllerInteractionEventHandler (ControllerCancel);
+			_controllerEventsR.TriggerPressed += new ControllerInteractionEventHandler (ControllerGrab);
+			_controllerEventsR.TriggerReleased += new ControllerInteractionEventHandler (ControllerPlace);
+			_controllerEventsR.GripPressed += new ControllerInteractionEventHandler (ControllerCancel);
 		}
 
 		private void Update ()
@@ -71,8 +73,8 @@ namespace BlockClasses
 
 			if (_VRMode)
 			{
-				ray.origin = _raycaster.position;
-				ray.direction = _raycaster.forward;
+				ray.origin = _rightController.position;
+				ray.direction = _rightController.forward;
 			}
 			else ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
@@ -100,8 +102,8 @@ namespace BlockClasses
 			{
 				if (_VRMode)
 				{
-					ray.origin = _raycaster.position;
-					ray.direction = _raycaster.forward;
+					ray.origin = _rightController.position;
+					ray.direction = _rightController.forward;
 				}
 				else ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 

@@ -12,7 +12,6 @@ namespace BlockClasses
 		{
 			transform.position = pos_;
 		}
-
 	}
 }
 // *Might* use this if I decide to have multiple blocks placeable at the same time.

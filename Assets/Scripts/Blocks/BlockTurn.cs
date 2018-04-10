@@ -14,7 +14,7 @@ namespace BlockClasses
             _tr = GetComponentsInChildren<TrailRenderer> ();
         }
 
-        public override bool BlockEffect (IBotMovement bot_)
+        public override bool BlockEffect (IBot bot_)
         {
             bot_.BotRotation (Quaternion.LookRotation (transform.forward));
             return true;
