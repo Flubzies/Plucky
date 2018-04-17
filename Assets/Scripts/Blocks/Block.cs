@@ -7,8 +7,9 @@ namespace BlockClasses
 	public abstract class Block : MonoBehaviour
 	{
 		[Header ("Block ")]
-		[SerializeField] bool _randomizeXRotation;
-		[SerializeField] BlockProperties _blockProperties;
+		[Tooltip("If the Y rotation is not important for the block.")]
+		[SerializeField] bool _randomizeYRotation;
+		public BlockProperties _blockProperties;
 		protected Transform _blockGhost;
 
 		protected virtual void Awake ()
@@ -19,7 +20,7 @@ namespace BlockClasses
 
 		protected virtual void Start ()
 		{
-			if (_randomizeXRotation) RandomXRotation ();
+			if (_randomizeYRotation) RandYRot ();
 		}
 
 		void SetupGhostMesh ()
@@ -42,7 +43,7 @@ namespace BlockClasses
 			return false;
 		}
 
-		protected void RandomXRotation ()
+		protected void RandYRot ()
 		{
 			int x = Random.Range (0, 4);
 			transform.rotation = Quaternion.AngleAxis (x * 90, Vector3.up);
@@ -57,6 +58,11 @@ namespace BlockClasses
 			VecList.Add (vec_.forward);
 			VecList.Add (vec_.forward * -1);
 			return VecList;
+		}
+
+		public float GetInitialYRot()
+		{
+			return transform.localRotation.y;
 		}
 
 	}

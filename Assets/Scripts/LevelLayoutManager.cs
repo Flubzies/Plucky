@@ -1,29 +1,74 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using BlockClasses;
 using UnityEngine;
 
 public class LevelLayoutManager : MonoBehaviour
 {
-	[Header ("Size of Level ")]
+	[Header ("Size of level ")]
 	[SerializeField] LayerMask _blocksLM;
 	[SerializeField] LayerMask _botLM;
 	[SerializeField] Vector3 _levelBounds;
 	[SerializeField] float _offset = 0.5f;
 	Collider[] _colliders = new Collider[4];
 
-	// Use this for initialization
-	void Start ()
-	{
+	[Header ("Prefab list ")]
+	[Tooltip ("Make sure they are in the same order as your block type enums!")]
+	[SerializeField] List<Block> _blockList;
+	[SerializeField] Bot _bot;
 
+	[Header ("Parent classes list ")]
+	[SerializeField] Transform _blockHolder;
+	[SerializeField] Transform _botHolder;
+
+	[HideInInspector] public string _levelName;
+
+	private List<LevelData> GetChildrenLevelData ()
+	{
+		List<LevelData> levelDataList = new List<LevelData> ();
+		levelDataList.Clear ();
+		Block[] childBlocks = GetComponentsInChildren<Block> ();
+		foreach (Block block in childBlocks)
+		{
+			LevelData levelData = new LevelData ();
+			levelData._blockType = block._blockProperties._blockType;
+			levelData._rotationY = block.GetInitialYRot ();
+			SetPositionsToData (levelData, block.transform);
+			levelDataList.Add (levelData);
+		}
+
+		Bot[] childBots = GetComponentsInChildren<Bot> ();
+		foreach (Bot bot in childBots)
+		{
+			LevelData levelData = new LevelData ();
+			levelData._isBot = true;
+			levelData._rotationY = bot.transform.localRotation.y;
+			SetPositionsToData (levelData, bot.transform);
+			levelDataList.Add (levelData);
+		}
+
+		return levelDataList;
 	}
 
-	// Update is called once per frame
-	void Update ()
+	private void SetPositionsToData (LevelData ld_, Transform t_)
 	{
-
+		ld_._positionX = t_.transform.localPosition.x;
+		ld_._positionY = t_.transform.localPosition.y;
+		ld_._positionZ = t_.transform.localPosition.z;
 	}
 
-	private void OnDrawGizmos ()
+	private Vector3 GetVectorFromData (LevelData ld_)
+	{
+		Vector3 temp = Vector3.zero;
+		temp.x = ld_._positionX;
+		temp.y = ld_._positionY;
+		temp.z = ld_._positionZ;
+		return temp;
+	}
+
+	private void OnDrawGizmosSelected ()
 	{
 		Gizmos.color = Color.blue;
 		Gizmos.DrawWireCube (transform.position + transform.up * Mathf.RoundToInt (_levelBounds.y / 2), _levelBounds);
@@ -59,6 +104,59 @@ public class LevelLayoutManager : MonoBehaviour
 		}
 	}
 
+	public void SaveLevel ()
+	{
+		string testLevel = "Assets/levelInfo.dat";
+
+		Debug.Log ("Saving.");
+		BinaryFormatter bf = new BinaryFormatter ();
+		FileStream file = new FileStream (testLevel, FileMode.Create);
+		List<LevelData> levelData = GetChildrenLevelData ();
+		bf.Serialize (file, levelData);
+		file.Close ();
+	}
+
+	public void LoadLevel ()
+	{
+		string testLevel = "Assets/levelInfo.dat";
+
+		Debug.Log ("Loading");
+		if (File.Exists (testLevel))
+		{
+			BinaryFormatter bf = new BinaryFormatter ();
+			FileStream file = new FileStream (testLevel, FileMode.Open);
+			List<LevelData> levelDataList = (List<LevelData>) bf.Deserialize (file);
+			file.Close ();
+			GenerateLevel (levelDataList);
+		}
+		else Debug.Log ("Error. File does not exist.");
+	}
+
+	private void GenerateLevel (List<LevelData> levelDataList_)
+	{
+		// Delete all bots and blocks.
+		foreach (Transform child in _botHolder)
+			DestroyImmediate (child);
+
+		foreach (Transform child in _blockHolder)
+			DestroyImmediate (child);
+
+		foreach (LevelData ld in levelDataList_)
+		{
+			Vector3 pos = GetVectorFromData (ld);
+			Vector3 rot = new Vector3 (0, ld._rotationY, 0);
+
+			if (ld._isBot)
+			{
+				Instantiate (_bot, pos, Quaternion.Euler (rot), _botHolder);
+			}
+			else
+			{
+				Instantiate (_blockList[(int) ld._blockType], pos, Quaternion.Euler (rot), _blockHolder);
+			}
+		}
+	}
+
 	private void OnValidate ()
 	{
 		_levelBounds = new Vector3 (
@@ -67,26 +165,15 @@ public class LevelLayoutManager : MonoBehaviour
 			Mathf.RoundToInt (_levelBounds.z)
 		);
 	}
-
 }
 
-// // Uncomment the following line after replacing "MyScript" with your script name:
-// [CustomEditor (typeof (LevelLayoutManager))]
-// [CanEditMultipleObjects]
-// public class LevelEditor : Editor
-// {
-// 	// //This is the value of the Slider
-// 	// float _val;
-
-// 	// public override void OnInspectorGUI ()
-// 	// {
-// 	// 	base.OnInspectorGUI ();
-// 	// 	//This is the Label for the Slider
-// 	// 	GUI.Label (new Rect (0, 300, 100, 30), "Rectangle Width");
-// 	// 	//This is the Slider that changes the size of the Rectangle drawn
-// 	// 	_val = GUI.HorizontalSlider (new Rect (100, 300, 100, 30), _val, 1.0f, 250.0f);
-
-// 	// 	//The rectangle is drawn in the Editor (when MyScript is attached) with the width depending on the value of the Slider
-// 	// 	EditorGUI.DrawRect (new Rect (50, 350, _val, 70), Color.green);
-// 	// }
-// }
+[System.Serializable]
+class LevelData
+{
+	public BlockType _blockType;
+	public float _positionX;
+	public float _positionY;
+	public float _positionZ;
+	public float _rotationY;
+	public bool _isBot = false;
+}

@@ -4,10 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - BlockManager
   - PoolManager
   - TeleportIgnore
   - Bot
+  - LevelManager
+  - BlockManager
+  - BotManager
   layers:
   - Default
   - TransparentFX

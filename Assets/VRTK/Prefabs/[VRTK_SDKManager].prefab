@@ -535,7 +535,8 @@ GameObject:
   - component: {fileID: 124544133927462992}
   - component: {fileID: 114097820674519812}
   - component: {fileID: 114857783722105758}
-  - component: {fileID: 114905934009286064}
+  - component: {fileID: 114431218680251322}
+  - component: {fileID: 114919939946795456}
   m_Layer: 0
   m_Name: Camera (eye)
   m_TagString: MainCamera
@@ -1120,9 +1121,9 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
+  m_HDR: 0
   m_AllowMSAA: 1
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -1176,7 +1177,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1520,8 +1521,8 @@ MonoBehaviour:
   activeScriptingDefineSymbolsWithoutSDKClasses:
   - symbol: VRTK_DEFINE_SDK_OCULUS_AVATAR
     buildTargetGroupName: Standalone
-  scriptAliasLeftController: {fileID: 1695152416666060}
-  scriptAliasRightController: {fileID: 1415901859941250}
+  scriptAliasLeftController: {fileID: 1415901859941250}
+  scriptAliasRightController: {fileID: 1695152416666060}
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
@@ -1717,6 +1718,17 @@ MonoBehaviour:
   verbose: 0
   createComponents: 1
   updateDynamically: 1
+--- !u!114 &114431218680251322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1818267214162768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bddafbb8203144f4fba1e7d29db72815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114457359182030474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2421,20 +2433,6 @@ MonoBehaviour:
   checkType: 4
   identifiers:
   - Block
---- !u!114 &114905934009286064
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1818267214162768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bca9ccf900ccc84c887d783321d27e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _head: {fileID: 4776828787329272}
-  _ears: {fileID: 4148363535455418}
-  wireframe: 0
 --- !u!114 &114916199128252836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2448,6 +2446,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: -1
   origin: {fileID: 0}
+--- !u!114 &114919939946795456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1818267214162768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bca9ccf900ccc84c887d783321d27e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _head: {fileID: 4776828787329272}
+  _ears: {fileID: 4148363535455418}
+  wireframe: 0
 --- !u!114 &114939659937691968
 MonoBehaviour:
   m_ObjectHideFlags: 1

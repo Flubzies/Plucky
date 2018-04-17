@@ -5,7 +5,7 @@ namespace BlockClasses
 	[CreateAssetMenu (fileName = "BlockProperties", menuName = "Plucky/BlockProperties", order = 0)]
 	public class BlockProperties : ScriptableObject
 	{
-		[SerializeField] BlockType _blockType;
+		public BlockType _blockType;
 
 		// [Header ("Audio")]
 		// [SerializeField] AudioClip _blockEffect;
@@ -15,11 +15,11 @@ namespace BlockClasses
 
 	public enum BlockType
 	{
-		BlockBuild,
-		BlockDamage,
-		BlockEmpty,
-		BlockExit,
-		BlockGravity,
-		BlockTurn
+		BlockBuild = 0,
+		BlockDamage = 1,
+		BlockEmpty = 2,
+		BlockExit = 3,
+		BlockGravity = 4,
+		BlockTurn = 5
 	}
 }
