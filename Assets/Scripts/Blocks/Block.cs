@@ -7,7 +7,7 @@ namespace BlockClasses
 	public abstract class Block : MonoBehaviour
 	{
 		[Header ("Block ")]
-		[Tooltip("If the Y rotation is not important for the block.")]
+		[Tooltip ("If the Y rotation is not important for the block.")]
 		[SerializeField] bool _randomizeYRotation;
 		public BlockProperties _blockProperties;
 		protected Transform _blockGhost;
@@ -60,9 +60,9 @@ namespace BlockClasses
 			return VecList;
 		}
 
-		public float GetInitialYRot()
+		public float GetInitialYRot ()
 		{
-			return transform.localRotation.y;
+			return transform.localRotation.eulerAngles.y;
 		}
 
 	}

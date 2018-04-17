@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 114708864498837450}
   - component: {fileID: 114557290036763656}
   - component: {fileID: 114299846055608018}
+  - component: {fileID: 114937026826236022}
   m_Layer: 8
   m_Name: BlockTurn
   m_TagString: Untagged
@@ -274,7 +275,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1372664300499996}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 7, z: 4}
+  m_LocalPosition: {x: 7.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4510382255141452}
@@ -941,6 +942,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minSpeed: 3.4
   _maxSpeed: 4.8
+--- !u!114 &114937026826236022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1372664300499996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d0ba4a1995393547beb312be023ad97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animSpeed: 1
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  _disableRB: 0
+  _rb: {fileID: 0}
 --- !u!114 &114944014477252660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1013,7 +1046,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 664443737
+  randomSeed: -978149215
   InitialModule:
     serializedVersion: 3
     enabled: 1

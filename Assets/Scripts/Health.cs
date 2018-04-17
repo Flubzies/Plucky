@@ -3,10 +3,8 @@ using UnityEngine;
 
 // I have copied this script from my previous assignment submission.
 // Games Hardware and Architecture. 2017/2018
+// fm96.co.uk/projects/venture
 
-// I just thought a Health Class would be a good idea. I've tried to make it as independant 
-// and easy to use/understand as possible so that I can easily reuse it for other gameobjects  
-// like enemies and structures.
 public class Health : MonoBehaviour
 {
 	int _health;

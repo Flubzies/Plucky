@@ -16,8 +16,5 @@ namespace BlockClasses
 				return _instance;
 			}
 		}
-
-		
-
 	}
 }

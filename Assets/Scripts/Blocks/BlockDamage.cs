@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace BlockClasses
 {
+    [SelectionBase]
     public class BlockDamage : Block
     {
         public override bool BlockEffect (IBot bot_)

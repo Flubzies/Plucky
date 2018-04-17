@@ -2,5 +2,6 @@
 
 namespace BlockClasses
 {
+    [SelectionBase]
     public class BlockEmpty : Block { }
 }

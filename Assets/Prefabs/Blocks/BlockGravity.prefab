@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 65205045596718290}
   - component: {fileID: 23550689196139680}
   - component: {fileID: 114757738251427872}
+  - component: {fileID: 114038077795909758}
   m_Layer: 8
   m_Name: BlockGravity
   m_TagString: Untagged
@@ -180,7 +181,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855889127976970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 1, z: 5}
+  m_LocalPosition: {x: 6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4938038224082564}
@@ -358,6 +359,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114038077795909758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855889127976970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d0ba4a1995393547beb312be023ad97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animSpeed: 1
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  _disableRB: 0
+  _rb: {fileID: 0}
 --- !u!114 &114757738251427872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -369,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0956f1fe2dd71d844bd16121189906fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _randomizeXRotation: 0
+  _randomizeYRotation: 0
   _blockProperties: {fileID: 11400000, guid: 4f713c40bd8d0c64885ffca6ee306f87, type: 2}
   _blocksLM:
     serializedVersion: 2
