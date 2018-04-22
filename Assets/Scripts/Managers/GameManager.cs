@@ -23,11 +23,6 @@ namespace ManagerClasses
 			if (Input.GetKeyDown (KeyCode.Space)) SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 		}
 
-		// public static void DestroyPlayer (Player _player, float delay)
-		// {
-		// 	Destroy (_player.gameObject, delay);
-		// }
-
 		public void Settings ()
 		{
 			SettingsMenu.instance.ToggleSettings (true);

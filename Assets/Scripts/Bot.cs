@@ -7,7 +7,7 @@ using DG.Tweening;
 using ManagerClasses;
 using UnityEngine;
 
-public class Bot : MonoBehaviour, IBot
+public class Bot : MonoBehaviour, IBot, ILevelObject
 {
 	[Header ("Bot")]
 	[SerializeField] float _moveSpeed = 2.0f;
@@ -22,13 +22,13 @@ public class Bot : MonoBehaviour, IBot
 	[Space (10.0f)]
 	[SerializeField] bool _debug;
 
-	// Rigidbody _rb;
+	ScalingAnimation _scalingAnimation;
 	Health _health;
 
 	private void Awake ()
 	{
+		_scalingAnimation = GetComponent<ScalingAnimation> ();
 		_health = GetComponent<Health> ();
-		// _rb = GetComponent<Rigidbody> ();
 	}
 
 	private void Start ()
@@ -156,19 +156,27 @@ public class Bot : MonoBehaviour, IBot
 		transform.DOMove (dest_, _moveSpeed);
 	}
 
-	public float GetMoveSpeed { get { return _moveSpeed; } }
 	public Transform GetTransform { get { return transform; } }
 	public Health GetHealth { get { return _health; } }
+	public float GetMoveSpeed { get { return _moveSpeed; } }
+
+	public BlockType GetBlockType { get { return BlockType.Undefined; } }
+
+	public void DeathEffect ()
+	{
+		if (Application.isPlaying) _scalingAnimation.DeathEffect ();
+		SafeDestroy.DestroyGameObject (this, 2.0f);
+	}
 
 }
 
 public interface IBot
 {
+	void BotRotation (Quaternion rot_);
+	void BotDestination (Vector3 dest_);
 	Transform GetTransform { get; }
 	Health GetHealth { get; }
 	float GetMoveSpeed { get; }
-	void BotRotation (Quaternion rot_);
-	void BotDestination (Vector3 dest_);
 }
 
 // Use this if we want to revert to the original 2 unit Bot.

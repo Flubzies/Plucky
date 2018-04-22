@@ -8,8 +8,8 @@ namespace ManagerClasses
 {
 	public class ApplicationManager : MonoBehaviour
 	{
-		[SerializeField] 
-		static SceneFader _sceneFader;
+		[SerializeField] SceneFader _sceneFader;
+		[SerializeField] public VRMessage _VRMessage;
 		public static ApplicationManager instance = null;
 
 		void Awake ()
@@ -22,12 +22,8 @@ namespace ManagerClasses
 		private void Start ()
 		{
 			_sceneFader = GetComponentInChildren<SceneFader> ();
+			_VRMessage = GetComponentInChildren<VRMessage> ();
 			SceneManager.sceneLoaded += OnSceneLoaded;
-		}
-
-		private void Update ()
-		{
-			
 		}
 
 		void OnSceneLoaded (Scene scene_, LoadSceneMode mode_)

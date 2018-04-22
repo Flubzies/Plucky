@@ -17,6 +17,11 @@ public class ScalingAnimation : MonoBehaviour
 		StartCoroutine (ScaleUp ());
 	}
 
+	public void DeathEffect ()
+	{
+		StartCoroutine (ScaleDown ());
+	}
+
 	IEnumerator ScaleUp ()
 	{
 		float curveTime = 0f;
@@ -46,19 +51,11 @@ public class ScalingAnimation : MonoBehaviour
 		{
 			curveTime += Time.deltaTime * _animSpeed;
 			curveAmount = _curve.Evaluate (curveTime);
-			transform.localScale = Vector3.one * Mathf.Abs (curveAmount - 1);
+			transform.localScale = Vector3.one * Mathf.Abs (curveAmount - 1.01f);
 			yield return null;
 		}
 
-		transform.localScale = Vector3.zero;
+		transform.localScale = Vector3.one * 0.01f;
 	}
-
-#if !UNITY_EDITOR
-	private void OnDestroy ()
-	{
-		Debug.Log("AASDADADSDSD");
-		StartCoroutine (ScaleDown ());
-	}
-#endif
 
 }

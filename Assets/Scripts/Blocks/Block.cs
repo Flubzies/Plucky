@@ -4,7 +4,7 @@ using VRTK;
 
 namespace BlockClasses
 {
-	public abstract class Block : MonoBehaviour
+	public abstract class Block : MonoBehaviour, ILevelObject
 	{
 		[Header ("Block ")]
 		[Tooltip ("If the Y rotation is not important for the block.")]
@@ -12,14 +12,17 @@ namespace BlockClasses
 		public BlockProperties _blockProperties;
 		protected Transform _blockGhost;
 
+		ScalingAnimation _scalingAnimation;
+
 		protected virtual void Awake ()
 		{
-			transform.parent = GameObject.FindGameObjectWithTag ("BlockManager").transform;
+			_scalingAnimation = GetComponent<ScalingAnimation> ();
 			if (GetComponent<IPlaceable> () != null) SetupGhostMesh ();
 		}
 
 		protected virtual void Start ()
 		{
+			_blockProperties = Instantiate (_blockProperties);
 			if (_randomizeYRotation) RandYRot ();
 		}
 
@@ -63,6 +66,16 @@ namespace BlockClasses
 		public float GetInitialYRot ()
 		{
 			return transform.localRotation.eulerAngles.y;
+		}
+
+		public Transform GetTransform { get { return transform; } }
+
+		public BlockType GetBlockType { get { return _blockProperties._blockType; } }
+
+		public void DeathEffect ()
+		{
+			if (Application.isPlaying) _scalingAnimation.DeathEffect ();
+			SafeDestroy.DestroyGameObject (this, 2.0f);
 		}
 
 	}

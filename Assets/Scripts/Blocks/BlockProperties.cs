@@ -15,6 +15,7 @@ namespace BlockClasses
 
 	public enum BlockType
 	{
+		Undefined = -1,
 		BlockBuild = 0,
 		BlockDamage = 1,
 		BlockEmpty = 2,

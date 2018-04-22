@@ -14,16 +14,16 @@ namespace BlockClasses
 			_block = transform.GetComponent<IPlaceable> ();
 		}
 
-		public override void StartUsing (VRTK_InteractUse usingObject)
+		public override void StartUsing (VRTK_InteractUse usingObject_)
 		{
 			base.StartUsing ();
-			
+			VRTKInteraction.instance.GrabBlock (_block, usingObject_);
 		}
 
-		public override void StopUsing (VRTK_InteractUse usingObject)
+		public override void StopUsing (VRTK_InteractUse usingObject_)
 		{
 			base.StopUsing ();
-
+			
 		}
 	}
 }
