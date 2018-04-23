@@ -6,7 +6,6 @@ namespace BlockClasses
 	public class BlockVRTKInteract : VRTK_InteractableObject
 	{
 		Block _block;
-		bool _isBeingUsed;
 
 		protected override void Awake ()
 		{
@@ -14,9 +13,8 @@ namespace BlockClasses
 			_block = GetComponentInParent<Block> ();
 		}
 
-		public override void StartTouching (VRTK_InteractTouch currentTouchingObject = null)
+		public override void OnInteractableObjectTouched (InteractableObjectEventArgs e)
 		{
-			base.StartTouching ();
 			VRTKBlockInteraction.instance._currentlyTouching = _block;
 		}
 
@@ -36,15 +34,5 @@ namespace BlockClasses
 			// _isBeingUsed = false;
 			// _block.OnStopUsingBlock ();
 		}
-
-		// IEnumerator UpdateGhostMesh (Transform usingObject_)
-		// {
-		// 	while (_isBeingUsed)
-		// 	{
-		// 		Debug.Log ("Is Using");
-		// 		_block._BlockGhostMesh.transform.position = usingObject_.position.ToInt ();
-		// 		yield return new WaitForSeconds (0.5f);
-		// 	}
-		// }
 	}
 }

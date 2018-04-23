@@ -35,7 +35,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4982732262442102}
   - component: {fileID: 114653150418917108}
-  - component: {fileID: 114744999474082228}
   - component: {fileID: 114818824523484716}
   m_Layer: 0
   m_Name: LevelManager
@@ -134,19 +133,8 @@ MonoBehaviour:
   _blockHolder: {fileID: 4764056257055574}
   _botHolder: {fileID: 4297077231554756}
   _clearOnStart: 1
-  _levelName: Level 1
+  _levelName: Plucky!
   _loadWaitTime: 2
---- !u!114 &114744999474082228
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1618537444407330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0031df5ea23f22149b69b1500e864687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114818824523484716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,5 +152,5 @@ MonoBehaviour:
   _botLM:
     serializedVersion: 2
     m_Bits: 1024
-  _levelBounds: {x: 16, y: 18, z: 16}
+  _levelBounds: {x: 16, y: 24, z: 16}
   _offset: 0.5

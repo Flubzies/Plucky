@@ -35,18 +35,18 @@ namespace ManagerClasses
 			_levelsList.Clear ();
 			_levelsList = LLM.GetSavedLevels ();
 
-			foreach (string levelName in _levelsList)
+			for (int i = 0; i < _levelsList.Count; i++)
 			{
 				GUILayout.BeginHorizontal ();
 
 				// string levelName = levelName.Remove (levelName.Length - 4, 4);
-				EditorGUILayout.LabelField ("Level Name: ", GUILayout.Width (80));
-				GUILayout.Label (levelName, GUILayout.Width (60));
+				GUILayout.Label ((i + 1).ToString (), GUILayout.Width (10));
+				GUILayout.Label (_levelsList[i], GUILayout.Width (180));
 
-				if (GUILayout.Button ("Save")) LLM.SaveLevel (levelName);
-				if (GUILayout.Button ("Load")) LLM.LoadLevel (levelName);
+				if (GUILayout.Button ("Save")) LLM.SaveLevel (_levelsList[i]);
+				if (GUILayout.Button ("Load")) LLM.LoadLevel (_levelsList[i]);
 				GUI.skin.button.normal.textColor = new Color (1.0f, 0.2f, 0.2f, 1.0f);
-				if (GUILayout.Button (new GUIContent ("Delete", "Deletes the level file permanently!"))) LLM.DeleteLevel (levelName);
+				if (GUILayout.Button (new GUIContent ("Delete", "Deletes the level file permanently!"))) LLM.DeleteLevel (_levelsList[i]);
 				GUI.skin.button.normal.textColor = new Color (0.8f, 0.8f, 0.8f, 1.0f);
 				GUILayout.EndHorizontal ();
 			}

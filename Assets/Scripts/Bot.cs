@@ -24,17 +24,18 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 
 	ScalingAnimation _scalingAnimation;
 	Health _health;
+	Collider[] _colliders = new Collider[10];
 
 	private void Awake ()
 	{
+		Debug.Log ("Awake");
 		_scalingAnimation = GetComponent<ScalingAnimation> ();
 		_health = GetComponent<Health> ();
 	}
 
 	private void Start ()
 	{
-		_health.DeathEvent += OnDeath;
-		StartMoving ();
+		Debug.Log ("Start");
 	}
 
 	void StartMoving ()
@@ -54,10 +55,10 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 
 	private bool CheckForBlockEffects ()
 	{
-		Collider[] cols = Physics.OverlapSphere (_currentGround.position, 0.2f, _blocksLM);
-		if (cols.Length != 0)
+		int numCols = Physics.OverlapSphereNonAlloc (_currentGround.position, 0.2f, _colliders, _blocksLM);
+		if (numCols != 0)
 		{
-			if (cols[0].GetComponent<Block> ().BlockEffect (GetComponent<IBot> ())) return true;
+			if (_colliders[0].GetComponent<Block> ().BlockEffect (GetComponent<IBot> ())) return true;
 			else return false;
 		}
 		return false;
@@ -69,8 +70,8 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 
 		for (int i = 0; i < _collisionPositions.Count; i++)
 		{
-			Collider[] cols = Physics.OverlapSphere (_collisionPositions[i].position, 0.2f, _blocksLM);
-			if (cols.Length != 0) config += (int) Math.Pow (2, i);
+			int numCols = Physics.OverlapSphereNonAlloc (_collisionPositions[i].position, 0.2f, _colliders, _blocksLM);
+			if (numCols != 0) config += (int) Math.Pow (2, i);
 		}
 
 		ActOnColliders (config);
@@ -143,7 +144,7 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 
 	void OnDeath ()
 	{
-		gameObject.SetActive (false);
+		_health.DeathEvent -= OnDeath;
 	}
 
 	public void BotRotation (Quaternion rot_)
@@ -159,12 +160,22 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 	public Transform GetTransform { get { return transform; } }
 	public Health GetHealth { get { return _health; } }
 	public float GetMoveSpeed { get { return _moveSpeed; } }
-
 	public BlockType GetBlockType { get { return BlockType.Undefined; } }
+	public bool IsPlaceable { get { return false; } set { return; } }
+
+	public void InitializeILevelObject ()
+	{
+		_health.DeathEvent += OnDeath;
+		StartMoving ();
+	}
 
 	public void DeathEffect ()
 	{
-		if (Application.isPlaying) _scalingAnimation.DeathEffect ();
+		if (Application.isPlaying)
+		{
+			_scalingAnimation.DeathEffect ();
+			OnDeath ();
+		}
 		SafeDestroy.DestroyGameObject (this, 2.0f);
 	}
 

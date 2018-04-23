@@ -60,7 +60,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 		{
 			_IsHolding = true;
 			_currentBlock = _currentlyTouching;
-			_currentBlock.OnStartUsingBlock ();
+			_currentBlock.OnGrabbed ();
 			StartCoroutine (UpdateGhostBlock ());
 		}
 		else Debug.Log ("Unable to grab!");
@@ -73,7 +73,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 			Vector3 pos = transform.position.ToInt ();
 			int numCols = Physics.OverlapSphereNonAlloc (pos, 0.2f, _colliders, _blocksLM);
 			if (numCols == 0) _currentBlock._BlockGhostMesh.transform.position = pos;
-			yield return new WaitForSeconds (0.5f);
+			yield return new WaitForSeconds (0.05f);
 		}
 	}
 
@@ -81,20 +81,24 @@ public class VRTKBlockInteraction : MonoBehaviour
 	{
 		Debug.Log ("Placing.");
 		_IsHolding = false;
-		_currentBlock.OnStopUsingBlock ();
+		_currentBlock.OnPlaced ();
 		_currentBlock.transform.position = _currentBlock._BlockGhostMesh.transform.position;
-		_currentlyTouching = null;
+		// Don't ask, it just works -.- 
+		_currentBlock._BlockGhostMesh.transform.position = _currentBlock.transform.position;
 	}
 
 	void Cancel ()
 	{
 		Debug.Log ("Cancelling");
 		_IsHolding = false;
-		_currentBlock._BlockGhostMesh.transform.position = transform.position;
-		_currentlyTouching = null;
+		_currentBlock._BlockGhostMesh.transform.position = _currentBlock.transform.position;
+		_currentBlock.OnPlaced (true);
 	}
 
 }
+
+// Might add this as an option later so I'll just keep it in for now.
+// Allows for input via Ray instead of trigger.
 
 // [SerializeField] LayerMask _blocksLM;
 // public bool _IsHolding { get; private set; }

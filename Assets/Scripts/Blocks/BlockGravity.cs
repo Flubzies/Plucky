@@ -13,9 +13,9 @@ namespace BlockClasses
         [SerializeField] float _checkTimer = 1.0f;
         float _heightReachable;
 
-        protected override void Start ()
+        public override void InitializeILevelObject ()
         {
-            base.Start ();
+            base.InitializeILevelObject ();
             StartCoroutine (CalculateDistanceEnumerator ());
         }
 

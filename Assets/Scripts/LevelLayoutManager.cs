@@ -64,6 +64,7 @@ namespace ManagerClasses
 				LevelData levelData = new LevelData ();
 				levelData._blockType = obj.GetBlockType;
 				levelData._rotationY = obj.GetTransform.localRotation.eulerAngles.y;
+				levelData._isPlaceable = obj.IsPlaceable;
 				SetPositionsToData (levelData, obj.GetTransform);
 				levelDataList.Add (levelData);
 			}
@@ -180,9 +181,20 @@ namespace ManagerClasses
 			{
 				Vector3 pos = GetVectorFromData (ld);
 				Vector3 rot = new Vector3 (0, ld._rotationY, 0);
-				if (ld._blockType == BlockType.Undefined) _currentLevelObjects.Add (Instantiate (_bot, _botHolder.transform.position + pos, Quaternion.Euler (rot), _botHolder));
-				else _currentLevelObjects.Add (Instantiate (_blockList[(int) ld._blockType], _blockHolder.transform.position + pos, Quaternion.Euler (rot), _blockHolder));
+				if (ld._blockType == BlockType.Undefined)
+				{
+					_currentLevelObjects.Add (Instantiate (_bot, _botHolder.transform.position + pos, Quaternion.Euler (rot), _botHolder));
+				}
+				else
+				{
+					ILevelObject l = (Instantiate (_blockList[(int) ld._blockType], _blockHolder.transform.position + pos, Quaternion.Euler (rot), _blockHolder));
+					l.IsPlaceable = ld._isPlaceable;
+					_currentLevelObjects.Add (l);
+				}
 			}
+
+			foreach (ILevelObject obj in _currentLevelObjects)
+				if (Application.isPlaying && obj != null) obj.InitializeILevelObject ();
 		}
 
 		public void ClearLevel ()
@@ -223,6 +235,7 @@ namespace ManagerClasses
 		public float _positionY;
 		public float _positionZ;
 		public float _rotationY;
+		public bool _isPlaceable;
 	}
 }
 
@@ -230,5 +243,7 @@ public interface ILevelObject
 {
 	Transform GetTransform { get; }
 	BlockType GetBlockType { get; }
+	bool IsPlaceable { get; set; }
 	void DeathEffect ();
+	void InitializeILevelObject ();
 }

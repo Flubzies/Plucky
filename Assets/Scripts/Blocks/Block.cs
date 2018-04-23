@@ -15,13 +15,13 @@ namespace BlockClasses
 		[Tooltip ("Only required if the block is placeable.")]
 		[SerializeField] BlockGhostMesh _ghostMesh;
 
+		public BlockGhostMesh _BlockGhostMesh { get; private set; }
+
 		public BlockProperties _blockProperties;
 		ScalingAnimation _scalingAnimation;
 
 		MeshRenderer _meshRenderer;
 		MeshFilter _meshFilter;
-
-		public BlockGhostMesh _BlockGhostMesh { get; private set; }
 
 		protected virtual void Awake ()
 		{
@@ -30,23 +30,12 @@ namespace BlockClasses
 			_meshFilter = GetComponent<MeshFilter> ();
 		}
 
-		protected virtual void Start ()
-		{
-			_blockProperties = Instantiate (_blockProperties);
-			if (_randomizeYRotation) RandYRot ();
-			if (_isPlaceable)
-			{
-				_BlockGhostMesh = Instantiate (_ghostMesh, transform.position, transform.rotation, transform);
-				_BlockGhostMesh.SetupGhostMesh (_meshRenderer, _meshFilter);
-			}
-		}
-
-		public virtual void OnStartUsingBlock ()
+		public virtual void OnGrabbed ()
 		{
 			_BlockGhostMesh.MeshRenderer (true);
 		}
 
-		public virtual void OnStopUsingBlock ()
+		public virtual void OnPlaced (bool cancel_ = false)
 		{
 			_BlockGhostMesh.MeshRenderer (false);
 		}
@@ -69,8 +58,8 @@ namespace BlockClasses
 		}
 
 		public Transform GetTransform { get { return transform; } }
-
 		public BlockType GetBlockType { get { return _blockProperties._blockType; } }
+		public bool IsPlaceable { get { return _isPlaceable; } set { _isPlaceable = value; } }
 
 		public void DeathEffect ()
 		{
@@ -78,8 +67,18 @@ namespace BlockClasses
 			SafeDestroy.DestroyGameObject (this, 2.0f);
 		}
 
+		public virtual void InitializeILevelObject ()
+		{
+			_blockProperties = Instantiate (_blockProperties);
+			if (_randomizeYRotation) RandYRot ();
+			if (_isPlaceable)
+			{
+				_BlockGhostMesh = Instantiate (_ghostMesh, transform.position, transform.rotation, transform);
+				_BlockGhostMesh.SetupGhostMesh (_meshRenderer, _meshFilter);
+			}
+		}
+
 		public MeshRenderer GetMeshRenderer { get { return _meshRenderer; } }
 		public MeshFilter GetMeshFilter { get { return _meshFilter; } }
-
 	}
 }

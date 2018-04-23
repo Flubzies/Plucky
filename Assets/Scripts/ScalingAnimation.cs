@@ -55,7 +55,7 @@ public class ScalingAnimation : MonoBehaviour
 			yield return null;
 		}
 
-		transform.localScale = Vector3.one * 0.01f;
+		transform.localScale = Vector3.one * 0.001f;
 	}
 
 }
