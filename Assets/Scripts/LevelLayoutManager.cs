@@ -27,6 +27,8 @@ namespace ManagerClasses
 		List<ILevelObject> _currentLevelObjects = new List<ILevelObject> ();
 		public string _GetLevelName { get; private set; }
 
+		string _fileExtension = ".dat";
+
 		static LevelLayoutManager _instance;
 		public static LevelLayoutManager instance
 		{
@@ -96,8 +98,8 @@ namespace ManagerClasses
 		public void SaveLevel (string levelName_ = "")
 		{
 			string levelPath;
-			if (levelName_ == "") levelPath = GetLevelPath () + _levelName + ".dat";
-			else levelPath = GetLevelPath () + levelName_ + ".dat";
+			if (levelName_ == "") levelPath = GetLevelPath () + _levelName + _fileExtension;
+			else levelPath = GetLevelPath () + levelName_ + _fileExtension;
 
 			Debug.Log ("Saving.");
 			BinaryFormatter bf = new BinaryFormatter ();
@@ -110,8 +112,8 @@ namespace ManagerClasses
 		public List<LevelData> GetLevelData (string levelName_)
 		{
 			string levelPath;
-			if (levelName_ == "") levelPath = GetLevelPath () + _levelName + ".dat";
-			else levelPath = GetLevelPath () + levelName_ + ".dat";
+			if (levelName_ == "") levelPath = GetLevelPath () + _levelName + _fileExtension;
+			else levelPath = GetLevelPath () + levelName_ + _fileExtension;
 
 			if (File.Exists (levelPath))
 			{
@@ -129,8 +131,8 @@ namespace ManagerClasses
 			if (_canLoad)
 			{
 				string levelPath;
-				if (levelName_ == "") levelPath = GetLevelPath () + _levelName + ".dat";
-				else levelPath = GetLevelPath () + levelName_ + ".dat";
+				if (levelName_ == "") levelPath = GetLevelPath () + _levelName + _fileExtension;
+				else levelPath = GetLevelPath () + levelName_ + _fileExtension;
 
 				Debug.Log ("Loading");
 				if (File.Exists (levelPath))
@@ -214,14 +216,15 @@ namespace ManagerClasses
 		public void DeleteLevel (string levelName_)
 		{
 			string levelPath;
-			if (levelName_ == "") levelPath = GetLevelPath () + _levelName + ".dat";
-			else levelPath = GetLevelPath () + levelName_ + ".dat";
+			if (levelName_ == "") levelPath = GetLevelPath () + _levelName + _fileExtension;
+			else levelPath = GetLevelPath () + levelName_ + _fileExtension;
 
 			Debug.Log ("Deleting");
 			if (File.Exists (levelPath))
 			{
 				File.Delete (levelPath);
-				File.Delete (levelPath + ".meta");
+				if (File.Exists (levelPath + ".meta"))
+					File.Delete (levelPath + ".meta");
 			}
 			else Debug.Log ("Error. File does not exist.");
 		}
