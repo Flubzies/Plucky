@@ -61,11 +61,6 @@ namespace BlockClasses
             }
         }
 
-        public Transform GetGhostBlock ()
-        {
-            return _blockGhost;
-        }
-
         public void PlaceBlock (Vector3 pos_)
         {
             CalculateDistance ();

@@ -59,10 +59,6 @@ public class LevelGizmos : MonoBehaviour
 
 	private void OnValidate ()
 	{
-		_levelBounds = new Vector3 (
-			Mathf.RoundToInt (_levelBounds.x),
-			Mathf.RoundToInt (_levelBounds.y),
-			Mathf.RoundToInt (_levelBounds.z)
-		);
+		_levelBounds = _levelBounds.ToInt();
 	}
 }

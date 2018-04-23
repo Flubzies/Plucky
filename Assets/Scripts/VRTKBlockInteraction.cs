@@ -3,35 +3,105 @@ using BlockClasses;
 using UnityEngine;
 using VRTK;
 
-public class VRTKInteraction : MonoBehaviour
+public class VRTKBlockInteraction : MonoBehaviour
 {
-
-	static VRTKInteraction _instance;
-	public static VRTKInteraction instance
+	static VRTKBlockInteraction _instance;
+	public static VRTKBlockInteraction instance
 	{
 		get
 		{
 			if (!_instance)
-				_instance = FindObjectOfType<VRTKInteraction> ();
+				_instance = FindObjectOfType<VRTKBlockInteraction> ();
 			return _instance;
 		}
 	}
 
-	public void GrabBlock (IPlaceable block_, VRTK_InteractUse usingObject_)
+	[SerializeField] LayerMask _blocksLM;
+	public bool _IsHolding { get; private set; }
+	Block _currentBlock;
+
+	VRTK_ControllerEvents _controllerEventsR;
+	Collider[] _colliders = new Collider[10];
+
+	[HideInInspector] public Block _currentlyTouching;
+
+	private void Awake ()
 	{
-		Debug.Log(usingObject_.name);
+		_controllerEventsR = GetComponent<VRTK_ControllerEvents> ();
 	}
 
-	
+	private void Start ()
+	{
+		_controllerEventsR.TriggerPressed += new ControllerInteractionEventHandler (ControllerGrab);
+		_controllerEventsR.TriggerReleased += new ControllerInteractionEventHandler (ControllerPlace);
+		_controllerEventsR.GripPressed += new ControllerInteractionEventHandler (ControllerCancel);
+	}
+
+	void ControllerGrab (object sender, ControllerInteractionEventArgs e)
+	{
+		if (!_IsHolding) Grab ();
+	}
+
+	void ControllerPlace (object sender, ControllerInteractionEventArgs e)
+	{
+		if (_IsHolding) Place ();
+	}
+
+	void ControllerCancel (object sender, ControllerInteractionEventArgs e)
+	{
+		if (_IsHolding) Cancel ();
+	}
+
+	void Grab ()
+	{
+		Debug.Log ("Attempting to Grab");
+
+		if (_currentlyTouching != null)
+		{
+			_IsHolding = true;
+			_currentBlock = _currentlyTouching;
+			_currentBlock.OnStartUsingBlock ();
+			StartCoroutine (UpdateGhostBlock ());
+		}
+		else Debug.Log ("Unable to grab!");
+	}
+
+	IEnumerator UpdateGhostBlock ()
+	{
+		while (_IsHolding)
+		{
+			Vector3 pos = transform.position.ToInt ();
+			int numCols = Physics.OverlapSphereNonAlloc (pos, 0.2f, _colliders, _blocksLM);
+			if (numCols == 0) _currentBlock._BlockGhostMesh.transform.position = pos;
+			yield return new WaitForSeconds (0.5f);
+		}
+	}
+
+	void Place ()
+	{
+		Debug.Log ("Placing.");
+		_IsHolding = false;
+		_currentBlock.OnStopUsingBlock ();
+		_currentBlock.transform.position = _currentBlock._BlockGhostMesh.transform.position;
+		_currentlyTouching = null;
+	}
+
+	void Cancel ()
+	{
+		Debug.Log ("Cancelling");
+		_IsHolding = false;
+		_currentBlock._BlockGhostMesh.transform.position = transform.position;
+		_currentlyTouching = null;
+	}
 
 }
 
 // [SerializeField] LayerMask _blocksLM;
 // public bool _IsHolding { get; private set; }
-// IPlaceable _currentBlock;
+// Block _currentBlock;
 
 // [Header ("VR Mode")]
-// [SerializeField] Transform _rightController;
+// [SerializeField] Transform _controller;
 // [SerializeField] Transform _leftController;
 // [SerializeField] bool _VRMode;
 
@@ -39,20 +109,20 @@ public class VRTKInteraction : MonoBehaviour
 
 // Ray ray = new Ray ();
 
-// static VRTKInteraction _instance;
-// public static VRTKInteraction instance
+// static VRTKBlockInteraction _instance;
+// public static VRTKBlockInteraction instance
 // {
 // 	get
 // 	{
 // 		if (!_instance)
-// 			_instance = FindObjectOfType<VRTKInteraction> ();
+// 			_instance = FindObjectOfType<VRTKBlockInteraction> ();
 // 		return _instance;
 // 	}
 // }
 
 // private void Awake ()
 // {
-// 	_controllerEventsR = _rightController.GetComponent<VRTK_ControllerEvents> ();
+// 	_controllerEventsR = _controller.GetComponent<VRTK_ControllerEvents> ();
 // }
 
 // private void Start ()
@@ -93,8 +163,8 @@ public class VRTKInteraction : MonoBehaviour
 
 // 	if (_VRMode)
 // 	{
-// 		ray.origin = _rightController.position;
-// 		ray.direction = _rightController.forward;
+// 		ray.origin = _controller.position;
+// 		ray.direction = _controller.forward;
 // 	}
 // 	else ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
@@ -102,12 +172,12 @@ public class VRTKInteraction : MonoBehaviour
 
 // 	if (Physics.Raycast (ray, out hit, 100f, _blocksLM))
 // 	{
-// 		IPlaceable temp = hit.transform.GetComponent<IPlaceable> ();
-// 		if (temp != null)
+// 		Block block = hit.transform.GetComponent<Block> ();
+// 		if (block != null)
 // 		{
 // 			Debug.Log ("Grabbing.");
 // 			_IsHolding = true;
-// 			_currentBlock = temp;
+// 			_currentBlock = block;
 // 			_currentBlock.GetGhostBlock.gameObject.SetActive (true);
 // 			StartCoroutine (UpdateGhostBlock ());
 // 		}
@@ -122,8 +192,8 @@ public class VRTKInteraction : MonoBehaviour
 // 	{
 // 		if (_VRMode)
 // 		{
-// 			ray.origin = _rightController.position;
-// 			ray.direction = _rightController.forward;
+// 			ray.origin = _controller.position;
+// 			ray.direction = _controller.forward;
 // 		}
 // 		else ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BlockClasses
 {
-    public class BlockTurn : Block, IPlaceable
+    public class BlockTurn : Block
     {
         TrailRenderer[] _tr;
 
@@ -19,8 +19,6 @@ namespace BlockClasses
             bot_.BotRotation (Quaternion.LookRotation (transform.forward));
             return true;
         }
-
-        public Transform GetGhostBlock { get { return _blockGhost; } }
 
         public void PlaceBlock (Vector3 pos_)
         {

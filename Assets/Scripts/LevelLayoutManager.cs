@@ -43,7 +43,7 @@ namespace ManagerClasses
 			if (_clearOnStart)
 			{
 				ClearLevelImmediate ();
-				// LoadLevel (_levelName);
+				LoadLevel (_levelName);
 			}
 		}
 

@@ -4,14 +4,9 @@ using UnityEngine;
 
 namespace BlockClasses
 {
-	public class BlockBuild : Block, IPlaceable
+	public class BlockBuild : Block
 	{
-		public Transform GetGhostBlock { get { return _blockGhost; } }
-
-		public void PlaceBlock (Vector3 pos_)
-		{
-			transform.position = pos_;
-		}
+		
 	}
 }
 // *Might* use this if I decide to have multiple blocks placeable at the same time.

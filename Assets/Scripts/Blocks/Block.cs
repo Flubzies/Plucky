@@ -9,35 +9,46 @@ namespace BlockClasses
 		[Header ("Block ")]
 		[Tooltip ("If the Y rotation is not important for the block.")]
 		[SerializeField] bool _randomizeYRotation;
-		public BlockProperties _blockProperties;
-		protected Transform _blockGhost;
 
+		[Header ("Placeable")]
+		[SerializeField] bool _isPlaceable;
+		[Tooltip ("Only required if the block is placeable.")]
+		[SerializeField] BlockGhostMesh _ghostMesh;
+
+		public BlockProperties _blockProperties;
 		ScalingAnimation _scalingAnimation;
+
+		MeshRenderer _meshRenderer;
+		MeshFilter _meshFilter;
+
+		public BlockGhostMesh _BlockGhostMesh { get; private set; }
 
 		protected virtual void Awake ()
 		{
 			_scalingAnimation = GetComponent<ScalingAnimation> ();
-			if (GetComponent<IPlaceable> () != null) SetupGhostMesh ();
+			_meshRenderer = GetComponent<MeshRenderer> ();
+			_meshFilter = GetComponent<MeshFilter> ();
 		}
 
 		protected virtual void Start ()
 		{
 			_blockProperties = Instantiate (_blockProperties);
 			if (_randomizeYRotation) RandYRot ();
+			if (_isPlaceable)
+			{
+				_BlockGhostMesh = Instantiate (_ghostMesh, transform.position, transform.rotation, transform);
+				_BlockGhostMesh.SetupGhostMesh (_meshRenderer, _meshFilter);
+			}
 		}
 
-		void SetupGhostMesh ()
+		public virtual void OnStartUsingBlock ()
 		{
-			_blockGhost = transform.Find ("GhostMesh");
-			if (_blockGhost == null) Debug.LogError ("No Ghost Block on a IPlaceable GameObject!");
-			_blockGhost.GetComponent<MeshFilter> ().mesh = GetComponent<MeshFilter> ().mesh;
-			MeshRenderer mr = _blockGhost.GetComponent<MeshRenderer> ();
+			_BlockGhostMesh.MeshRenderer (true);
+		}
 
-			List<Material> temp = new List<Material> ();
-			for (int i = 0; i < GetComponent<MeshRenderer> ().materials.Length; i++)
-				temp.Add (_blockGhost.GetComponent<MeshRenderer> ().material);
-
-			mr.materials = temp.ToArray ();
+		public virtual void OnStopUsingBlock ()
+		{
+			_BlockGhostMesh.MeshRenderer (false);
 		}
 
 		public virtual bool BlockEffect (IBot bot_)
@@ -50,17 +61,6 @@ namespace BlockClasses
 		{
 			int x = Random.Range (0, 4);
 			transform.rotation = Quaternion.AngleAxis (x * 90, Vector3.up);
-		}
-
-		protected static List<Vector3> GetAdjacentSpaces (Transform vec_)
-		{
-			List<Vector3> VecList = new List<Vector3> ();
-			VecList.Add (vec_.up);
-			VecList.Add (vec_.right * -1);
-			VecList.Add (vec_.right);
-			VecList.Add (vec_.forward);
-			VecList.Add (vec_.forward * -1);
-			return VecList;
 		}
 
 		public float GetInitialYRot ()
@@ -78,11 +78,8 @@ namespace BlockClasses
 			SafeDestroy.DestroyGameObject (this, 2.0f);
 		}
 
-	}
+		public MeshRenderer GetMeshRenderer { get { return _meshRenderer; } }
+		public MeshFilter GetMeshFilter { get { return _meshFilter; } }
 
-	public interface IPlaceable
-	{
-		Transform GetGhostBlock { get; }
-		void PlaceBlock (Vector3 pos_);
 	}
 }

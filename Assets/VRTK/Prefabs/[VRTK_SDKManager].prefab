@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 114871439372221472}
   - component: {fileID: 114755534447778920}
   m_Layer: 0
-  m_Name: Pointer
+  m_Name: PointerMenuInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 114947804257439866}
   - component: {fileID: 114437545578889584}
   - component: {fileID: 114200347473261388}
+  - component: {fileID: 114061286105964648}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -607,7 +608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1695152416666060
 GameObject:
   m_ObjectHideFlags: 1
@@ -2053,6 +2054,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114061286105964648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1415901859941250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0031df5ea23f22149b69b1500e864687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blocksLM:
+    serializedVersion: 2
+    m_Bits: 256
+  _currentlyTouching: {fileID: 0}
 --- !u!114 &114097820674519812
 MonoBehaviour:
   m_ObjectHideFlags: 1
