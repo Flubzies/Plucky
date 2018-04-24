@@ -92,7 +92,7 @@ namespace ManagerClasses
 
 		public string GetLevelPath ()
 		{
-			return Application.dataPath + "/Levels/";
+			return "/Levels/";
 		}
 
 		public void SaveLevel (string levelName_ = "")
