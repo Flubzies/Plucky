@@ -449,6 +449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4708521095482936}
   - component: {fileID: 114947804257439866}
+  - component: {fileID: 114390937429779208}
   - component: {fileID: 114437545578889584}
   - component: {fileID: 114200347473261388}
   - component: {fileID: 114061286105964648}
@@ -618,6 +619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4372681550077456}
   - component: {fileID: 114636374494681616}
+  - component: {fileID: 114411932586106290}
   - component: {fileID: 114488784318116210}
   m_Layer: 0
   m_Name: LeftController
@@ -2399,6 +2401,20 @@ MonoBehaviour:
   verbose: 0
   createComponents: 1
   updateDynamically: 1
+--- !u!114 &114390937429779208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1415901859941250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a940c3f70d16f42997aa4b769f01e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _translateSpeed: 0.05
+  _sdkSetups: {fileID: 4427276835481696}
+  _verticalMoveDir: 1
 --- !u!114 &114404940733216002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2420,6 +2436,20 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114411932586106290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1695152416666060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a940c3f70d16f42997aa4b769f01e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _translateSpeed: 0.05
+  _sdkSetups: {fileID: 4427276835481696}
+  _verticalMoveDir: -1
 --- !u!114 &114431218680251322
 MonoBehaviour:
   m_ObjectHideFlags: 1

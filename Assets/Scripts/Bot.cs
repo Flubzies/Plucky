@@ -28,14 +28,8 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 
 	private void Awake ()
 	{
-		Debug.Log ("Awake");
 		_scalingAnimation = GetComponent<ScalingAnimation> ();
 		_health = GetComponent<Health> ();
-	}
-
-	private void Start ()
-	{
-		Debug.Log ("Start");
 	}
 
 	void StartMoving ()
