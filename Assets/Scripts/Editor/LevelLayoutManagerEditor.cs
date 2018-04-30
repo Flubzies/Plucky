@@ -47,7 +47,7 @@ namespace ManagerClasses
 				if (GUILayout.Button ("Load")) LLM.LoadLevel (_levelsList[i]);
 				GUI.skin.button.normal.textColor = new Color (1.0f, 0.2f, 0.2f, 1.0f);
 				if (GUILayout.Button (new GUIContent ("Delete", "Deletes the level file permanently!"))) LLM.DeleteLevel (_levelsList[i]);
-				GUI.skin.button.normal.textColor = new Color (0.1f, 0.1f, 0.1f, 1.0f);
+				GUI.skin.button.normal.textColor = new Color (0.9f, 0.9f, 0.9f, 1.0f);
 				GUILayout.EndHorizontal ();
 			}
 		}

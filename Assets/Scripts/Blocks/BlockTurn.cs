@@ -7,11 +7,16 @@ namespace BlockClasses
     public class BlockTurn : Block
     {
         TrailRenderer[] _tr;
+        ParticleSystem _ps;
 
         protected override void Awake ()
         {
             base.Awake ();
             _tr = GetComponentsInChildren<TrailRenderer> ();
+            _ps = GetComponent<ParticleSystem> ();
+            ParticleSystem.ShapeModule s = _ps.shape;
+            s.mesh = GetComponent<MeshFilter> ().mesh;
+            Debug.Log (s.mesh);
         }
 
         public override bool BlockEffect (IBot bot_)
@@ -25,6 +30,5 @@ namespace BlockClasses
             foreach (TrailRenderer tr in _tr) tr.Clear ();
             transform.position = pos_;
         }
-
     }
 }

@@ -29,21 +29,26 @@ Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Tex
 Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\TextMeshPro-2017.1-1.0.56-Runtime.dll into Unity Child Domain
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\System.dll (this message is harmless)
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.482 seconds
+- Completed reload, in  0.487 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.941295 ms
-Awake
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
+UnloadTime: 0.846026 ms
 OpenVR initialized!
  
 (Filename:  Line: 584)
 
 [VRDevice] Successfully created device OpenVR.
-Start
+Loading
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Connected to lighthouse:LHR-DDC5E6A9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Mono.Security.dll (this message is harmless)
+Generating
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -51,100 +56,133 @@ Loading
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Error! File: S:/User/Documents/Unity/Plucky/Builds/Plucky_Data/Levels/Plucky!.dat / Plucky! does not exist.
+Generating
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-DirectoryNotFoundException: Directory 'S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Levels' not found.
-  at System.IO.Directory.GetFileSystemEntries (System.String path, System.String searchPattern, FileAttributes mask, FileAttributes attrs) [0x00000] in <filename unknown>:0 
-  at System.IO.Directory.GetFiles (System.String path, System.String searchPattern) [0x00000] in <filename unknown>:0 
-  at System.IO.DirectoryInfo.GetFiles (System.String searchPattern) [0x00000] in <filename unknown>:0 
-  at (wrapper remoting-invoke-with-check) System.IO.DirectoryInfo:GetFiles (string)
-  at ManagerClasses.LevelLayoutManager.GetSavedLevels () [0x00000] in <filename unknown>:0 
-  at ControllerMenu.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Connected to lighthouse:LHR-DDC5E6A9
+BlockTurn(Clone) (UnityEngine.Mesh)
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Mono.Security.dll (this message is harmless)
-NullReferenceException: Object reference not set to an instance of an object
-  at ControllerMenu.UpdateIndex () [0x00000] in <filename unknown>:0 
-  at ControllerMenu.DoMenuOn (System.Object sender, ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_ControllerEvents.OnButtonTwoPressed (ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_ControllerEvents.Update () [0x00000] in <filename unknown>:0 
+BlockTurn(Clone) (UnityEngine.Mesh)
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at ControllerMenu.UpdateIndex () [0x00000] in <filename unknown>:0 
-  at ControllerMenu.DoMenuOn (System.Object sender, ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_ControllerEvents.OnButtonTwoPressed (ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_ControllerEvents.Update () [0x00000] in <filename unknown>:0 
+Attempting to Grab
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at ControllerMenu.UpdateIndex () [0x00000] in <filename unknown>:0 
-  at ControllerMenu.NextLevel () [0x00000] in <filename unknown>:0 
-  at LevelButtons.StartUsing (VRTK.VRTK_InteractUse usingObject_) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.AttemptUseOnSet (UnityEngine.Transform target) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.ExecuteSelectionButtonAction () [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.SelectionButtonAction (System.Object sender, ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at (wrapper delegate-invoke) VRTK.ControllerInteractionEventHandler:invoke_void__this___object_ControllerInteractionEventArgs (object,VRTK.ControllerInteractionEventArgs)
-  at (wrapper delegate-invoke) VRTK.ControllerInteractionEventHandler:invoke_void__this___object_ControllerInteractionEventArgs (object,VRTK.ControllerInteractionEventArgs)
-  at VRTK.VRTK_ControllerEvents.OnTouchpadReleased (ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_ControllerEvents.Update () [0x00000] in <filename unknown>:0 
+Started Using
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at ControllerMenu.UpdateIndex () [0x00000] in <filename unknown>:0 
-  at ControllerMenu.NextLevel () [0x00000] in <filename unknown>:0 
-  at LevelButtons.StartUsing (VRTK.VRTK_InteractUse usingObject_) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.AttemptUseOnSet (UnityEngine.Transform target) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.ExecuteSelectionButtonAction () [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.SelectionButtonAction (System.Object sender, ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at (wrapper delegate-invoke) VRTK.ControllerInteractionEventHandler:invoke_void__this___object_ControllerInteractionEventArgs (object,VRTK.ControllerInteractionEventArgs)
-  at (wrapper delegate-invoke) VRTK.ControllerInteractionEventHandler:invoke_void__this___object_ControllerInteractionEventArgs (object,VRTK.ControllerInteractionEventArgs)
-  at VRTK.VRTK_ControllerEvents.OnTouchpadReleased (ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_ControllerEvents.Update () [0x00000] in <filename unknown>:0 
+Placing.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at ControllerMenu.UpdateIndex () [0x00000] in <filename unknown>:0 
-  at ControllerMenu.NextLevel () [0x00000] in <filename unknown>:0 
-  at LevelButtons.StartUsing (VRTK.VRTK_InteractUse usingObject_) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.AttemptUseOnSet (UnityEngine.Transform target) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.ExecuteSelectionButtonAction () [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.SelectionButtonAction (System.Object sender, ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at (wrapper delegate-invoke) VRTK.ControllerInteractionEventHandler:invoke_void__this___object_ControllerInteractionEventArgs (object,VRTK.ControllerInteractionEventArgs)
-  at (wrapper delegate-invoke) VRTK.ControllerInteractionEventHandler:invoke_void__this___object_ControllerInteractionEventArgs (object,VRTK.ControllerInteractionEventArgs)
-  at VRTK.VRTK_ControllerEvents.OnTouchpadReleased (ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_ControllerEvents.Update () [0x00000] in <filename unknown>:0 
+Stopped Using
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at ControllerMenu.UpdateIndex () [0x00000] in <filename unknown>:0 
-  at ControllerMenu.PrevLevel () [0x00000] in <filename unknown>:0 
-  at LevelButtons.StartUsing (VRTK.VRTK_InteractUse usingObject_) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.AttemptUseOnSet (UnityEngine.Transform target) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.ExecuteSelectionButtonAction () [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_Pointer.SelectionButtonAction (System.Object sender, ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at (wrapper delegate-invoke) VRTK.ControllerInteractionEventHandler:invoke_void__this___object_ControllerInteractionEventArgs (object,VRTK.ControllerInteractionEventArgs)
-  at (wrapper delegate-invoke) VRTK.ControllerInteractionEventHandler:invoke_void__this___object_ControllerInteractionEventArgs (object,VRTK.ControllerInteractionEventArgs)
-  at VRTK.VRTK_ControllerEvents.OnTouchpadReleased (ControllerInteractionEventArgs e) [0x00000] in <filename unknown>:0 
-  at VRTK.VRTK_ControllerEvents.Update () [0x00000] in <filename unknown>:0 
+Attempting to Grab
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Placing.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Placing.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Placing.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Placing.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Placing.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Placing.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 61cc -> priority: 1 
-  Thread -> id: 650c -> priority: 1 
+  Thread -> id: 48a0 -> priority: 1 
+  Thread -> id: 3eb4 -> priority: 1 
 OpenVR Shutdown
  
 (Filename:  Line: 1253)

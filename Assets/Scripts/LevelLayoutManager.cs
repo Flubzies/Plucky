@@ -10,13 +10,13 @@ namespace ManagerClasses
 {
     public class LevelLayoutManager : MonoBehaviour
     {
-        [Header("Prefab list ")]
-        [Tooltip("Make sure they are in the same order as your block type enums!")]
+        [Header ("Prefab list ")]
+        [Tooltip ("Make sure they are in the same order as your block type enums!")]
         [SerializeField]
         List<Block> _blockList;
         [SerializeField] Bot _bot;
 
-        [Header("Parent classes list ")]
+        [Header ("Parent classes list ")]
         [SerializeField]
         Transform _blockHolder;
         [SerializeField] Transform _botHolder;
@@ -26,11 +26,11 @@ namespace ManagerClasses
 
         [SerializeField] float _loadWaitTime = 2.0f;
         bool _canLoad = true;
-        List<ILevelObject> _currentLevelObjects = new List<ILevelObject>();
-        public string _GetLevelName { get; private set; }
+        List<ILevelObject> _currentLevelObjects = new List<ILevelObject> ();
+        public string _CurrentLevelName { get; private set; }
 
         string _fileExtension = ".txt";
-        [SerializeField] List<TextAsset> _levelsList;
+        // [SerializeField] List<TextAsset> _levelsList;
 
         static LevelLayoutManager _instance;
         public static LevelLayoutManager instance
@@ -38,53 +38,53 @@ namespace ManagerClasses
             get
             {
                 if (!_instance)
-                    _instance = FindObjectOfType<LevelLayoutManager>();
+                    _instance = FindObjectOfType<LevelLayoutManager> ();
                 return _instance;
             }
         }
 
-        void Start()
+        void Start ()
         {
             if (_clearOnStart)
             {
-                ClearLevelImmediate();
-                LoadLevel(_levelName);
+                ClearLevelImmediate ();
+                LoadLevel (_levelName);
             }
         }
 
-        private void SetupLevelObjectList()
+        private void SetupLevelObjectList ()
         {
-            ILevelObject[] temp = GetComponentsInChildren<ILevelObject>();
-            _currentLevelObjects.Clear();
-            foreach (ILevelObject obj in temp) _currentLevelObjects.Add(obj);
+            ILevelObject[] temp = GetComponentsInChildren<ILevelObject> ();
+            _currentLevelObjects.Clear ();
+            foreach (ILevelObject obj in temp) _currentLevelObjects.Add (obj);
         }
 
-        private List<LevelData> GetDataFromCurrentLevel()
+        private List<LevelData> GetDataFromCurrentLevel ()
         {
-            SetupLevelObjectList();
-            List<LevelData> levelDataList = new List<LevelData>();
+            SetupLevelObjectList ();
+            List<LevelData> levelDataList = new List<LevelData> ();
 
             foreach (ILevelObject obj in _currentLevelObjects)
             {
-                LevelData levelData = new LevelData();
+                LevelData levelData = new LevelData ();
                 levelData._blockType = obj.GetBlockType;
                 levelData._rotationY = obj.GetTransform.localRotation.eulerAngles.y;
                 levelData._isPlaceable = obj.IsPlaceable;
-                SetPositionsToData(levelData, obj.GetTransform);
-                levelDataList.Add(levelData);
+                SetPositionsToData (levelData, obj.GetTransform);
+                levelDataList.Add (levelData);
             }
 
             return levelDataList;
         }
 
-        private void SetPositionsToData(LevelData ld_, Transform t_)
+        private void SetPositionsToData (LevelData ld_, Transform t_)
         {
             ld_._positionX = t_.transform.localPosition.x;
             ld_._positionY = t_.transform.localPosition.y;
             ld_._positionZ = t_.transform.localPosition.z;
         }
 
-        public Vector3 GetVectorFromData(LevelData ld_)
+        public Vector3 GetVectorFromData (LevelData ld_)
         {
             Vector3 temp = Vector3.zero;
             temp.x = ld_._positionX;
@@ -93,149 +93,125 @@ namespace ManagerClasses
             return temp;
         }
 
-        public string GetLevelPath()
+        public string GetLevelPath ()
         {
             return Application.dataPath + "/Resources/Levels/";
         }
 
-        public void SaveLevel(string levelName_ = "")
+        public void SaveLevel (string levelName_ = "")
         {
             string levelPath;
-            if (levelName_ == "") levelPath = GetLevelPath() + _levelName + _fileExtension;
-            else levelPath = GetLevelPath() + levelName_ + _fileExtension;
+            if (levelName_ == "") levelPath = GetLevelPath () + _levelName + _fileExtension;
+            else levelPath = GetLevelPath () + levelName_ + _fileExtension;
 
-            Debug.Log("Saving.");
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = new FileStream(levelPath, FileMode.Create);
-            List<LevelData> levelData = GetDataFromCurrentLevel();
-            bf.Serialize(file, levelData);
-            file.Close();
+            Debug.Log ("Saving.");
+            BinaryFormatter bf = new BinaryFormatter ();
+            FileStream file = new FileStream (levelPath, FileMode.Create);
+            List<LevelData> levelData = GetDataFromCurrentLevel ();
+            bf.Serialize (file, levelData);
+            file.Close ();
         }
 
-        public List<LevelData> GetLevelData(string levelName_)
+        public List<LevelData> GetLevelDataFromResources (string levelName_ = "")
         {
-            string levelPath;
-            if (levelName_ == "") levelPath = GetLevelPath() + _levelName + _fileExtension;
-            else levelPath = GetLevelPath() + levelName_ + _fileExtension;
-
-            if (File.Exists(levelPath))
+            if (levelName_ == "")
             {
-                BinaryFormatter bf = new BinaryFormatter();
-                FileStream file = new FileStream(levelPath, FileMode.Open);
-                List<LevelData> levelDataList = (List<LevelData>)bf.Deserialize(file);
-                file.Close();
+                Debug.Log ("Level not found!");
+                return null;
+            }
+            else
+            {
+                TextAsset asset = Resources.Load ("Levels/" + levelName_) as TextAsset;
+                Stream stream = new MemoryStream (asset.bytes);
+                BinaryFormatter bf = new BinaryFormatter ();
+                List<LevelData> levelDataList = bf.Deserialize (stream) as List<LevelData>;
+                stream.Close ();
                 return levelDataList;
             }
-            else return null;
         }
 
-        public void LoadLevel(string levelName_ = "")
+        public void LoadLevel (string levelName_ = "")
         {
             if (_canLoad)
             {
-				Debug.Log(levelName_);
-				Debug.Log(Resources.Load("/Levels/" + levelName_));
-				TextAsset ta = Resources.Load("/Levels/" + levelName_) as TextAsset;
-				Debug.Log(ta);
-
-
-                string levelPath;
-                if (levelName_ == "") levelPath = GetLevelPath() + _levelName + _fileExtension;
-                else levelPath = GetLevelPath() + levelName_ + _fileExtension;
-
-                Debug.Log("Loading");
-                if (File.Exists(levelPath))
+                Debug.Log ("Loading");
+                List<LevelData> levelDataList = GetLevelDataFromResources (levelName_);
+                if (levelDataList != null)
                 {
-                    BinaryFormatter bf = new BinaryFormatter();
-                    FileStream file = new FileStream(levelPath, FileMode.Open);
-                    List<LevelData> levelDataList = (List<LevelData>)bf.Deserialize(file);
-                    file.Close();
-
-                    _GetLevelName = levelName_;
-
-                    ClearLevel();
-                    if (Application.isPlaying) StartCoroutine(WaitForLoad(levelDataList));
-                    else GenerateLevel(levelDataList);
+                    _CurrentLevelName = levelName_;
+                    ClearLevel ();
+                    if (Application.isPlaying) StartCoroutine (WaitForLoad (levelDataList));
+                    else GenerateLevel (levelDataList);
                 }
-                else Debug.Log("Error! File: " + levelPath + " / " + levelName_ + " does not exist.");
+                else Debug.Log ("Level data is null!");
             }
         }
 
-        IEnumerator WaitForLoad(List<LevelData> ld)
+        IEnumerator WaitForLoad (List<LevelData> ld)
         {
             _canLoad = false;
-            yield return new WaitForSeconds(_loadWaitTime);
-            GenerateLevel(ld);
-            yield return new WaitForSeconds(_loadWaitTime);
+            yield return new WaitForSeconds (_loadWaitTime);
+            GenerateLevel (ld);
+            yield return new WaitForSeconds (_loadWaitTime);
             _canLoad = true;
         }
 
-        public List<string> GetSavedLevels()
+        public List<string> GetSavedLevels ()
         {
-            List<string> levelsSaved = new List<string>();
-
-            DirectoryInfo di = new DirectoryInfo(GetLevelPath());
-            foreach (var fi in di.GetFiles("*.txt"))
-            {
-                string temp = fi.Name.Remove(fi.Name.Length - 4, 4);
-                levelsSaved.Add(temp);
-            }
-
+            UnityEngine.Object[] assets = Resources.LoadAll ("Levels/");
+            List<string> levelsSaved = new List<string> ();
+            foreach (UnityEngine.Object asset in assets) levelsSaved.Add (asset.name);
             return levelsSaved;
         }
 
-        private void GenerateLevel(List<LevelData> levelDataList_)
+        private void GenerateLevel (List<LevelData> levelDataList_)
         {
-            Debug.Log("Generating");
+            Debug.Log ("Generating");
 
             foreach (LevelData ld in levelDataList_)
             {
-                Vector3 pos = GetVectorFromData(ld);
-                Vector3 rot = new Vector3(0, ld._rotationY, 0);
+                Vector3 pos = GetVectorFromData (ld);
+                Vector3 rot = new Vector3 (0, ld._rotationY, 0);
                 if (ld._blockType == BlockType.Undefined)
                 {
-                    _currentLevelObjects.Add(Instantiate(_bot, _botHolder.transform.position + pos, Quaternion.Euler(rot), _botHolder));
+                    _currentLevelObjects.Add (Instantiate (_bot, _botHolder.transform.position + pos, Quaternion.Euler (rot), _botHolder));
                 }
                 else
                 {
-                    ILevelObject l = (Instantiate(_blockList[(int)ld._blockType], _blockHolder.transform.position + pos, Quaternion.Euler(rot), _blockHolder));
+                    ILevelObject l = (Instantiate (_blockList[(int) ld._blockType], _blockHolder.transform.position + pos, Quaternion.Euler (rot), _blockHolder));
                     l.IsPlaceable = ld._isPlaceable;
-                    _currentLevelObjects.Add(l);
+                    _currentLevelObjects.Add (l);
                 }
             }
 
             foreach (ILevelObject obj in _currentLevelObjects)
-                if (Application.isPlaying && obj != null) obj.InitializeILevelObject();
+                if (Application.isPlaying && obj != null) obj.InitializeILevelObject ();
         }
 
-        public void ClearLevel()
+        public void ClearLevel ()
         {
-            GetDataFromCurrentLevel();
-            foreach (ILevelObject obj in _currentLevelObjects) obj.DeathEffect();
-            _currentLevelObjects.Clear();
+            GetDataFromCurrentLevel ();
+            foreach (ILevelObject obj in _currentLevelObjects) obj.DeathEffect ();
+            _currentLevelObjects.Clear ();
         }
 
-        public void ClearLevelImmediate()
+        public void ClearLevelImmediate ()
         {
-            GetDataFromCurrentLevel();
-            foreach (ILevelObject obj in _currentLevelObjects) SafeDestroy.DestroyGameObject(obj.GetTransform);
-            _currentLevelObjects.Clear();
+            GetDataFromCurrentLevel ();
+            foreach (ILevelObject obj in _currentLevelObjects) SafeDestroy.DestroyGameObject (obj.GetTransform);
+            _currentLevelObjects.Clear ();
         }
 
-        public void DeleteLevel(string levelName_)
+        public void DeleteLevel (string levelName_)
         {
             string levelPath;
-            if (levelName_ == "") levelPath = GetLevelPath() + _levelName + _fileExtension;
-            else levelPath = GetLevelPath() + levelName_ + _fileExtension;
+            if (levelName_ == "") levelPath = GetLevelPath () + _levelName + _fileExtension;
+            else levelPath = GetLevelPath () + levelName_ + _fileExtension;
 
-            Debug.Log("Deleting");
-            if (File.Exists(levelPath))
-            {
-                File.Delete(levelPath);
-                if (File.Exists(levelPath + ".meta"))
-                    File.Delete(levelPath + ".meta");
-            }
-            else Debug.Log("Error. File does not exist.");
+            Debug.Log ("Deleting");
+            if (File.Exists (levelPath)) File.Delete (levelPath);
+            if (File.Exists (levelPath + ".meta")) File.Delete (levelPath + ".meta");
+            else Debug.Log ("Error. File does not exist.");
         }
     }
 
@@ -256,6 +232,6 @@ public interface ILevelObject
     Transform GetTransform { get; }
     BlockType GetBlockType { get; }
     bool IsPlaceable { get; set; }
-    void DeathEffect();
-    void InitializeILevelObject();
+    void DeathEffect ();
+    void InitializeILevelObject ();
 }

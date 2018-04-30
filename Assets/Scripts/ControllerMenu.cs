@@ -13,8 +13,9 @@ public class ControllerMenu : MonoBehaviour
 	[Header ("Level Preview ")]
 	[SerializeField] Transform _previewHolder;
 	[SerializeField] Transform _previewCube;
+	[Tooltip("Color of each preview block, corresponds with BlockType enums")]
 	[SerializeField] Color[] _previewColorArray;
-	[SerializeField] float _posDiv = 100.0f;
+	[SerializeField] float _cubePosDiv = 100.0f;
 
 	int _levelIndex;
 	List<string> _savedLevels;
@@ -30,8 +31,8 @@ public class ControllerMenu : MonoBehaviour
 	private void DoMenuOn (object sender, ControllerInteractionEventArgs e)
 	{
 		_menuObject.gameObject.SetActive (true);
-		_levelText.text = LevelLayoutManager.instance._GetLevelName;
-		GenerateLevelPreview (LevelLayoutManager.instance.GetLevelData (_levelText.text));
+		_levelText.text = LevelLayoutManager.instance._CurrentLevelName;
+		GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelText.text));
 		UpdateIndex ();
 	}
 
@@ -58,7 +59,7 @@ public class ControllerMenu : MonoBehaviour
 		if (temp < _savedLevels.Count && _savedLevels[temp] != null)
 		{
 			_levelText.text = _savedLevels[temp];
-			GenerateLevelPreview (LevelLayoutManager.instance.GetLevelData (_levelText.text));
+			GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelText.text));
 		}
 	}
 
@@ -69,7 +70,7 @@ public class ControllerMenu : MonoBehaviour
 		if (temp >= 0 && _savedLevels[temp] != null)
 		{
 			_levelText.text = _savedLevels[temp];
-			GenerateLevelPreview (LevelLayoutManager.instance.GetLevelData (_levelText.text));
+			GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelText.text));
 		}
 	}
 
@@ -82,8 +83,7 @@ public class ControllerMenu : MonoBehaviour
 			foreach (LevelData ld in levelDataList_)
 			{
 				Vector3 pos = LevelLayoutManager.instance.GetVectorFromData (ld);
-				// Vector3 rot = new Vector3 (0, ld._rotationY, 0);
-				Transform clone = Instantiate (_previewCube, _previewHolder.transform.position + (pos / _posDiv), Quaternion.identity, _previewHolder);
+				Transform clone = Instantiate (_previewCube, _previewHolder.transform.position + (pos / _cubePosDiv), Quaternion.identity, _previewHolder);
 				clone.GetComponent<MeshRenderer> ().material.color = _previewColorArray[(int) ld._blockType + 1];
 			}
 	}
