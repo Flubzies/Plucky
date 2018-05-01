@@ -22,7 +22,7 @@ namespace BlockClasses
 			_materials = _mr.materials;
 		}
 
-		Vector3[] UpdateAdjacentPositions ()
+		void UpdateAdjacentPositions ()
 		{
 			_adjacentPositions[0] = (transform.position + transform.up);
 			_adjacentPositions[1] = (transform.position + transform.up * -1);
@@ -30,7 +30,6 @@ namespace BlockClasses
 			_adjacentPositions[3] = (transform.position + transform.right);
 			_adjacentPositions[4] = (transform.position + transform.forward);
 			_adjacentPositions[5] = (transform.position + transform.forward * -1);
-			return _adjacentPositions;
 		}
 
 		/// <summary>
@@ -67,5 +66,38 @@ namespace BlockClasses
 			else
 				foreach (Material mat in _materials) mat.color = _unacceptablePosCol;
 		}
+
+		List<Block> GetAdjacentBlocks ()
+		{
+			UpdateAdjacentPositions ();
+
+			Block tempBlock = null;
+			List<Block> tempColliderList = new List<Block> ();
+			Collider[] cols;
+
+			for (int i = 0; i < _adjacentPositions.Length; i++)
+			{
+				cols = Physics.OverlapSphere (_adjacentPositions[i], 0.2f, _blocksLM);
+				tempBlock = cols[0].GetComponent<Block> ();
+				if (!tempColliderList.Contains (tempBlock)) tempColliderList.Add (tempBlock);
+			}
+
+			return tempColliderList;
+		}
+
+		bool AreAdjacentBlocksConnectedToRoot (List<Block> adjacentBlocks_)
+		{
+			foreach (Block block in adjacentBlocks_)
+			{
+				if (!block.IsPlaceable) return true;
+			}
+			return false;
+		}
+
+		// tempBlock = col.GetComponent<Block> ();
+		// if (tempBlock != null && !tempBlock.IsPlaceable)
+		// {
+		// 	return true;
+		// }
 	}
 }
