@@ -24,6 +24,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 	Collider[] _colliders = new Collider[10];
 
 	[HideInInspector] public Block _currentlyTouching;
+	bool _isInPlaceablePosition;
 
 	private void Awake ()
 	{
@@ -58,6 +59,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 
 		if (_currentlyTouching != null)
 		{
+			_isInPlaceablePosition = true;
 			_IsHolding = true;
 			_currentBlock = _currentlyTouching;
 			_currentBlock.OnGrabbed ();
@@ -73,6 +75,9 @@ public class VRTKBlockInteraction : MonoBehaviour
 			Vector3 pos = transform.position.ToInt ();
 			int numCols = Physics.OverlapSphereNonAlloc (pos, 0.2f, _colliders, _blocksLM);
 			if (numCols == 0) _currentBlock._BlockGhostMesh.transform.position = pos;
+			if (!_currentBlock._BlockGhostMesh._BlockCollisions.HasAdjacentBlock (true, _currentBlock.transform.position))
+				_isInPlaceablePosition = false;
+			else _isInPlaceablePosition = true;
 			yield return new WaitForSeconds (0.05f);
 		}
 	}
@@ -80,10 +85,11 @@ public class VRTKBlockInteraction : MonoBehaviour
 	void Place ()
 	{
 		Debug.Log ("Placing.");
+		if (!_isInPlaceablePosition) Cancel ();
 		_IsHolding = false;
 		_currentBlock.OnPlaced ();
-		_currentBlock.transform.position = _currentBlock._BlockGhostMesh.transform.position;
 		// Don't ask, it just works -.- 
+		_currentBlock.transform.position = _currentBlock._BlockGhostMesh.transform.position;
 		_currentBlock._BlockGhostMesh.transform.position = _currentBlock.transform.position;
 	}
 
@@ -98,7 +104,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 }
 
 // Might add this as an option later so I'll just keep it in for now.
-// Allows for input via Ray instead of trigger.
+// Allows for input via Ray instead of grabbing blocks.
 
 // [SerializeField] LayerMask _blocksLM;
 // public bool _IsHolding { get; private set; }

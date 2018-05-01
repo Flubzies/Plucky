@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114189534081381954}
   - component: {fileID: 65775671972218282}
   - component: {fileID: 114952560541456926}
+  - component: {fileID: 114407387850665146}
   - component: {fileID: 114771118400640150}
   m_Layer: 0
   m_Name: BlockGhostMesh
@@ -107,6 +108,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5154b0301dbc444ead8a7b0bece569c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114407387850665146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1671513186740630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173f8f48b1eda7f46be436fa6c9f8e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blocksLM:
+    serializedVersion: 2
+    m_Bits: 256
+  _acceptablePosCol: {r: 1, g: 1, b: 1, a: 0.7058824}
+  _unacceptablePosCol: {r: 1, g: 0, b: 0, a: 0.7058824}
 --- !u!114 &114771118400640150
 MonoBehaviour:
   m_ObjectHideFlags: 1

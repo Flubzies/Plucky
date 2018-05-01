@@ -15,6 +15,7 @@ ModelImporter:
     100014: Grass
     100016: Plane
     100018: Wind
+    100020: BlockTurnArrow
     400000: //RootNode
     400002: BlockBuild
     400004: BlockEmpty
@@ -25,6 +26,7 @@ ModelImporter:
     400014: Grass
     400016: Plane
     400018: Wind
+    400020: BlockTurnArrow
     2300000: //RootNode
     2300002: BlockBuild
     2300004: BlockEmpty
@@ -35,6 +37,7 @@ ModelImporter:
     2300014: Grass
     2300016: Plane
     2300018: Wind
+    2300020: BlockTurnArrow
     3300000: //RootNode
     3300002: BlockBuild
     3300004: BlockEmpty
@@ -45,6 +48,7 @@ ModelImporter:
     3300014: Grass
     3300016: Plane
     3300018: Wind
+    3300020: BlockTurnArrow
     4300000: BlockEmpty
     4300002: BlockBuildable
     4300004: BlockBuild
@@ -55,6 +59,7 @@ ModelImporter:
     4300014: BlockExitSphere
     4300016: BlockExitRing
     4300018: Grass
+    4300020: BlockTurnArrow
   materials:
     importMaterials: 0
     materialName: 0

@@ -8,11 +8,13 @@ namespace BlockClasses
 	{
 		MeshRenderer _mr;
 		MeshFilter _mf;
+		public BlockCollisions _BlockCollisions { get; private set; }
 
-		private void Awake ()
+		void Awake ()
 		{
 			_mr = GetComponent<MeshRenderer> ();
 			_mf = GetComponent<MeshFilter> ();
+			_BlockCollisions = GetComponent<BlockCollisions> ();
 			_mr.enabled = false;
 		}
 

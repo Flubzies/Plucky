@@ -1,4 +1,7 @@
-﻿Shader "VRTK/OutlineBasic"
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+// Farjad - Added see through code.
+
+Shader "VRTK/OutlineBasic"
 {
     Properties
     {
@@ -97,6 +100,7 @@
                     _OutlineColor.a = 1;
                     return _OutlineColor;
                 }
+
             ENDCG
         }
     }

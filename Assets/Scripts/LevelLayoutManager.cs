@@ -30,7 +30,6 @@ namespace ManagerClasses
         public string _CurrentLevelName { get; private set; }
 
         string _fileExtension = ".txt";
-        // [SerializeField] List<TextAsset> _levelsList;
 
         static LevelLayoutManager _instance;
         public static LevelLayoutManager instance
@@ -104,7 +103,7 @@ namespace ManagerClasses
             if (levelName_ == "") levelPath = GetLevelPath () + _levelName + _fileExtension;
             else levelPath = GetLevelPath () + levelName_ + _fileExtension;
 
-            Debug.Log ("Saving.");
+            Debug.Log ("Saving. " + levelName_);
             BinaryFormatter bf = new BinaryFormatter ();
             FileStream file = new FileStream (levelPath, FileMode.Create);
             List<LevelData> levelData = GetDataFromCurrentLevel ();
@@ -114,19 +113,22 @@ namespace ManagerClasses
 
         public List<LevelData> GetLevelDataFromResources (string levelName_ = "")
         {
-            if (levelName_ == "")
+            TextAsset asset;
+            if (levelName_ == "") asset = Resources.Load ("Levels/" + _levelName) as TextAsset;
+            else asset = Resources.Load ("Levels/" + levelName_) as TextAsset;
+
+            if (asset != null)
             {
-                Debug.Log ("Level not found!");
-                return null;
-            }
-            else
-            {
-                TextAsset asset = Resources.Load ("Levels/" + levelName_) as TextAsset;
                 Stream stream = new MemoryStream (asset.bytes);
                 BinaryFormatter bf = new BinaryFormatter ();
                 List<LevelData> levelDataList = bf.Deserialize (stream) as List<LevelData>;
                 stream.Close ();
                 return levelDataList;
+            }
+            else
+            {
+                Debug.LogError ("Level data not found!");
+                return null;
             }
         }
 
@@ -134,16 +136,16 @@ namespace ManagerClasses
         {
             if (_canLoad)
             {
-                Debug.Log ("Loading");
                 List<LevelData> levelDataList = GetLevelDataFromResources (levelName_);
                 if (levelDataList != null)
                 {
+                    Debug.Log ("Loading " + levelName_);
                     _CurrentLevelName = levelName_;
                     ClearLevel ();
                     if (Application.isPlaying) StartCoroutine (WaitForLoad (levelDataList));
                     else GenerateLevel (levelDataList);
                 }
-                else Debug.Log ("Level data is null!");
+                else Debug.LogError ("Level data is null!");
             }
         }
 

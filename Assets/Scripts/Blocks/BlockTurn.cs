@@ -16,7 +16,6 @@ namespace BlockClasses
             _ps = GetComponent<ParticleSystem> ();
             ParticleSystem.ShapeModule s = _ps.shape;
             s.mesh = GetComponent<MeshFilter> ().mesh;
-            Debug.Log (s.mesh);
         }
 
         public override bool BlockEffect (IBot bot_)

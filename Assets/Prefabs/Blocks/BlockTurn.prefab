@@ -880,10 +880,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _randomizeYRotation: 0
+  _blockProperties: {fileID: 11400000, guid: 9d9b277c3bb584a478a6000cd044ce02, type: 2}
   _isPlaceable: 0
   _ghostMesh: {fileID: 114189534081381954, guid: 9edc85ef12539d540a1702b929e03f2a,
     type: 2}
-  _blockProperties: {fileID: 11400000, guid: 9d9b277c3bb584a478a6000cd044ce02, type: 2}
 --- !u!198 &198448013322825150
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -943,7 +943,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2060596696
+  randomSeed: 1203134075
   InitialModule:
     serializedVersion: 3
     enabled: 1

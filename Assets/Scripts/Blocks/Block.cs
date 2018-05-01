@@ -9,17 +9,16 @@ namespace BlockClasses
 		[Header ("Block ")]
 		[Tooltip ("If the Y rotation is not important for the block.")]
 		[SerializeField] bool _randomizeYRotation;
+		public BlockProperties _blockProperties;
 
 		[Header ("Placeable")]
+		[Tooltip ("Toggle this if you want this block to be moveable.")]
 		[SerializeField] bool _isPlaceable;
-		[Tooltip ("Only required if the block is placeable.")]
 		[SerializeField] BlockGhostMesh _ghostMesh;
 
 		public BlockGhostMesh _BlockGhostMesh { get; private set; }
 
-		public BlockProperties _blockProperties;
 		ScalingAnimation _scalingAnimation;
-
 		MeshRenderer _meshRenderer;
 		MeshFilter _meshFilter;
 

@@ -133,8 +133,8 @@ MonoBehaviour:
   _blockHolder: {fileID: 4764056257055574}
   _botHolder: {fileID: 4297077231554756}
   _clearOnStart: 1
-  _levelName: Plucky!
-  _loadWaitTime: 2
+  _levelName: Tutorial Level 4
+  _loadWaitTime: 1
 --- !u!114 &114818824523484716
 MonoBehaviour:
   m_ObjectHideFlags: 1
