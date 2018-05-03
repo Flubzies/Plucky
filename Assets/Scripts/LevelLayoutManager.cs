@@ -23,10 +23,12 @@ namespace ManagerClasses
 
         [HideInInspector] public bool _clearOnStart;
         [HideInInspector] public string _levelName;
+        [SerializeField] float _loadWaitTime = 1.0f;
+        [SerializeField] float _spawnTimer = 0.8f;
 
-        [SerializeField] float _loadWaitTime = 2.0f;
         bool _canLoad = true;
         List<ILevelObject> _currentLevelObjects = new List<ILevelObject> ();
+        public List<Block> _PlaceableBlocks { get; private set; }
         public string _CurrentLevelName { get; private set; }
 
         string _fileExtension = ".txt";
@@ -40,6 +42,11 @@ namespace ManagerClasses
                     _instance = FindObjectOfType<LevelLayoutManager> ();
                 return _instance;
             }
+        }
+
+        private void Awake ()
+        {
+            _PlaceableBlocks = new List<Block> ();
         }
 
         void Start ()
@@ -56,6 +63,12 @@ namespace ManagerClasses
             ILevelObject[] temp = GetComponentsInChildren<ILevelObject> ();
             _currentLevelObjects.Clear ();
             foreach (ILevelObject obj in temp) _currentLevelObjects.Add (obj);
+        }
+
+        public List<ILevelObject> GetCurrentLevelObjects ()
+        {
+            SetupLevelObjectList ();
+            return _currentLevelObjects;
         }
 
         private List<LevelData> GetDataFromCurrentLevel ()
@@ -169,6 +182,7 @@ namespace ManagerClasses
         private void GenerateLevel (List<LevelData> levelDataList_)
         {
             Debug.Log ("Generating");
+            _PlaceableBlocks.Clear ();
 
             foreach (LevelData ld in levelDataList_)
             {
@@ -183,17 +197,18 @@ namespace ManagerClasses
                     ILevelObject l = (Instantiate (_blockList[(int) ld._blockType], _blockHolder.transform.position + pos, Quaternion.Euler (rot), _blockHolder));
                     l.IsPlaceable = ld._isPlaceable;
                     _currentLevelObjects.Add (l);
+                    if (l.IsPlaceable) _PlaceableBlocks.Add (l.GetTransform.GetComponent<Block> ());
                 }
             }
 
             foreach (ILevelObject obj in _currentLevelObjects)
-                if (Application.isPlaying && obj != null) obj.InitializeILevelObject ();
+                if (Application.isPlaying && obj != null) obj.InitializeILevelObject (_spawnTimer);
         }
 
         public void ClearLevel ()
         {
             GetDataFromCurrentLevel ();
-            foreach (ILevelObject obj in _currentLevelObjects) obj.DeathEffect ();
+            foreach (ILevelObject obj in _currentLevelObjects) obj.DeathEffect (_spawnTimer);
             _currentLevelObjects.Clear ();
         }
 
@@ -234,6 +249,6 @@ public interface ILevelObject
     Transform GetTransform { get; }
     BlockType GetBlockType { get; }
     bool IsPlaceable { get; set; }
-    void DeathEffect ();
-    void InitializeILevelObject ();
+    void DeathEffect (float deathEffectTime_);
+    void InitializeILevelObject (float spawnEffectTime_);
 }

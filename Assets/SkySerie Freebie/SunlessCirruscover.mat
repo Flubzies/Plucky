@@ -23,12 +23,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex:
-        m_Texture: {fileID: 8900000, guid: 58d8c36cb4418d148854a70be5827c99, type: 3}
+        m_Texture: {fileID: 8900000, guid: 99af420a4ccafa74abdc47436d8b0685, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - <noninit>: 0
-    - _Exposure: 1.2
+    - _Exposure: 0.95
     - _Rotation: 0
     m_Colors:
     - <noninit>: {r: 0, g: 9.254479e-35, b: 0, a: 9.254442e-35}

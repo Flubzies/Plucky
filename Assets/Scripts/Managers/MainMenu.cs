@@ -11,12 +11,7 @@ namespace ManagerClasses
 		{
 			GetComponent<Canvas> ().worldCamera = Camera.main;
 		}
-
-		public void OnClickStart ()
-		{
-			ApplicationManager.instance.LoadLevel01 ();
-		}
-
+		
 		public void OnClickExit ()
 		{
 			ApplicationManager.instance.LoadExit ();

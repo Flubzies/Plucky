@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: BlockGravity
   m_EditorClassIdentifier: 
   _blockType: 4
+  _blockSpawnEaseType: 8

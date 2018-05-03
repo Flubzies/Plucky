@@ -13,10 +13,10 @@ Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Ass
 Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
 Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\DOTween.dll (this message is harmless)
@@ -27,30 +27,34 @@ Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\DOT
 Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\DOTween46.dll into Unity Child Domain
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\DOTween50.dll (this message is harmless)
 Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\DOTween50.dll into Unity Child Domain
-Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\TextMeshPro-2017.1-1.0.56-Runtime.dll (this message is harmless)
-Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\TextMeshPro-2017.1-1.0.56-Runtime.dll into Unity Child Domain
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Sirenix.OdinInspector.Attributes.dll (this message is harmless)
 Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Sirenix.OdinInspector.Attributes.dll into Unity Child Domain
+Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Sirenix.Serialization.Config.dll (this message is harmless)
+Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Sirenix.Serialization.Config.dll into Unity Child Domain
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Sirenix.Serialization.dll (this message is harmless)
 Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Sirenix.Serialization.dll into Unity Child Domain
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Sirenix.Utilities.dll (this message is harmless)
 Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Sirenix.Utilities.dll into Unity Child Domain
-Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Sirenix.Serialization.Config.dll (this message is harmless)
-Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Sirenix.Serialization.Config.dll into Unity Child Domain
+Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\TextMeshPro-2017.1-1.0.56-Runtime.dll (this message is harmless)
+Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\TextMeshPro-2017.1-1.0.56-Runtime.dll into Unity Child Domain
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\System.dll (this message is harmless)
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.224 seconds
+- Completed reload, in  0.165 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.893076 ms
+UnloadTime: 0.958245 ms
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Mono.Security.dll (this message is harmless)
 OpenVR initialized!
  
 (Filename:  Line: 584)
 
 [VRDevice] Successfully created device OpenVR.
-Loading Plucky!
+Level data not found!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Level data is null!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -58,7 +62,11 @@ Connected to lighthouse:LHR-DDC5E6A9
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Generating
+Level data not found!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Level data not found!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -78,22 +86,6 @@ Started Using
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Stopped Using
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Placing.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Attempting to Grab
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Started Using
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
 Placing.
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -110,7 +102,23 @@ Started Using
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
 Placing.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -126,7 +134,7 @@ Started Using
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Placing.
+Cancelling
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -139,26 +147,6 @@ Attempting to Grab
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Started Using
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Placing.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Stopped Using
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Attempting to Grab
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Started Using
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Placing.
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -182,7 +170,23 @@ Stopped Using
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Placing.
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -195,10 +199,6 @@ Started Using
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Stopped Using
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Placing.
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -218,7 +218,23 @@ Stopped Using
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Placing.
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -234,7 +250,15 @@ Stopped Using
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Placing.
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -242,7 +266,155 @@ Cancelling
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Loading Tutorial Level 2
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Started Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Stopped Using
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Loading Tutorial Level 1
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -251,8 +423,8 @@ Generating
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 28a4 -> priority: 1 
-  Thread -> id: 2924 -> priority: 1 
+  Thread -> id: 6438 -> priority: 1 
+  Thread -> id: 5320 -> priority: 1 
 OpenVR Shutdown
  
 (Filename:  Line: 1253)

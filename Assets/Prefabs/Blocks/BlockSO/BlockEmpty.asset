@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: BlockEmpty
   m_EditorClassIdentifier: 
   _blockType: 2
+  _blockSpawnEaseType: 30

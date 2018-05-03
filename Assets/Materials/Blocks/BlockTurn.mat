@@ -92,7 +92,7 @@ Material:
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _N: {r: 0, g: 0, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TintColor: {r: 1, g: 1, b: 1, a: 0.015686275}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 0.053}
     - _UAxis: {r: 0, g: 0, b: 0, a: 0}
     - _UOrigin: {r: 0, g: 0, b: 0, a: 0}
     - _VAxis: {r: 0, g: 0, b: 0, a: 0}

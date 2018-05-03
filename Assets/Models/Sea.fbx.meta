@@ -14,6 +14,7 @@ ModelImporter:
     4300004: BlockBuild
     4300006: BlockGravity
     4300008: Plane
+    4300010: Sea
   materials:
     importMaterials: 0
     materialName: 0

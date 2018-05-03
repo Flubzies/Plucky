@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: BlockTurn
   m_EditorClassIdentifier: 
   _blockType: 5
+  _blockSpawnEaseType: 30

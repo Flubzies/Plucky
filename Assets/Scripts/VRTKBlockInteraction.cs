@@ -20,7 +20,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 	public bool _IsHolding { get; private set; }
 	Block _currentBlock;
 
-	VRTK_ControllerEvents _controllerEventsR;
+	VRTK_ControllerEvents _controllerEvents;
 	Collider[] _colliders = new Collider[10];
 
 	[HideInInspector] public Block _currentlyTouching;
@@ -28,14 +28,14 @@ public class VRTKBlockInteraction : MonoBehaviour
 
 	private void Awake ()
 	{
-		_controllerEventsR = GetComponent<VRTK_ControllerEvents> ();
+		_controllerEvents = GetComponent<VRTK_ControllerEvents> ();
 	}
 
 	private void Start ()
 	{
-		_controllerEventsR.TriggerPressed += new ControllerInteractionEventHandler (ControllerGrab);
-		_controllerEventsR.TriggerReleased += new ControllerInteractionEventHandler (ControllerPlace);
-		_controllerEventsR.GripPressed += new ControllerInteractionEventHandler (ControllerCancel);
+		_controllerEvents.TriggerPressed += new ControllerInteractionEventHandler (ControllerGrab);
+		_controllerEvents.TriggerReleased += new ControllerInteractionEventHandler (ControllerPlace);
+		_controllerEvents.GripPressed += new ControllerInteractionEventHandler (ControllerCancel);
 	}
 
 	void ControllerGrab (object sender, ControllerInteractionEventArgs e)
@@ -87,10 +87,11 @@ public class VRTKBlockInteraction : MonoBehaviour
 		Debug.Log ("Placing.");
 		if (!_isInPlaceablePosition) Cancel ();
 		_IsHolding = false;
-		_currentBlock.OnPlaced ();
 		// Don't ask, it just works -.- 
 		_currentBlock.transform.position = _currentBlock._BlockGhostMesh.transform.position;
 		_currentBlock._BlockGhostMesh.transform.position = _currentBlock.transform.position;
+		BlockManager.instance.CheckForRoot (_currentBlock);
+		_currentBlock.OnPlaced ();
 	}
 
 	void Cancel ()
@@ -115,7 +116,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 // [SerializeField] Transform _leftController;
 // [SerializeField] bool _VRMode;
 
-// VRTK_ControllerEvents _controllerEventsR;
+// VRTK_ControllerEvents _controllerEvents;
 
 // Ray ray = new Ray ();
 
@@ -132,14 +133,14 @@ public class VRTKBlockInteraction : MonoBehaviour
 
 // private void Awake ()
 // {
-// 	_controllerEventsR = _controller.GetComponent<VRTK_ControllerEvents> ();
+// 	_controllerEvents = _controller.GetComponent<VRTK_ControllerEvents> ();
 // }
 
 // private void Start ()
 // {
-// 	_controllerEventsR.TriggerPressed += new ControllerInteractionEventHandler (ControllerGrab);
-// 	_controllerEventsR.TriggerReleased += new ControllerInteractionEventHandler (ControllerPlace);
-// 	_controllerEventsR.GripPressed += new ControllerInteractionEventHandler (ControllerCancel);
+// 	_controllerEvents.TriggerPressed += new ControllerInteractionEventHandler (ControllerGrab);
+// 	_controllerEvents.TriggerReleased += new ControllerInteractionEventHandler (ControllerPlace);
+// 	_controllerEvents.GripPressed += new ControllerInteractionEventHandler (ControllerCancel);
 // }
 
 // private void Update ()

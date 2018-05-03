@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace BlockClasses
 {
     public class BlockGravity : Block
     {
+        [Header ("Gravity Block Attributes")]
         [SerializeField] LayerMask _blocksLM;
         [SerializeField] List<Transform> _gravityEffects;
 
@@ -13,9 +15,9 @@ namespace BlockClasses
         [SerializeField] float _checkTimer = 1.0f;
         float _heightReachable;
 
-        public override void InitializeILevelObject ()
+        public override void InitializeILevelObject (float spawnEffectTime_)
         {
-            base.InitializeILevelObject ();
+            base.InitializeILevelObject (spawnEffectTime_);
             StartCoroutine (CalculateDistanceEnumerator ());
         }
 
@@ -65,6 +67,12 @@ namespace BlockClasses
         {
             CalculateDistance ();
             transform.position = pos_;
+        }
+
+        public override void DeathEffect (float deathEffectTime_)
+        {
+            base.DeathEffect (deathEffectTime_);
+            foreach (Transform effect in _gravityEffects) effect.DOScale (Vector3.zero, deathEffectTime_ / 0.3f);
         }
 
     }

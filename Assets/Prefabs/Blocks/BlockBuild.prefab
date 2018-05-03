@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 23297271166543844}
   - component: {fileID: 114757057506643754}
   - component: {fileID: 114681224992485200}
-  - component: {fileID: 114857892575228374}
   m_Layer: 8
   m_Name: BlockBuild
   m_TagString: Untagged
@@ -122,40 +121,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0f3b789fd4e7740b7297bd0b87aa25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   _randomizeYRotation: 1
+  _blockProperties: {fileID: 11400000, guid: 46fe14a896ad23741a8c74e162d8f4e8, type: 2}
   _isPlaceable: 1
   _ghostMesh: {fileID: 114189534081381954, guid: 9edc85ef12539d540a1702b929e03f2a,
     type: 2}
-  _blockProperties: {fileID: 11400000, guid: 46fe14a896ad23741a8c74e162d8f4e8, type: 2}
---- !u!114 &114857892575228374
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1262579888042368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d0ba4a1995393547beb312be023ad97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animSpeed: 1
-  _curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  _disableRB: 0
-  _rb: {fileID: 0}

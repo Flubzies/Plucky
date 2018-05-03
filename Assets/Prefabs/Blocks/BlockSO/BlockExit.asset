@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: BlockExit
   m_EditorClassIdentifier: 
   _blockType: 3
+  _blockSpawnEaseType: 31

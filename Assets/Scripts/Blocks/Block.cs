@@ -1,30 +1,29 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using VRTK;
 
 namespace BlockClasses
 {
-	public abstract class Block : MonoBehaviour, ILevelObject
+	public abstract class Block : SerializedMonoBehaviour, ILevelObject
 	{
 		[Header ("Block ")]
 		[Tooltip ("If the Y rotation is not important for the block.")]
 		[SerializeField] bool _randomizeYRotation;
 		public BlockProperties _blockProperties;
 
-		[Header ("Placeable")]
-		[Tooltip ("Toggle this if you want this block to be moveable.")]
+		[ToggleGroup ("_isPlaceable", order : 0, groupTitle: "Placeable")]
 		[SerializeField] bool _isPlaceable;
-		[SerializeField] BlockGhostMesh _ghostMesh;
+		[ToggleGroup ("_isPlaceable")][SerializeField] BlockGhostMesh _ghostMesh;
 
 		public BlockGhostMesh _BlockGhostMesh { get; private set; }
 
-		ScalingAnimation _scalingAnimation;
 		MeshRenderer _meshRenderer;
 		MeshFilter _meshFilter;
 
 		protected virtual void Awake ()
 		{
-			_scalingAnimation = GetComponent<ScalingAnimation> ();
 			_meshRenderer = GetComponent<MeshRenderer> ();
 			_meshFilter = GetComponent<MeshFilter> ();
 		}
@@ -41,7 +40,7 @@ namespace BlockClasses
 
 		public virtual bool BlockEffect (IBot bot_)
 		{
-			// Default no effect takes place.
+			// Default returns false since no effect takes place.
 			return false;
 		}
 
@@ -60,13 +59,17 @@ namespace BlockClasses
 		public BlockType GetBlockType { get { return _blockProperties._blockType; } }
 		public bool IsPlaceable { get { return _isPlaceable; } set { _isPlaceable = value; } }
 
-		public void DeathEffect ()
+		public virtual void DeathEffect (float deathEffectTime_)
 		{
-			if (Application.isPlaying) _scalingAnimation.DeathEffect ();
-			SafeDestroy.DestroyGameObject (this, 2.0f);
+			if (Application.isPlaying)
+			{
+				Tweener t = transform.DOScale (Vector3.zero, deathEffectTime_);
+				t.SetEase (_blockProperties._blockSpawnEaseType);
+			}
+			SafeDestroy.DestroyGameObject (this, deathEffectTime_);
 		}
 
-		public virtual void InitializeILevelObject ()
+		public virtual void InitializeILevelObject (float spawnEffectTime_)
 		{
 			_blockProperties = Instantiate (_blockProperties);
 			if (_randomizeYRotation) RandYRot ();
@@ -75,6 +78,9 @@ namespace BlockClasses
 				_BlockGhostMesh = Instantiate (_ghostMesh, transform.position, transform.rotation, transform);
 				_BlockGhostMesh.SetupGhostMesh (_meshRenderer, _meshFilter);
 			}
+			transform.localScale = Vector3.zero;
+			Tweener t = transform.DOScale (Vector3.one, spawnEffectTime_);
+			t.SetEase (_blockProperties._blockSpawnEaseType);
 		}
 
 		public MeshRenderer GetMeshRenderer { get { return _meshRenderer; } }

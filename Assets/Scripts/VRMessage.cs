@@ -86,7 +86,7 @@ public class VRMessage : MonoBehaviour
         if (sdkCamera != null) _canvas.worldCamera = sdkCamera.GetComponent<Camera> ();
     }
 
-    public void DisplayMessage (string message_, bool log_ = false, float messageDuration_ = 5.0f)
+    public void Log (string message_, bool log_ = false, float messageDuration_ = 5.0f)
     {
         StartCoroutine (DisplayMessageCour (message_, log_, messageDuration_));
     }

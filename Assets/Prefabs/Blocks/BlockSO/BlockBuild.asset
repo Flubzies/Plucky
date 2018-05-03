@@ -11,6 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8fda207ddd4fe4cb22dc14986850cb, type: 3}
   m_Name: BlockBuild
   m_EditorClassIdentifier: 
-  _blockEffect: {fileID: 0}
-  _blockPlaceEffect: {fileID: 0}
-  _blockIdleEffect: {fileID: 0}
+  _blockType: 0
+  _blockSpawnEaseType: 31

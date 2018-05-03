@@ -20,7 +20,6 @@ namespace BlockClasses
 
 		public override void StartUsing (VRTK_InteractUse usingObject_)
 		{
-			Debug.Log ("Started Using");
 			base.StartUsing ();
 			// _isBeingUsed = true;
 			// _block.OnStartUsingBlock ();
@@ -29,7 +28,6 @@ namespace BlockClasses
 
 		public override void StopUsing (VRTK_InteractUse usingObject_)
 		{
-			Debug.Log ("Stopped Using");
 			base.StopUsing ();
 			// _isBeingUsed = false;
 			// _block.OnStopUsingBlock ();

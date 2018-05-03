@@ -9,48 +9,40 @@ namespace ManagerClasses
 	public class ApplicationManager : MonoBehaviour
 	{
 		[SerializeField] SceneFader _sceneFader;
-		[SerializeField] public VRMessage _VRMessage;
-		public static ApplicationManager instance = null;
+		[SerializeField] public VRMessage _VRDebug;
 
-		void Awake ()
+		static ApplicationManager _instance;
+		public static ApplicationManager instance
 		{
-			if (instance == null) instance = this;
-			else if (instance != this) Destroy (gameObject);
-			DontDestroyOnLoad (gameObject);
+			get
+			{
+				if (!_instance)
+					_instance = FindObjectOfType<ApplicationManager> ();
+				return _instance;
+			}
 		}
 
-		private void Start ()
+		private void Awake ()
 		{
-			_sceneFader = GetComponentInChildren<SceneFader> ();
-			_VRMessage = GetComponentInChildren<VRMessage> ();
-			SceneManager.sceneLoaded += OnSceneLoaded;
+			_VRDebug = GetComponentInChildren<VRMessage> ();
 		}
 
-		void OnSceneLoaded (Scene scene_, LoadSceneMode mode_)
-		{
-			_sceneFader.FadeFromScene ();
-		}
+		// public void LoadMainMenu ()
+		// {
+		// 	SettingsMenu.instance.ToggleSettings (false);
+		// 	_sceneFader.FadeToScene ("MainMenu");
+		// }
 
-		public void LoadMainMenu ()
-		{
-			SettingsMenu.instance.ToggleSettings (false);
-			_sceneFader.FadeToScene ("MainMenu");
-		}
-
-		public void ReLoadScene ()
-		{
-			SettingsMenu.instance.ToggleSettings (false);
-			_sceneFader.FadeToScene (SceneManager.GetActiveScene ().name);
-		}
+		// public void ReLoadScene ()
+		// {
+		// 	SettingsMenu.instance.ToggleSettings (false);
+		// 	_sceneFader.FadeToScene (SceneManager.GetActiveScene ().name);
+		// }
 
 		public void LoadExit ()
 		{
 			Application.Quit ();
 		}
 
-		public void LoadLevel01 ()
-		{
-			_sceneFader.FadeToScene ("Level01");
-		}
 	}
 }

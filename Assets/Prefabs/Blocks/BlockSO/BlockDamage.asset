@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: BlockDamage
   m_EditorClassIdentifier: 
   _blockType: 1
+  _blockSpawnEaseType: 20

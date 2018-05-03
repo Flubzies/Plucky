@@ -5,9 +5,10 @@ using System.Linq;
 using BlockClasses;
 using DG.Tweening;
 using ManagerClasses;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class Bot : MonoBehaviour, IBot, ILevelObject
+public class Bot : SerializedMonoBehaviour, IBot, ILevelObject
 {
 	[Header ("Bot")]
 	[SerializeField] float _moveSpeed = 2.0f;
@@ -22,13 +23,17 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 	[Space (10.0f)]
 	[SerializeField] bool _debug;
 
-	ScalingAnimation _scalingAnimation;
+	[FoldoutGroup ("Tween Ease Settings")][SerializeField] Ease _moveEase;
+	[FoldoutGroup ("Tween Ease Settings")][SerializeField] Ease _rotEase;
+	[FoldoutGroup ("Tween Ease Settings")][SerializeField] Ease _climbEase;
+	[FoldoutGroup ("Tween Ease Settings")][SerializeField] Ease _dropEase;
+	[FoldoutGroup ("Tween Ease Settings")][SerializeField] Ease _spawnEase;
+
 	Health _health;
 	Collider[] _colliders = new Collider[10];
 
 	private void Awake ()
 	{
-		_scalingAnimation = GetComponent<ScalingAnimation> ();
 		_health = GetComponent<Health> ();
 	}
 
@@ -117,12 +122,14 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 		vecPath[1] = transform.forward + vecPath[0];
 
 		Tweener t = transform.DOPath (vecPath, _moveSpeed);
+		t.SetEase (_climbEase);
 		t.OnComplete (StartMoving);
 	}
 
 	void Move ()
 	{
 		Tweener t = transform.DOMove (transform.position + transform.forward, _moveSpeed);
+		t.SetEase (_moveEase);
 		t.OnComplete (StartMoving);
 	}
 
@@ -133,6 +140,7 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 		vecPath[1] = transform.up * -1 + vecPath[0];
 
 		Tweener t = transform.DOPath (vecPath, _moveSpeed);
+		t.SetEase (_dropEase);
 		t.OnComplete (StartMoving);
 	}
 
@@ -143,12 +151,14 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 
 	public void BotRotation (Quaternion rot_)
 	{
-		transform.DORotateQuaternion (rot_, _moveSpeed);
+		Tweener t = transform.DORotateQuaternion (rot_, _moveSpeed);
+		t.SetEase (_rotEase);
 	}
 
 	public void BotDestination (Vector3 dest_)
 	{
-		transform.DOMove (dest_, _moveSpeed);
+		Tweener t = transform.DOMove (dest_, _moveSpeed);
+		t.SetEase (_moveEase);
 	}
 
 	public Transform GetTransform { get { return transform; } }
@@ -157,17 +167,21 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 	public BlockType GetBlockType { get { return BlockType.Undefined; } }
 	public bool IsPlaceable { get { return false; } set { return; } }
 
-	public void InitializeILevelObject ()
+	public void InitializeILevelObject (float spawnEffectTime_)
 	{
 		_health.DeathEvent += OnDeath;
+		transform.localScale = Vector3.zero;
+		Tweener t = transform.DOScale (Vector3.one, spawnEffectTime_);
+		t.SetEase (_spawnEase);
 		StartMoving ();
 	}
 
-	public void DeathEffect ()
+	public void DeathEffect (float deathEffectTime_)
 	{
 		if (Application.isPlaying)
 		{
-			_scalingAnimation.DeathEffect ();
+			Tweener t = transform.DOScale (Vector3.zero, deathEffectTime_);
+			t.SetEase (_spawnEase);
 			OnDeath ();
 		}
 		SafeDestroy.DestroyGameObject (this, 2.0f);

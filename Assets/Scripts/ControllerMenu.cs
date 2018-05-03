@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BlockClasses;
+using DG.Tweening;
 using ManagerClasses;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +14,7 @@ public class ControllerMenu : MonoBehaviour
 	[Header ("Level Preview ")]
 	[SerializeField] Transform _previewHolder;
 	[SerializeField] Transform _previewCube;
-	[Tooltip("Color of each preview block, corresponds with BlockType enums")]
+	[Tooltip ("Color of each preview block, corresponds with BlockType enums")]
 	[SerializeField] Color[] _previewColorArray;
 	[SerializeField] float _cubePosDiv = 100.0f;
 
@@ -31,6 +32,11 @@ public class ControllerMenu : MonoBehaviour
 	private void DoMenuOn (object sender, ControllerInteractionEventArgs e)
 	{
 		_menuObject.gameObject.SetActive (true);
+
+		transform.localScale = Vector3.zero;
+		Tweener t = transform.DOScale (Vector3.one, 0.5f);
+		t.SetEase (Ease.InBounce);
+
 		_levelText.text = LevelLayoutManager.instance._CurrentLevelName;
 		GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelText.text));
 		UpdateIndex ();
@@ -48,6 +54,13 @@ public class ControllerMenu : MonoBehaviour
 	}
 
 	private void DoMenuOff (object sender, ControllerInteractionEventArgs e)
+	{
+		Tweener t = transform.DOScale (Vector3.zero, 0.5f);
+		t.SetEase (Ease.InBounce);
+		t.OnComplete (MenuOff);
+	}
+
+	void MenuOff ()
 	{
 		_menuObject.gameObject.SetActive (false);
 	}

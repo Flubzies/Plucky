@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 namespace BlockClasses
 {
@@ -6,6 +7,7 @@ namespace BlockClasses
 	public class BlockProperties : ScriptableObject
 	{
 		public BlockType _blockType;
+		public Ease _blockSpawnEaseType;
 
 		// [Header ("Audio")]
 		// [SerializeField] AudioClip _blockEffect;
