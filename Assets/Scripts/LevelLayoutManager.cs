@@ -54,7 +54,7 @@ namespace ManagerClasses
             if (_clearOnStart)
             {
                 ClearLevelImmediate ();
-                LoadLevel (_levelName);
+                LoadLevel ("Plucky");
             }
         }
 
@@ -183,6 +183,7 @@ namespace ManagerClasses
         {
             Debug.Log ("Generating");
             _PlaceableBlocks.Clear ();
+            BotManager.instance.ResetBotCount ();
 
             foreach (LevelData ld in levelDataList_)
             {
@@ -191,6 +192,7 @@ namespace ManagerClasses
                 if (ld._blockType == BlockType.Undefined)
                 {
                     _currentLevelObjects.Add (Instantiate (_bot, _botHolder.transform.position + pos, Quaternion.Euler (rot), _botHolder));
+                    BotManager.instance.IncrementBotCount ();
                 }
                 else
                 {

@@ -17,20 +17,26 @@ public class ControllerMenu : MonoBehaviour
 	[Tooltip ("Color of each preview block, corresponds with BlockType enums")]
 	[SerializeField] Color[] _previewColorArray;
 	[SerializeField] float _cubePosDiv = 100.0f;
+	bool _canOpenMenu = true;
+	bool _menuOpen;
 
 	int _levelIndex;
 	List<string> _savedLevels;
 
 	private void Start ()
 	{
-		GetComponent<VRTK_ControllerEvents> ().ButtonTwoPressed += new ControllerInteractionEventHandler (DoMenuOn);
-		GetComponent<VRTK_ControllerEvents> ().ButtonTwoReleased += new ControllerInteractionEventHandler (DoMenuOff);
+		GetComponent<VRTK_ControllerEvents> ().ButtonTwoPressed += new ControllerInteractionEventHandler (Menu);
 		_savedLevels = LevelLayoutManager.instance.GetSavedLevels ();
 		_menuObject.gameObject.SetActive (false);
 	}
 
-	private void DoMenuOn (object sender, ControllerInteractionEventArgs e)
+	private void Menu (object sender, ControllerInteractionEventArgs e)
 	{
+		if (_menuOpen) DoMenuOff ();
+		if (!_canOpenMenu) return;
+
+		_menuOpen = true;
+		_canOpenMenu = false;
 		_menuObject.gameObject.SetActive (true);
 
 		transform.localScale = Vector3.zero;
@@ -53,7 +59,7 @@ public class ControllerMenu : MonoBehaviour
 		else _levelIndex = 0;
 	}
 
-	private void DoMenuOff (object sender, ControllerInteractionEventArgs e)
+	private void DoMenuOff ()
 	{
 		Tweener t = transform.DOScale (Vector3.zero, 0.5f);
 		t.SetEase (Ease.InBounce);
@@ -63,6 +69,8 @@ public class ControllerMenu : MonoBehaviour
 	void MenuOff ()
 	{
 		_menuObject.gameObject.SetActive (false);
+		_canOpenMenu = true;
+		_menuOpen = false;
 	}
 
 	public void NextLevel ()

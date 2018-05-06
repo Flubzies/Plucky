@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using VRTK;
 
 namespace BlockClasses
@@ -6,6 +7,7 @@ namespace BlockClasses
 	public class BlockVRTKInteract : VRTK_InteractableObject
 	{
 		Block _block;
+		VRTKBlockInteraction _tempBlockInteraction;
 
 		protected override void Awake ()
 		{
@@ -15,7 +17,14 @@ namespace BlockClasses
 
 		public override void OnInteractableObjectTouched (InteractableObjectEventArgs e)
 		{
-			VRTKBlockInteraction.instance._currentlyTouching = _block;
+			_tempBlockInteraction = e.interactingObject.GetComponent<VRTKBlockInteraction> ();
+			if (_tempBlockInteraction) _tempBlockInteraction._currentlyTouching = _block;
+		}
+
+		public override void OnInteractableObjectUntouched (InteractableObjectEventArgs e)
+		{
+			// _tempBlockInteraction = e.interactingObject.GetComponent<VRTKBlockInteraction> ();
+			// if (_tempBlockInteraction) _tempBlockInteraction._currentlyTouching = null;
 		}
 
 		public override void StartUsing (VRTK_InteractUse usingObject_)

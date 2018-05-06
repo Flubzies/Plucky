@@ -5,16 +5,6 @@ using VRTK;
 
 public class VRTKBlockInteraction : MonoBehaviour
 {
-	static VRTKBlockInteraction _instance;
-	public static VRTKBlockInteraction instance
-	{
-		get
-		{
-			if (!_instance)
-				_instance = FindObjectOfType<VRTKBlockInteraction> ();
-			return _instance;
-		}
-	}
 
 	[SerializeField] LayerMask _blocksLM;
 	public bool _IsHolding { get; private set; }

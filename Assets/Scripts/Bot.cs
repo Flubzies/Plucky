@@ -196,6 +196,7 @@ public interface IBot
 	Transform GetTransform { get; }
 	Health GetHealth { get; }
 	float GetMoveSpeed { get; }
+	void DeathEffect (float deathEffectTime_);
 }
 
 // Use this if we want to revert to the original 2 unit Bot.

@@ -11,6 +11,9 @@ public class VRMovement : MonoBehaviour
     [SerializeField] float _minY = 0.0f;
     [SerializeField] float _maxY = 10.0f;
 
+    VRTKBlockInteraction _blockInteraction;
+    VRTK_ControllerEvents _controllerEvents;
+
     [Range (-1, 1)]
     [SerializeField]
     [Tooltip ("1, is Up and -1 is Down.")]
@@ -18,10 +21,12 @@ public class VRMovement : MonoBehaviour
 
     bool _gripIsPressed;
 
-    private void Start ()
+    private void Awake ()
     {
-        GetComponent<VRTK_ControllerEvents> ().GripPressed += new ControllerInteractionEventHandler (GripPressed);
-        GetComponent<VRTK_ControllerEvents> ().GripReleased += new ControllerInteractionEventHandler (GripReleased);
+        _blockInteraction = GetComponent<VRTKBlockInteraction> ();
+        _controllerEvents = GetComponent<VRTK_ControllerEvents> ();
+        _controllerEvents.GripPressed += new ControllerInteractionEventHandler (GripPressed);
+        _controllerEvents.GripReleased += new ControllerInteractionEventHandler (GripReleased);
     }
 
     IEnumerator VerticalMovement ()
@@ -40,12 +45,9 @@ public class VRMovement : MonoBehaviour
 
     void GripPressed (object sender, ControllerInteractionEventArgs e)
     {
-        if (VRTKBlockInteraction.instance != null)
-        {
-            if (VRTKBlockInteraction.instance._IsHolding) return;
-            _gripIsPressed = true;
-            StartCoroutine (VerticalMovement ());
-        }
+        if (_blockInteraction != null && _blockInteraction._IsHolding) return;
+        _gripIsPressed = true;
+        StartCoroutine (VerticalMovement ());
     }
 
     void GripReleased (object sender, ControllerInteractionEventArgs e)
@@ -56,5 +58,11 @@ public class VRMovement : MonoBehaviour
     void OnValidate ()
     {
         if (_verticalMoveDir == 0) _verticalMoveDir = 1;
+    }
+
+    private void OnDestroy ()
+    {
+        _controllerEvents.GripPressed -= new ControllerInteractionEventHandler (GripPressed);
+        _controllerEvents.GripReleased -= new ControllerInteractionEventHandler (GripReleased);
     }
 }

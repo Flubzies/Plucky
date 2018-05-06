@@ -13,6 +13,8 @@ public class LevelGizmos : MonoBehaviour
 	[SerializeField] float _offset = 0.5f;
 	Collider[] _colliders = new Collider[4];
 
+	[SerializeField] Color _emptyCubeColor;
+
 	private void OnDrawGizmosSelected ()
 	{
 		Vector3 levelPos =
@@ -50,7 +52,7 @@ public class LevelGizmos : MonoBehaviour
 						}
 					}
 
-					Gizmos.color = Color.white / 60;
+					Gizmos.color = _emptyCubeColor;
 					Gizmos.DrawWireCube (pos, Vector3.one * 0.9f);
 				}
 			}
@@ -59,6 +61,6 @@ public class LevelGizmos : MonoBehaviour
 
 	private void OnValidate ()
 	{
-		_levelBounds = _levelBounds.ToInt();
+		_levelBounds = _levelBounds.ToInt ();
 	}
 }

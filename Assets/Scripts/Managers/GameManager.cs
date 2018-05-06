@@ -16,11 +16,9 @@ namespace ManagerClasses
 			}
 		}
 
-		public int _BotCount { get; set; }
-
-		private void Update ()
+		public void LevelComplete ()
 		{
-			if (Input.GetKeyDown (KeyCode.Space)) SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+			
 		}
 
 		public void Settings ()
