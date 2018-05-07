@@ -6,15 +6,14 @@ using VRTK;
 
 namespace BlockClasses
 {
-	public abstract class Block : SerializedMonoBehaviour, ILevelObject
+	public abstract class Block : MonoBehaviour, ILevelObject
 	{
 		[Header ("Block ")]
 		[Tooltip ("If the Y rotation is not important for the block.")]
 		[SerializeField] bool _randomizeYRotation;
 		public BlockProperties _blockProperties;
 
-		[ToggleGroup ("_isPlaceable", order : 0, groupTitle: "Placeable")]
-		[SerializeField] bool _isPlaceable;
+		[ToggleGroup ("_isPlaceable", order : 0, groupTitle: "Placeable")][SerializeField] bool _isPlaceable;
 		[ToggleGroup ("_isPlaceable")][SerializeField] BlockGhostMesh _ghostMesh;
 
 		public BlockGhostMesh _BlockGhostMesh { get; private set; }
@@ -76,8 +75,9 @@ namespace BlockClasses
 			if (_isPlaceable)
 			{
 				_BlockGhostMesh = Instantiate (_ghostMesh, transform.position, transform.rotation, transform);
-				_BlockGhostMesh.SetupGhostMesh (_meshRenderer, _meshFilter);
+				_BlockGhostMesh.SetupGhostMesh (_meshRenderer, _meshFilter, this);
 			}
+
 			transform.localScale = Vector3.zero;
 			Tweener t = transform.DOScale (Vector3.one, spawnEffectTime_);
 			t.SetEase (_blockProperties._blockSpawnEaseType);

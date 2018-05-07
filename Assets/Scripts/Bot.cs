@@ -31,6 +31,7 @@ public class Bot : SerializedMonoBehaviour, IBot, ILevelObject
 
 	Health _health;
 	Collider[] _colliders = new Collider[10];
+	bool _initialized;
 
 	private void Awake ()
 	{

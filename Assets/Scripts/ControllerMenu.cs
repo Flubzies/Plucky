@@ -2,6 +2,7 @@
 using BlockClasses;
 using DG.Tweening;
 using ManagerClasses;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VRTK;
@@ -9,25 +10,42 @@ using VRTK;
 public class ControllerMenu : MonoBehaviour
 {
 	[SerializeField] Transform _menuObject;
-	[SerializeField] Text _levelText;
+	[SerializeField] TextMeshPro _levelNameText;
 
 	[Header ("Level Preview ")]
 	[SerializeField] Transform _previewHolder;
 	[SerializeField] Transform _previewCube;
 	[Tooltip ("Color of each preview block, corresponds with BlockType enums")]
 	[SerializeField] Color[] _previewColorArray;
-	[SerializeField] float _cubePosDiv = 100.0f;
+	[SerializeField] float _cubeScale = 0.1f;
+	[SerializeField] float _positionOffset = 0.1f;
+	[SerializeField] float _previewCubeAlphaValue = 0.9f;
 	bool _canOpenMenu = true;
 	bool _menuOpen;
+	VRTK_ControllerEvents _controllerEvents;
 
 	int _levelIndex;
 	List<string> _savedLevels;
 
+	private void Awake ()
+	{
+		_controllerEvents = GetComponent<VRTK_ControllerEvents> ();
+	}
+
 	private void Start ()
 	{
-		GetComponent<VRTK_ControllerEvents> ().ButtonTwoPressed += new ControllerInteractionEventHandler (Menu);
+		_controllerEvents.ButtonTwoPressed += new ControllerInteractionEventHandler (Menu);
 		_savedLevels = LevelLayoutManager.instance.GetSavedLevels ();
 		_menuObject.gameObject.SetActive (false);
+	}
+
+	private void Update ()
+	{
+		if (_menuOpen)
+		{
+			_menuObject.position = transform.position;
+			_menuObject.rotation = transform.rotation;
+		}
 	}
 
 	private void Menu (object sender, ControllerInteractionEventArgs e)
@@ -39,19 +57,25 @@ public class ControllerMenu : MonoBehaviour
 		_canOpenMenu = false;
 		_menuObject.gameObject.SetActive (true);
 
-		transform.localScale = Vector3.zero;
-		Tweener t = transform.DOScale (Vector3.one, 0.5f);
+		_menuObject.localScale = Vector3.zero;
+		Tweener t = _menuObject.DOScale (Vector3.one, 0.5f);
 		t.SetEase (Ease.InBounce);
-
-		_levelText.text = LevelLayoutManager.instance._CurrentLevelName;
-		GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelText.text));
+		t.OnComplete (OnMenuOpen);
 		UpdateIndex ();
+		DestroyPreviewCubes ();
+
+		_levelNameText.text = LevelLayoutManager.instance._CurrentLevelName;
+	}
+
+	void OnMenuOpen ()
+	{
+		GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelNameText.text));
 	}
 
 	private void UpdateIndex ()
 	{
 		for (int i = 0; i < _savedLevels.Count; i++)
-			if (_levelText.text == _savedLevels[i])
+			if (_levelNameText.text == _savedLevels[i])
 			{
 				_levelIndex = i;
 				break;
@@ -61,7 +85,7 @@ public class ControllerMenu : MonoBehaviour
 
 	private void DoMenuOff ()
 	{
-		Tweener t = transform.DOScale (Vector3.zero, 0.5f);
+		Tweener t = _menuObject.DOScale (Vector3.zero, 0.5f);
 		t.SetEase (Ease.InBounce);
 		t.OnComplete (MenuOff);
 	}
@@ -79,8 +103,8 @@ public class ControllerMenu : MonoBehaviour
 		int temp = _levelIndex + 1;
 		if (temp < _savedLevels.Count && _savedLevels[temp] != null)
 		{
-			_levelText.text = _savedLevels[temp];
-			GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelText.text));
+			_levelNameText.text = _savedLevels[temp];
+			GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelNameText.text));
 		}
 	}
 
@@ -90,33 +114,45 @@ public class ControllerMenu : MonoBehaviour
 		int temp = _levelIndex - 1;
 		if (temp >= 0 && _savedLevels[temp] != null)
 		{
-			_levelText.text = _savedLevels[temp];
-			GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelText.text));
+			_levelNameText.text = _savedLevels[temp];
+			GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelNameText.text));
 		}
 	}
 
 	void GenerateLevelPreview (List<LevelData> levelDataList_)
 	{
-		foreach (Transform child in _previewHolder)
-			if (child != null) Destroy (child.gameObject);
+		DestroyPreviewCubes ();
 
 		if (levelDataList_ != null)
 			foreach (LevelData ld in levelDataList_)
 			{
 				Vector3 pos = LevelLayoutManager.instance.GetVectorFromData (ld);
-				Transform clone = Instantiate (_previewCube, _previewHolder.transform.position + (pos / _cubePosDiv), Quaternion.identity, _previewHolder);
+				Transform clone = Instantiate (_previewCube, _previewHolder.transform.position + (pos * _positionOffset), Quaternion.identity, _previewHolder);
+				clone.localScale = Vector3.one * _cubeScale;
 				clone.GetComponent<MeshRenderer> ().material.color = _previewColorArray[(int) ld._blockType + 1];
+				_previewColorArray[(int) ld._blockType + 1].a = _previewCubeAlphaValue;
 			}
+	}
+
+	private void DestroyPreviewCubes ()
+	{
+		foreach (Transform child in _previewHolder)
+			if (child != null) Destroy (child.gameObject);
 	}
 
 	public void RestartLevel ()
 	{
-		LevelLayoutManager.instance.LoadLevel (_levelText.text);
+		LevelLayoutManager.instance.LoadLevel (_levelNameText.text);
 	}
 
 	public void LoadLevel ()
 	{
-		LevelLayoutManager.instance.LoadLevel (_levelText.text);
+		LevelLayoutManager.instance.LoadLevel (_levelNameText.text);
+	}
+
+	private void OnDestroy ()
+	{
+		_controllerEvents.ButtonTwoPressed -= new ControllerInteractionEventHandler (Menu);
 	}
 
 }

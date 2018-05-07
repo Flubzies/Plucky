@@ -44,8 +44,8 @@ public class ControllerPointerSwitcher : SerializedMonoBehaviour
 	void PointerMenuSelectSettings ()
 	{
 		_pointer.enableTeleport = false;
-		_interactUse.enabled = false;
-		_interactTouch.enabled = false;
+		_interactUse.enabled = true;
+		_interactTouch.enabled = true;
 		_pointerRenderer.validCollisionColor = _validColorMenu;
 		_pointerRenderer.invalidCollisionColor = _invalidColorMenu;
 	}

@@ -251,6 +251,6 @@ public interface ILevelObject
     Transform GetTransform { get; }
     BlockType GetBlockType { get; }
     bool IsPlaceable { get; set; }
-    void DeathEffect (float deathEffectTime_);
-    void InitializeILevelObject (float spawnEffectTime_);
+    void DeathEffect (float deathEffectTime_ = 0.8f);
+    void InitializeILevelObject (float spawnEffectTime_ = 0.8f);
 }

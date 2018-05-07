@@ -7,13 +7,17 @@ public class VRTKBlockInteraction : MonoBehaviour
 {
 
 	[SerializeField] LayerMask _blocksLM;
-	public bool _IsHolding { get; private set; }
+	[SerializeField] LayerMask _ghostBlockLM;
+	[SerializeField] Transform _selectionBlock;
+	[SerializeField] BlockSelection _blockSelection;
+
 	Block _currentBlock;
+
+	public bool _IsHolding { get; private set; }
 
 	VRTK_ControllerEvents _controllerEvents;
 	Collider[] _colliders = new Collider[10];
 
-	[HideInInspector] public Block _currentlyTouching;
 	bool _isInPlaceablePosition;
 
 	private void Awake ()
@@ -47,11 +51,12 @@ public class VRTKBlockInteraction : MonoBehaviour
 	{
 		Debug.Log ("Attempting to Grab");
 
-		if (_currentlyTouching != null)
+		_currentBlock = _blockSelection._CurrentlySelectedBlock;
+
+		if (_currentBlock != null)
 		{
 			_isInPlaceablePosition = true;
 			_IsHolding = true;
-			_currentBlock = _currentlyTouching;
 			_currentBlock.OnGrabbed ();
 			StartCoroutine (UpdateGhostBlock ());
 		}
@@ -60,10 +65,13 @@ public class VRTKBlockInteraction : MonoBehaviour
 
 	IEnumerator UpdateGhostBlock ()
 	{
+		int numCols = 0;
 		while (_IsHolding)
 		{
+			numCols = 0;
 			Vector3 pos = transform.position.ToInt ();
-			int numCols = Physics.OverlapSphereNonAlloc (pos, 0.2f, _colliders, _blocksLM);
+			numCols = Physics.OverlapSphereNonAlloc (pos, 0.2f, _colliders, _blocksLM);
+			numCols += Physics.OverlapSphereNonAlloc (pos, 0.2f, _colliders, _ghostBlockLM);
 			if (numCols == 0) _currentBlock._BlockGhostMesh.transform.position = pos;
 			if (!_currentBlock._BlockGhostMesh._BlockCollisions.HasAdjacentBlock (true, _currentBlock.transform.position))
 				_isInPlaceablePosition = false;
