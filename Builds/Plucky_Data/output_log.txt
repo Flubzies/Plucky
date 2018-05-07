@@ -39,11 +39,11 @@ Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Tex
 Loading S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\TextMeshPro-2017.1-1.0.56-Runtime.dll into Unity Child Domain
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\System.dll (this message is harmless)
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.615 seconds
+- Completed reload, in  0.306 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.845149 ms
+UnloadTime: 0.805697 ms
 Platform assembly: S:\User\Documents\Unity\Plucky\Builds\Plucky_Data\Managed\Mono.Security.dll (this message is harmless)
 OpenVR initialized!
  
@@ -78,6 +78,22 @@ Placing.
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Placing.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Cancelling
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
 Attempting to Grab
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -158,11 +174,7 @@ Placing.
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Attempting to Grab
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Placing.
+Cancelling
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -179,30 +191,6 @@ Attempting to Grab
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Placing.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Damage Effect.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Damage Effect.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Damage Effect.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Damage Effect.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Damage Effect.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Damage Effect.
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -214,13 +202,25 @@ Generating
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Damage Effect.
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Placing.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Attempting to Grab
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Placing.
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 397c -> priority: 1 
-  Thread -> id: 74c0 -> priority: 1 
+  Thread -> id: 817c -> priority: 1 
+  Thread -> id: 6278 -> priority: 1 
 OpenVR Shutdown
  
 (Filename:  Line: 1253)

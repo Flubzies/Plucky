@@ -10,6 +10,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 	[SerializeField] LayerMask _ghostBlockLM;
 	[SerializeField] Transform _selectionBlock;
 	[SerializeField] BlockSelection _blockSelection;
+	[SerializeField] bool _debug;
 
 	Block _currentBlock;
 
@@ -49,7 +50,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 
 	void Grab ()
 	{
-		Debug.Log ("Attempting to Grab");
+		if (_debug) Debug.Log ("Attempting to Grab");
 
 		_currentBlock = _blockSelection._CurrentlySelectedBlock;
 
@@ -60,7 +61,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 			_currentBlock.OnGrabbed ();
 			StartCoroutine (UpdateGhostBlock ());
 		}
-		else Debug.Log ("Unable to grab!");
+		else if (_debug) Debug.Log ("Unable to grab!");
 	}
 
 	IEnumerator UpdateGhostBlock ()
@@ -82,7 +83,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 
 	void Place ()
 	{
-		Debug.Log ("Placing.");
+		if (_debug) Debug.Log ("Placing.");
 		if (!_isInPlaceablePosition) Cancel ();
 		_IsHolding = false;
 		// Don't ask, it just works -.- 
@@ -94,7 +95,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 
 	void Cancel ()
 	{
-		Debug.Log ("Cancelling");
+		if (_debug) Debug.Log ("Cancelling");
 		_IsHolding = false;
 		_currentBlock._BlockGhostMesh.transform.position = _currentBlock.transform.position;
 		_currentBlock.OnPlaced (true);
@@ -168,7 +169,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 
 // void Grab ()
 // {
-// 	Debug.Log ("Attempting to Grab");
+// 	if(_debug) Debug.Log ("Attempting to Grab");
 
 // 	if (_VRMode)
 // 	{
@@ -184,14 +185,14 @@ public class VRTKBlockInteraction : MonoBehaviour
 // 		Block block = hit.transform.GetComponent<Block> ();
 // 		if (block != null)
 // 		{
-// 			Debug.Log ("Grabbing.");
+// 			if(_debug) Debug.Log ("Grabbing.");
 // 			_IsHolding = true;
 // 			_currentBlock = block;
 // 			_currentBlock.GetGhostBlock.gameObject.SetActive (true);
 // 			StartCoroutine (UpdateGhostBlock ());
 // 		}
 // 		else
-// 			Debug.Log ("You cannot grab this!");
+// 			if(_debug) Debug.Log ("You cannot grab this!");
 // 	}
 // }
 
@@ -220,7 +221,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 
 // void Place ()
 // {
-// 	Debug.Log ("Placing.");
+// 	if(_debug) Debug.Log ("Placing.");
 // 	_IsHolding = false;
 // 	StopCoroutine (UpdateGhostBlock ());
 // 	_currentBlock.PlaceBlock (_currentBlock.GetGhostBlock.position);
@@ -229,7 +230,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 
 // void Cancel ()
 // {
-// 	Debug.Log ("Cancelling");
+// 	if(_debug) Debug.Log ("Cancelling");
 // 	_IsHolding = false;
 // 	StopCoroutine (UpdateGhostBlock ());
 // 	_currentBlock.GetGhostBlock.position = transform.position;

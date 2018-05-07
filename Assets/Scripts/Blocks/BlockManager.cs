@@ -76,7 +76,7 @@ namespace BlockClasses
 
 		void DeleteStrayBlocks ()
 		{
-			List<Block> blocksAdjSpaces_ = LevelLayoutManager.instance._PlaceableBlocks;
+			List<Block> blocksAdjSpaces_ = LevelManager.instance._PlaceableBlocks;
 			Collider[] cols;
 
 			for (int i = 0; i < blocksAdjSpaces_.Count; i++)
@@ -114,3 +114,4 @@ namespace BlockClasses
 		}
 	}
 }
+

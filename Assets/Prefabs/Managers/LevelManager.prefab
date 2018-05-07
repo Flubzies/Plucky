@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4297077231554756}
+  - component: {fileID: 114218045119223058}
   m_Layer: 0
   m_Name: BotManager
   m_TagString: BotManager
@@ -111,6 +112,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c69a8d98ddcb81459887d61af796338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blocksLM:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!114 &114218045119223058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1025846601550568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d86afceb89437e46b2b0a6f5cf95540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114653150418917108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,9 +134,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1618537444407330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a3848d945fb6b24489c793704943a47, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e14c29a3aa4e0b4095d721ae0f04cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blockHolder: {fileID: 4764056257055574}
+  _botHolder: {fileID: 4297077231554756}
   _blockList:
   - {fileID: 114757057506643754, guid: 433240931b7d9094a8f6cd3f98c55c63, type: 2}
   - {fileID: 114264253474517818, guid: 1709e45ba272f564092fffb54f7ea783, type: 2}
@@ -130,12 +147,761 @@ MonoBehaviour:
   - {fileID: 114757738251427872, guid: 7e4eeb2be43348f46a67077ed9e9ea9c, type: 2}
   - {fileID: 114944014477252660, guid: a8405a64c3b358c4aac285872a150e22, type: 2}
   _bot: {fileID: 114903934044557654, guid: 0844cb1c5e0c10247be15bd213536168, type: 2}
-  _blockHolder: {fileID: 4764056257055574}
-  _botHolder: {fileID: 4297077231554756}
-  _clearOnStart: 1
-  _levelName: Tutorial Level 1
   _loadWaitTime: 1
   _spawnTimer: 0.8
+  _debug: 0
+  _clearOnStart: 1
+  _initialLevel: Plucky
+  _levels:
+  - _levelName: Plucky
+    _levelObjects:
+    - _blockType: -1
+      _positionX: 10
+      _positionY: 22
+      _positionZ: -28
+      _rotationY: 90
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 11
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 10
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 11
+      _positionY: 20
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 11
+      _positionY: 19
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 11
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 10
+      _positionY: 19
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 9
+      _positionY: 20
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 9
+      _positionY: 19
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 9
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 0
+      _positionX: -1
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 5
+      _positionX: -5
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 4
+      _positionX: 7
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 4
+      _positionX: 7
+      _positionY: 20
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 4
+      _positionX: 7
+      _positionY: 19
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 4
+      _positionX: 7
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 4
+      _positionX: 6
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 4
+      _positionX: 5
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: 3
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: 1
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: 3
+      _positionY: 19
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: 3
+      _positionY: 20
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: 3
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: 2
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: 1
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: 1
+      _positionY: 19
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: 1
+      _positionY: 20
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: 1
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 1
+      _positionX: -5
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 1
+      _positionX: -5
+      _positionY: 19
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 1
+      _positionX: -5
+      _positionY: 20
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 1
+      _positionX: -5
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 1
+      _positionX: -6
+      _positionY: 20
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 1
+      _positionX: -7
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 1
+      _positionX: -7
+      _positionY: 19
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 1
+      _positionX: -7
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 5
+      _positionX: -10
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 5
+      _positionX: -11
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 5
+      _positionX: -11
+      _positionY: 19
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 5
+      _positionX: -11
+      _positionY: 20
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 5
+      _positionX: -10
+      _positionY: 20
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 5
+      _positionX: -9
+      _positionY: 20
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 5
+      _positionX: -9
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 5
+      _positionX: -11
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 5
+      _positionX: -9
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: -1
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: -1
+      _positionY: 19
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: -1
+      _positionY: 20
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: -2
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: -3
+      _positionY: 21
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: -2
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: -3
+      _positionY: 18
+      _positionZ: -28
+      _rotationY: 0
+      _isPlaceable: 1
+  - _levelName: Level 1
+    _levelObjects:
+    - _blockType: -1
+      _positionX: -4
+      _positionY: 7
+      _positionZ: -5
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -5
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -4
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 0
+      _positionX: -3
+      _positionY: 6
+      _positionZ: -3
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: -3
+      _positionY: 6
+      _positionZ: 1
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: -3
+      _positionY: 6
+      _positionZ: -4
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 3
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 1
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 2
+      _rotationY: 0
+      _isPlaceable: 0
+  - _levelName: Level 2
+    _levelObjects:
+    - _blockType: -1
+      _positionX: -4
+      _positionY: 7
+      _positionZ: -5
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: -1
+      _positionX: 5
+      _positionY: 7
+      _positionZ: 3
+      _rotationY: 270
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -5
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -4
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 1
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 2
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 7
+      _positionZ: -3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 8
+      _positionZ: -3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 0
+      _positionX: 3
+      _positionY: 7
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: 2
+      _positionY: 7
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: 2
+      _positionY: 8
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 0
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -3
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 5
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 4
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 3
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -2
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+  - _levelName: Level 3
+    _levelObjects:
+    - _blockType: -1
+      _positionX: -4
+      _positionY: 7
+      _positionZ: -5
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: -1
+      _positionX: 5
+      _positionY: 7
+      _positionZ: 3
+      _rotationY: 270
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -5
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -4
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 3
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 1
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 2
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 7
+      _positionZ: -3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 8
+      _positionZ: -3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 0
+      _positionX: 3
+      _positionY: 7
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: 2
+      _positionY: 7
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: 2
+      _positionY: 8
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 0
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -3
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 5
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 4
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 3
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -2
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+  - _levelName: Level 5
+    _levelObjects:
+    - _blockType: -1
+      _positionX: -4
+      _positionY: 7
+      _positionZ: -3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -2
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: -1
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 0
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 1
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 2
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -2
+      _positionY: 9
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: -1
+      _positionY: 9
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 0
+      _positionY: 9
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 1
+      _positionY: 9
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 2
+      _positionY: 9
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 3
+      _positionY: 9
+      _positionZ: 0
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 3
+      _positionY: 9
+      _positionZ: -1
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 2
+      _positionX: 3
+      _positionY: 9
+      _positionZ: -2
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 4
+      _positionX: -4
+      _positionY: 6
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 0
+      _positionX: -4
+      _positionY: 7
+      _positionZ: 0
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 1
+      _positionX: 3
+      _positionY: 9
+      _positionZ: 1
+      _rotationY: 0
+      _isPlaceable: 0
+    - _blockType: 5
+      _positionX: -1
+      _positionY: 10
+      _positionZ: 3
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 5
+      _positionX: 1
+      _positionY: 10
+      _positionZ: 3
+      _rotationY: 90
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: -4
+      _positionY: 7
+      _positionZ: 1
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 0
+      _positionX: -4
+      _positionY: 8
+      _positionZ: 1
+      _rotationY: 0
+      _isPlaceable: 1
+    - _blockType: 3
+      _positionX: 3
+      _positionY: 9
+      _positionZ: -3
+      _rotationY: 0
+      _isPlaceable: 0
+  _indexToSkipRename: 0
 --- !u!114 &114818824523484716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,3 +921,4 @@ MonoBehaviour:
     m_Bits: 1024
   _levelBounds: {x: 16, y: 24, z: 16}
   _offset: 0.5
+  _emptyCubeColor: {r: 1, g: 1, b: 1, a: 0.003921569}

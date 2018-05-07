@@ -17,6 +17,7 @@ namespace BlockClasses
 		[ToggleGroup ("_isPlaceable")][SerializeField] BlockGhostMesh _ghostMesh;
 
 		public BlockGhostMesh _BlockGhostMesh { get; private set; }
+		public bool _IsBeingHeld { get; private set; }
 
 		MeshRenderer _meshRenderer;
 		MeshFilter _meshFilter;
@@ -29,11 +30,13 @@ namespace BlockClasses
 
 		public virtual void OnGrabbed ()
 		{
+			_IsBeingHeld = true;
 			_BlockGhostMesh.MeshRenderer (true);
 		}
 
 		public virtual void OnPlaced (bool cancel_ = false)
 		{
+			_IsBeingHeld = false;
 			_BlockGhostMesh.MeshRenderer (false);
 		}
 

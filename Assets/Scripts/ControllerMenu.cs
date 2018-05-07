@@ -25,7 +25,7 @@ public class ControllerMenu : MonoBehaviour
 	VRTK_ControllerEvents _controllerEvents;
 
 	int _levelIndex;
-	List<string> _savedLevels;
+	List<string> _savedLevelNames;
 
 	private void Awake ()
 	{
@@ -35,7 +35,7 @@ public class ControllerMenu : MonoBehaviour
 	private void Start ()
 	{
 		_controllerEvents.ButtonTwoPressed += new ControllerInteractionEventHandler (Menu);
-		_savedLevels = LevelLayoutManager.instance.GetSavedLevels ();
+		_savedLevelNames = LevelManager.instance.GetSavedLevelNames ();
 		_menuObject.gameObject.SetActive (false);
 	}
 
@@ -64,18 +64,18 @@ public class ControllerMenu : MonoBehaviour
 		UpdateIndex ();
 		DestroyPreviewCubes ();
 
-		_levelNameText.text = LevelLayoutManager.instance._CurrentLevelName;
+		_levelNameText.text = LevelManager.instance._CurrentLevelName;
 	}
 
 	void OnMenuOpen ()
 	{
-		GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelNameText.text));
+		GenerateLevelPreview (LevelManager.instance.GetLevelData (_levelNameText.text));
 	}
 
 	private void UpdateIndex ()
 	{
-		for (int i = 0; i < _savedLevels.Count; i++)
-			if (_levelNameText.text == _savedLevels[i])
+		for (int i = 0; i < _savedLevelNames.Count; i++)
+			if (_levelNameText.text == _savedLevelNames[i])
 			{
 				_levelIndex = i;
 				break;
@@ -101,10 +101,10 @@ public class ControllerMenu : MonoBehaviour
 	{
 		UpdateIndex ();
 		int temp = _levelIndex + 1;
-		if (temp < _savedLevels.Count && _savedLevels[temp] != null)
+		if (temp < _savedLevelNames.Count && _savedLevelNames[temp] != null)
 		{
-			_levelNameText.text = _savedLevels[temp];
-			GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelNameText.text));
+			_levelNameText.text = _savedLevelNames[temp];
+			GenerateLevelPreview (LevelManager.instance.GetLevelData (_levelNameText.text));
 		}
 	}
 
@@ -112,21 +112,21 @@ public class ControllerMenu : MonoBehaviour
 	{
 		UpdateIndex ();
 		int temp = _levelIndex - 1;
-		if (temp >= 0 && _savedLevels[temp] != null)
+		if (temp >= 0 && _savedLevelNames[temp] != null)
 		{
-			_levelNameText.text = _savedLevels[temp];
-			GenerateLevelPreview (LevelLayoutManager.instance.GetLevelDataFromResources (_levelNameText.text));
+			_levelNameText.text = _savedLevelNames[temp];
+			GenerateLevelPreview (LevelManager.instance.GetLevelData (_levelNameText.text));
 		}
 	}
 
-	void GenerateLevelPreview (List<LevelData> levelDataList_)
+	void GenerateLevelPreview (LevelData levelData_)
 	{
 		DestroyPreviewCubes ();
 
-		if (levelDataList_ != null)
-			foreach (LevelData ld in levelDataList_)
+		if (levelData_ != null)
+			foreach (LevelObjectData ld in levelData_._levelObjects)
 			{
-				Vector3 pos = LevelLayoutManager.instance.GetVectorFromData (ld);
+				Vector3 pos = LevelManager.instance.GetVectorFromData (ld);
 				Transform clone = Instantiate (_previewCube, _previewHolder.transform.position + (pos * _positionOffset), Quaternion.identity, _previewHolder);
 				clone.localScale = Vector3.one * _cubeScale;
 				clone.GetComponent<MeshRenderer> ().material.color = _previewColorArray[(int) ld._blockType + 1];
@@ -142,12 +142,12 @@ public class ControllerMenu : MonoBehaviour
 
 	public void RestartLevel ()
 	{
-		LevelLayoutManager.instance.LoadLevel (_levelNameText.text);
+		LevelManager.instance.LoadLevel (_levelNameText.text);
 	}
 
 	public void LoadLevel ()
 	{
-		LevelLayoutManager.instance.LoadLevel (_levelNameText.text);
+		LevelManager.instance.LoadLevel (_levelNameText.text);
 	}
 
 	private void OnDestroy ()
