@@ -22,6 +22,7 @@ namespace ManagerClasses
 		{
 			// TODO: Play victory noise
 			_victoryEffect.Play ();
+			// Load next level automatically.
 		}
 	}
 }
