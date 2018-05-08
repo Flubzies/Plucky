@@ -5,6 +5,8 @@ namespace ManagerClasses
 {
 	public class GameManager : MonoBehaviour
 	{
+		[SerializeField] ParticleSystem _victoryEffect;
+
 		static GameManager _instance;
 		public static GameManager instance
 		{
@@ -18,12 +20,8 @@ namespace ManagerClasses
 
 		public void LevelComplete ()
 		{
-			
-		}
-
-		public void Settings ()
-		{
-			SettingsMenu.instance.ToggleSettings (true);
+			// TODO: Play victory noise
+			_victoryEffect.Play ();
 		}
 	}
 }

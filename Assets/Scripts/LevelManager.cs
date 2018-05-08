@@ -12,6 +12,7 @@ using UnityEngine;
 // I wanted a few levels to be in the game to begin with.
 // Second I used Resources which worked well.
 // Third I just wanted rearrange able lists so I disabled the custom editor script.
+// Probably should put everything in a Scriptable Object and leave it there.
 
 namespace ManagerClasses
 {
@@ -65,7 +66,7 @@ namespace ManagerClasses
 			if (_clearOnStart)
 			{
 				ClearLevelImmediate ();
-				LoadLevel (_initialLevel);
+					LoadLevel (_initialLevel);
 			}
 		}
 
@@ -263,7 +264,7 @@ namespace ManagerClasses
 			return Application.persistentDataPath + "/Levels/";
 		}
 
-		void SaveAllLevelsToFile (string levelName_ = null)
+		void SaveAllLevelsToResources (string levelName_ = null)
 		{
 			string levelPath;
 			BinaryFormatter bf;

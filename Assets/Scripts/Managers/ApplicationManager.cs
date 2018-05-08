@@ -8,7 +8,6 @@ namespace ManagerClasses
 {
 	public class ApplicationManager : MonoBehaviour
 	{
-		[SerializeField] SceneFader _sceneFader;
 		[SerializeField] public VRMessage _VRDebug;
 
 		static ApplicationManager _instance;
@@ -26,18 +25,6 @@ namespace ManagerClasses
 		{
 			_VRDebug = GetComponentInChildren<VRMessage> ();
 		}
-
-		// public void LoadMainMenu ()
-		// {
-		// 	SettingsMenu.instance.ToggleSettings (false);
-		// 	_sceneFader.FadeToScene ("MainMenu");
-		// }
-
-		// public void ReLoadScene ()
-		// {
-		// 	SettingsMenu.instance.ToggleSettings (false);
-		// 	_sceneFader.FadeToScene (SceneManager.GetActiveScene ().name);
-		// }
 
 		public void LoadExit ()
 		{
