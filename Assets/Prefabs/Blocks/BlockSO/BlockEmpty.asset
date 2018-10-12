@@ -13,3 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _blockType: 2
   _blockSpawnEaseType: 30
+  _blockColor: {r: 1, g: 1, b: 1, a: 1}

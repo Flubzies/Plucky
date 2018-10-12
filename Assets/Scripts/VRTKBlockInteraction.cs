@@ -89,7 +89,7 @@ public class VRTKBlockInteraction : MonoBehaviour
 		// Don't ask, it just works -.- 
 		_currentBlock.transform.position = _currentBlock._BlockGhostMesh.transform.position;
 		_currentBlock._BlockGhostMesh.transform.position = _currentBlock.transform.position;
-		BlockManager.instance.CheckForRoot (_currentBlock);
+		BlockManager.instance.CheckForRoot ();
 		_currentBlock.OnPlaced ();
 	}
 

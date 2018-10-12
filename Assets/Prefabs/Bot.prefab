@@ -116,7 +116,6 @@ GameObject:
   - component: {fileID: 33524927523007548}
   - component: {fileID: 23315144794453324}
   - component: {fileID: 114903934044557654}
-  - component: {fileID: 54619612996020138}
   - component: {fileID: 114843939624651606}
   - component: {fileID: 135728316910058912}
   m_Layer: 10
@@ -447,21 +446,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1517021483435176}
   m_Mesh: {fileID: 4300008, guid: d5521b2da17494e4f9b2116cb0e5a569, type: 3}
---- !u!54 &54619612996020138
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1517021483435176}
-  serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!96 &96543077919477436
 TrailRenderer:
   serializedVersion: 2
@@ -670,15 +654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4654f6e1f5a9d3148b901bf7855f730b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
   _moveSpeed: 0.5
   _collisionPositions:
   - {fileID: 4038878626100986}
@@ -691,6 +666,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _debug: 0
+  _initializeOnStart: 0
   _moveEase: 1
   _rotEase: 1
   _climbEase: 1

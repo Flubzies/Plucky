@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using DG.Tweening;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace BlockClasses
 {
@@ -8,6 +8,7 @@ namespace BlockClasses
 	{
 		public BlockType _blockType;
 		public Ease _blockSpawnEaseType;
+		// public Color _blockColor;
 
 		// [Header ("Audio")]
 		// [SerializeField] AudioClip _blockEffect;

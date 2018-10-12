@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using BlockClasses;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 
 // I've refactored this class quite a few times. 
@@ -18,41 +19,36 @@ namespace ManagerClasses
 {
     public class LevelManager : MonoBehaviour
     {
-        [Tooltip("Make sure they are in the same order as your block type enums!")]
-        [Header("Prefab Holders")]
-        [FoldoutGroup("Prefabs")]
-        [SerializeField]
-        Transform _blockHolder;
-        [FoldoutGroup("Prefabs")] [SerializeField] Transform _botHolder;
-        [Header("Prefabs")]
-        [FoldoutGroup("Prefabs")]
-        [SerializeField]
-        List<Block> _blockList;
-        [FoldoutGroup("Prefabs")] [SerializeField] Bot _bot;
+        [Tooltip ("Make sure they are in the same order as your block type enums!")]
+        [Header ("Prefab Holders")]
+        [FoldoutGroup ("Prefabs")]
+        [SerializeField] Transform _blockHolder;
+        [FoldoutGroup ("Prefabs")][SerializeField] Transform _botHolder;
+        [Header ("Prefabs")]
+        [FoldoutGroup ("Prefabs")]
+        [SerializeField] List<Block> _blockList;
+        [FoldoutGroup ("Prefabs")][SerializeField] Bot _bot;
 
-        [Space(10.0f)]
-        [SerializeField]
-        float _loadWaitTime = 1.0f;
+        [Space (10.0f)]
+        [SerializeField] float _loadWaitTime = 1.0f;
         [SerializeField] float _spawnTimer = 0.8f;
         [SerializeField] ParticleSystem _levelLoadedEffect;
         [SerializeField] bool _debug;
-        [Space(10.0f)]
+        [Space (10.0f)]
 
-        [ToggleGroup("_clearOnStart", order: 0, groupTitle: "Initial level ")]
-        [SerializeField]
-        bool _clearOnStart;
-        [ToggleGroup("_clearOnStart", order: 0, groupTitle: "Initial level ")] [SerializeField] string _initialLevel;
-        [Space(10.0f)]
+        [ToggleGroup ("_clearOnStart", order : 0, groupTitle: "Initial level ")]
+        [SerializeField] bool _clearOnStart;
+        [ToggleGroup ("_clearOnStart", order : 0, groupTitle: "Initial level ")][SerializeField] string _initialLevel;
+        [Space (10.0f)]
 
-        [SerializeField]
-        List<LevelData> _levels;
-        [SerializeField] int _indexToSkipRename = 0;
+        [SerializeField] List<LevelData> _levels;
 
         bool _canLoad = true;
         public List<Block> _PlaceableBlocks { get; private set; }
         public string _CurrentLevelName { get; private set; }
 
         string _fileExtension = ".txt";
+        string _dataFolder = "Levels";
 
         static LevelManager _instance;
         public static LevelManager instance
@@ -60,58 +56,58 @@ namespace ManagerClasses
             get
             {
                 if (!_instance)
-                    _instance = FindObjectOfType<LevelManager>();
+                    _instance = FindObjectOfType<LevelManager> ();
                 return _instance;
             }
         }
 
-        private void Awake()
+        private void Awake ()
         {
-            _PlaceableBlocks = new List<Block>();
+            _PlaceableBlocks = new List<Block> ();
         }
 
-        void Start()
+        void Start ()
         {
             if (_clearOnStart)
             {
-                ClearLevelImmediate();
-                LoadLevel(_initialLevel);
+                ClearLevelImmediate ();
+                LoadLevel (_initialLevel);
             }
         }
 
-        public List<ILevelObject> GetCurrentLevelObjects()
+        public List<ILevelObject> GetCurrentLevelObjects ()
         {
-            ILevelObject[] temp = GetComponentsInChildren<ILevelObject>();
-            List<ILevelObject> _levelObjects = new List<ILevelObject>();
-            foreach (ILevelObject obj in temp) _levelObjects.Add(obj);
+            ILevelObject[] temp = GetComponentsInChildren<ILevelObject> ();
+            List<ILevelObject> _levelObjects = new List<ILevelObject> ();
+            foreach (ILevelObject obj in temp) _levelObjects.Add (obj);
             return _levelObjects;
         }
 
-        private LevelData GetDataFromCurrentLevel()
+        private LevelData GetDataFromCurrentLevel ()
         {
-            LevelData LevelData = new LevelData();
+            LevelData LevelData = new LevelData ();
 
-            foreach (ILevelObject obj in GetCurrentLevelObjects())
+            foreach (ILevelObject obj in GetCurrentLevelObjects ())
             {
-                LevelObjectData LevelObjectData = new LevelObjectData();
+                LevelObjectData LevelObjectData = new LevelObjectData ();
                 LevelObjectData._blockType = obj.GetBlockType;
                 LevelObjectData._rotationY = obj.GetTransform.localRotation.eulerAngles.y;
                 LevelObjectData._isPlaceable = obj.IsPlaceable;
-                SetPositionsToData(LevelObjectData, obj.GetTransform);
-                LevelData._levelObjects.Add(LevelObjectData);
+                SetPositionsToData (LevelObjectData, obj.GetTransform);
+                LevelData._levelObjects.Add (LevelObjectData);
             }
 
             return LevelData;
         }
 
-        private void SetPositionsToData(LevelObjectData ld_, Transform t_)
+        private void SetPositionsToData (LevelObjectData ld_, Transform t_)
         {
             ld_._positionX = t_.transform.localPosition.x;
             ld_._positionY = t_.transform.localPosition.y;
             ld_._positionZ = t_.transform.localPosition.z;
         }
 
-        public Vector3 GetVectorFromData(LevelObjectData ld_)
+        public Vector3 GetVectorFromData (LevelObjectData ld_)
         {
             Vector3 temp = Vector3.zero;
             temp.x = ld_._positionX;
@@ -120,12 +116,12 @@ namespace ManagerClasses
             return temp;
         }
 
-        public void SaveLevel(string levelName_ = null)
+        public void SaveLevel (string levelName_ = null)
         {
-            if (String.IsNullOrEmpty(levelName_)) return;
-            if (_debug) Debug.Log("Saving. " + levelName_);
+            if (String.IsNullOrEmpty (levelName_)) return;
+            if (_debug) Debug.Log ("Saving. " + levelName_);
 
-            LevelData levelData = GetDataFromCurrentLevel();
+            LevelData levelData = GetDataFromCurrentLevel ();
             levelData._levelName = levelName_;
             for (int i = 0; i < _levels.Count; i++)
             {
@@ -135,10 +131,10 @@ namespace ManagerClasses
                     return;
                 }
             }
-            _levels.Add(levelData);
+            _levels.Add (levelData);
         }
 
-        public LevelData GetLevelData(string levelName_ = null)
+        public LevelData GetLevelData (string levelName_ = null)
         {
             // TextAsset asset;
             // if (levelName_ == "") asset = Resources.Load ("Levels/" + _levelName) as TextAsset;
@@ -161,44 +157,44 @@ namespace ManagerClasses
             foreach (LevelData ld in _levels)
                 if (ld._levelName == levelName_) return ld;
 
-            Debug.LogError("Unable to find the file!");
+            Debug.LogError ("Unable to find the file!");
             return null;
         }
 
-        public void LoadLevel(string levelName_ = "")
+        public void LoadLevel (string levelName_ = "")
         {
             if (_canLoad)
             {
-                LevelData levelData = GetLevelData(levelName_);
+                LevelData levelData = GetLevelData (levelName_);
                 if (levelData != null)
                 {
-                    if (_debug) Debug.Log("Loading " + levelName_);
+                    if (_debug) Debug.Log ("Loading " + levelName_);
                     _CurrentLevelName = levelName_;
                     if (Application.isPlaying)
                     {
-                        ClearLevel();
-                        StartCoroutine(WaitForLoad(levelData));
+                        ClearLevel ();
+                        StartCoroutine (WaitForLoad (levelData));
                     }
                     else
                     {
-                        ClearLevelImmediate();
-                        GenerateLevel(levelData);
+                        ClearLevelImmediate ();
+                        GenerateLevel (levelData);
                     }
                 }
-                else Debug.LogError("Level data is null!");
+                else Debug.LogError ("Level data is null!");
             }
         }
 
-        IEnumerator WaitForLoad(LevelData levelData_)
+        IEnumerator WaitForLoad (LevelData levelData_)
         {
             _canLoad = false;
-            yield return new WaitForSeconds(_loadWaitTime);
-            GenerateLevel(levelData_);
-            yield return new WaitForSeconds(_loadWaitTime);
+            yield return new WaitForSeconds (_loadWaitTime);
+            GenerateLevel (levelData_);
+            yield return new WaitForSeconds (_loadWaitTime);
             _canLoad = true;
         }
 
-        List<LevelData> GetSavedLevels()
+        List<LevelData> GetSavedLevels ()
         {
             // UnityEngine.Object[] assets = Resources.LoadAll ("Levels/");
             // List<string> levelNames = new List<string> ();
@@ -210,88 +206,128 @@ namespace ManagerClasses
             return _levels;
         }
 
-        public List<string> GetSavedLevelNames()
+        public List<string> GetSavedLevelNames ()
         {
-            List<string> levelNames = new List<string>();
+            List<string> levelNames = new List<string> ();
             foreach (var item in _levels)
-                levelNames.Add(item._levelName);
+                levelNames.Add (item._levelName);
             return levelNames;
         }
 
-        void GenerateLevel(LevelData levelData_)
+        void GenerateLevel (LevelData levelData_)
         {
-            if (_debug) Debug.Log("Generating");
-            if (_PlaceableBlocks != null) _PlaceableBlocks.Clear();
-            BotManager.instance.ResetBotCount();
-            List<ILevelObject> _tempILevelObjectList = new List<ILevelObject>();
+            if (_debug) Debug.Log ("Generating");
+            if (_PlaceableBlocks != null) _PlaceableBlocks.Clear ();
+            BotManager.instance.ResetBotCount ();
+            List<ILevelObject> _tempILevelObjectList = new List<ILevelObject> ();
 
             foreach (LevelObjectData lod in levelData_._levelObjects)
             {
-                Vector3 pos = GetVectorFromData(lod);
-                Vector3 rot = new Vector3(0, lod._rotationY, 0);
+                Vector3 pos = GetVectorFromData (lod);
+                Vector3 rot = new Vector3 (0, lod._rotationY, 0);
                 if (lod._blockType == BlockType.Undefined)
                 {
-                    _tempILevelObjectList.Add(Instantiate(_bot, _botHolder.transform.position + pos, Quaternion.Euler(rot), _botHolder));
-                    BotManager.instance.IncrementBotCount();
+                    _tempILevelObjectList.Add (Instantiate (_bot, _botHolder.transform.position + pos, Quaternion.Euler (rot), _botHolder));
+                    BotManager.instance.IncrementBotCount ();
                 }
                 else
                 {
-                    ILevelObject iLevelObj = (Instantiate(_blockList[(int)lod._blockType], _blockHolder.transform.position + pos, Quaternion.Euler(rot), _blockHolder));
+                    ILevelObject iLevelObj = (Instantiate (_blockList[(int) lod._blockType], _blockHolder.transform.position + pos, Quaternion.Euler (rot), _blockHolder));
                     iLevelObj.IsPlaceable = lod._isPlaceable;
-                    _tempILevelObjectList.Add(iLevelObj);
-                    if (Application.isPlaying && iLevelObj.IsPlaceable) _PlaceableBlocks.Add(iLevelObj.GetTransform.GetComponent<Block>());
+                    _tempILevelObjectList.Add (iLevelObj);
+                    if (Application.isPlaying && iLevelObj.IsPlaceable) _PlaceableBlocks.Add (iLevelObj.GetTransform.GetComponent<Block> ());
                 }
             }
 
             foreach (ILevelObject obj in _tempILevelObjectList)
-                if (Application.isPlaying && obj != null) obj.InitializeILevelObject(_spawnTimer);
+                if (Application.isPlaying && obj != null) obj.InitializeILevelObject (_spawnTimer);
 
-            _levelLoadedEffect.Play();
+            _levelLoadedEffect.Play ();
         }
 
-        void ClearLevel()
+        void ClearLevel ()
         {
-            foreach (ILevelObject obj in GetCurrentLevelObjects()) obj.DeathEffect(_spawnTimer);
+            foreach (ILevelObject obj in GetCurrentLevelObjects ()) obj.DeathEffect (_spawnTimer);
         }
 
-        [HorizontalGroup("Buttons")]
-        [Button]
-        void ClearLevelImmediate()
+        [HorizontalGroup ("Buttons")][Button]
+        void ClearLevelImmediate ()
         {
-            foreach (ILevelObject obj in GetCurrentLevelObjects()) SafeDestroy.DestroyGameObject(obj.GetTransform);
+            foreach (ILevelObject obj in GetCurrentLevelObjects ()) SafeDestroy.DestroyGameObject (obj.GetTransform);
         }
 
-        [HorizontalGroup("Buttons")]
-        [Button]
-        public void RenameLevelsToIndex()
+#if UNITY_EDITOR
+        public string GetLevelPath ()
         {
-            for (int i = 0; i < _levels.Count; i++)
-            {
-                if (_indexToSkipRename == i) continue;
-                _levels[i]._levelName = "Level " + (i);
-            }
+            return Application.dataPath + "/" + _dataFolder;
         }
 
-        public string GetLevelPath()
+        public void DeleteAllLevels ()
         {
-            return Application.persistentDataPath + "/Levels/";
+            if (Directory.Exists (GetLevelPath ())) { Directory.Delete (GetLevelPath (), true); }
+            Directory.CreateDirectory (GetLevelPath ());
         }
 
-        void SaveAllLevelsToResources(string levelName_ = null)
+        [HorizontalGroup ("Buttons")][Button]
+        void SaveAllLevels ()
         {
+            DeleteAllLevels ();
+
             string levelPath;
             BinaryFormatter bf;
             FileStream file;
 
-            foreach (LevelData ld in _levels)
+            for (int i = 0; i < _levels.Count; i++)
             {
-                levelPath = GetLevelPath() + ld._levelName + _fileExtension;
-                bf = new BinaryFormatter();
-                file = new FileStream(levelPath, FileMode.Create);
-                bf.Serialize(file, ld);
-                file.Close();
+                levelPath = GetLevelPath () + "/" + _levels[i]._levelName + _fileExtension;
+                _levels[i]._levelIndex = i;
+                bf = new BinaryFormatter ();
+                file = new FileStream (levelPath, FileMode.Create);
+                bf.Serialize (file, _levels[i]);
+                file.Close ();
             }
+
+            AssetDatabase.Refresh ();
         }
+
+        // [HorizontalGroup ("Buttons")][Button]
+        // void LoadAllLevels ()
+        // {
+        //     string levelPath;
+        //     BinaryFormatter bf;
+        //     FileStream file;
+
+        //     for (int i = 0; i < _levels.Count; i++)
+        //     {
+        //         levelPath = GetLevelPath () + "/" + _levels[i]._levelName + _fileExtension;
+        //         _levels[i]._levelIndex = i;
+        //         bf = new BinaryFormatter ();
+        //         file = new FileStream (levelPath, FileMode.Open);
+        //         bf.Deserialize (file);
+        //         file.Close ();
+        //     }
+
+        //     // TextAsset asset;
+        //     // if (levelName_ == "") asset = Resources.Load ("Levels/" + _levelName) as TextAsset;
+        //     // else asset = Resources.Load ("Levels/" + levelName_) as TextAsset;
+
+        //     // if (asset != null)
+        //     // {
+        //     // 	Stream stream = new MemoryStream (asset.bytes);
+        //     // 	BinaryFormatter bf = new BinaryFormatter ();
+        //     // 	LevelData levelData = bf.Deserialize (stream) as LevelData;
+        //     // 	stream.Close ();
+        //     // 	return levelData;
+        //     // }
+        //     // else
+        //     // {
+        //     // 	Debug.LogError ("Level data not found!");
+        //     // 	return null;
+        //     // }
+
+        //     AssetDatabase.Refresh ();
+        // }
+#endif
 
         // public void DeleteLevel (string levelName_)
         // {
@@ -304,6 +340,12 @@ namespace ManagerClasses
         // 	if (File.Exists (levelPath + ".meta")) File.Delete (levelPath + ".meta");
         // 	else if(_debug)Debug.Log ("Error. File does not exist.");
         // }
+
+        private void OnValidate ()
+        {
+            for (int i = 0; i < _levels.Count; i++)
+                if (String.IsNullOrEmpty (_levels[i]._levelName)) _levels[i]._levelName = "Level " + i;
+        }
 
     }
 
@@ -321,19 +363,16 @@ namespace ManagerClasses
     [System.Serializable]
     public class LevelData
     {
-        [HorizontalGroup("Level Data Persistence Options")] public string _levelName;
-        [HideInInspector] public List<LevelObjectData> _levelObjects = new List<LevelObjectData>();
+        [HorizontalGroup ("LevelDataButtons")] public string _levelName;
+        [HideInInspector] public int _levelIndex;
+        [HideInInspector] public List<LevelObjectData> _levelObjects = new List<LevelObjectData> ();
 
         bool _levelCompleted;
 
 #if UNITY_EDITOR
-        [HorizontalGroup("Level Data Persistence Options")]
-        [Button]
-        public void SaveLevel() { LevelManager.instance.SaveLevel(_levelName); }
+        [HorizontalGroup ("LevelDataButtons")][Button] public void SaveLevel () { LevelManager.instance.SaveLevel (_levelName); }
 
-        [HorizontalGroup("Level Data Persistence Options")]
-        [Button]
-        public void LoadLevel() { LevelManager.instance.LoadLevel(_levelName); }
+        [HorizontalGroup ("LevelDataButtons")][Button] public void LoadLevel () { LevelManager.instance.LoadLevel (_levelName); }
 
         // [HorizontalGroup ("Level Data Persistence Options"), ]
         // [Button] public void DeleteLevel () { LevelManager.instance.DeleteLevel (_levelName); }
@@ -347,6 +386,6 @@ public interface ILevelObject
     Transform GetTransform { get; }
     BlockType GetBlockType { get; }
     bool IsPlaceable { get; set; }
-    void DeathEffect(float deathEffectTime_ = 0.8f);
-    void InitializeILevelObject(float spawnEffectTime_ = 0.8f);
+    void DeathEffect (float deathEffectTime_ = 0.8f);
+    void InitializeILevelObject (float spawnEffectTime_ = 0.8f);
 }

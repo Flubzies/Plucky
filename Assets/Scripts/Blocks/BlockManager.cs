@@ -36,13 +36,16 @@ namespace BlockClasses
 			return adj;
 		}
 
-		public void CheckForRoot (Block block_)
+		public void CheckForRoot ()
 		{
-			_checkingBlocks.Clear ();
-			_blocksCheckedCount = 0;
-			_checkingBlocks.Add (block_);
-			DeleteStrayBlocks ();
-			FindRoot (_checkingBlocks);
+			List<Block> placeableBlocks = LevelManager.instance._PlaceableBlocks;
+			foreach (Block placeableBlock in placeableBlocks)
+			{
+				_checkingBlocks.Clear ();
+				_blocksCheckedCount = 0;
+				_checkingBlocks.Add (placeableBlock);
+				FindRoot (_checkingBlocks);
+			}
 		}
 
 		void FindRoot (List<Block> blocksAdjSpaces_)
@@ -74,29 +77,6 @@ namespace BlockClasses
 			}
 		}
 
-		void DeleteStrayBlocks ()
-		{
-			List<Block> blocksAdjSpaces_ = LevelManager.instance._PlaceableBlocks;
-			Collider[] cols;
-
-			for (int i = 0; i < blocksAdjSpaces_.Count; i++)
-			{
-				if (blocksAdjSpaces_[i] != null)
-				{
-					_adjacentPositions = GetAdjacentPositions (blocksAdjSpaces_[i].transform);
-					int colCount = 0;
-
-					for (int j = 0; j < _adjacentPositions.Length; j++)
-					{
-						cols = Physics.OverlapSphere (_adjacentPositions[j], 0.2f, _blocksLM);
-						if (cols.Length != 0) colCount++;
-					}
-
-					if (colCount == 0) blocksAdjSpaces_[i].DeathEffect (0.8f);
-				}
-			}
-		}
-
 		void DestroyBlocks ()
 		{
 			for (int i = _checkingBlocks.Count - 1; i >= 0; i--) _checkingBlocks[i].DeathEffect (0.8f);
@@ -114,4 +94,3 @@ namespace BlockClasses
 		}
 	}
 }
-

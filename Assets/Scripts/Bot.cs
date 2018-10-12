@@ -20,7 +20,6 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 
     [Space (10.0f)]
     [SerializeField] bool _debug;
-    [SerializeField] bool _initializeOnStart;
 
     [FoldoutGroup ("Tween Ease Settings")][SerializeField] Ease _moveEase;
     [FoldoutGroup ("Tween Ease Settings")][SerializeField] Ease _rotEase;
@@ -33,17 +32,21 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 
     private void Awake ()
     {
-        _health = GetComponent<Health> ();
-    }
+        _health = GetComponent<Health>
 
-    private void Start ()
-    {
-        if (_initializeOnStart) InitializeILevelObject (0.8f);
     }
 
     void StartMoving ()
     {
         StartCoroutine (Checks ());
+
+        // Check block under bot. 
+        // If there is no block, drop 1 unit and end.
+        // If it has an effect, do the effect and end.
+        // If it does not have an effect. Check colliders and act on their config.
+        // end.
+        // repeat
+
     }
 
     IEnumerator Checks ()
@@ -64,6 +67,7 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
             if (_colliders[0].GetComponent<Block> ().BlockEffect (GetComponent<IBot> ())) return true;
             else return false;
         }
+        Drop ();
         return false;
     }
 
@@ -89,7 +93,7 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
             case 9:
             case 17:
             case 25:
-                Drop ();
+                ForwardDrop ();
                 break;
             case 2:
             case 3:
@@ -136,7 +140,7 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
         t.OnComplete (StartMoving);
     }
 
-    void Drop ()
+    void ForwardDrop ()
     {
         Vector3[] vecPath = new Vector3[2];
         vecPath[0] = transform.forward + transform.position;
@@ -144,6 +148,13 @@ public class Bot : MonoBehaviour, IBot, ILevelObject
 
         Tweener t = transform.DOPath (vecPath, _moveSpeed);
         t.SetEase (_dropEase);
+        t.OnComplete (StartMoving);
+    }
+
+    void Drop ()
+    {
+        Tweener t = transform.DOMove (transform.position + transform.up * -1, _moveSpeed);
+        t.SetEase (_moveEase);
         t.OnComplete (StartMoving);
     }
 
