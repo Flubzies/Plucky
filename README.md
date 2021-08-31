@@ -18,5 +18,5 @@ Please add these plugins to your assets folder to run the project.
 [Console Enhanced Free](https://assetstore.unity.com/packages/tools/utilities/console-enhanced-free-42381)
 
 
-Developer: Farjad Mohammad
-fm96.co.uk
+Developer: Riley Clarke
+flubzies.cm
